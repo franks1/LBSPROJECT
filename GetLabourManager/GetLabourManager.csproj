@@ -1,0 +1,1846 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{42912F22-151E-44A5-8318-448E636A24BB}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GetLabourManager</RootNamespace>
+    <AssemblyName>GetLabourManager</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dashboard.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dashboard.v17.1.Web, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dashboard.v17.1.Web.Mvc5, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Map.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.TreeMap.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.ASPxThemes.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.Mvc5.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.Resources.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v17.1.Web, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExtreme.AspNet.Data, Version=1.2.5.0, Culture=neutral, PublicKeyToken=982f5dab1439d0f7, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExtreme.AspNet.Data.1.2.5\lib\net40\DevExtreme.AspNet.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExtreme.AspNet.Mvc">
+      <HintPath>..\lib\DevExtreme\DevExtreme.AspNet.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader, Version=3.2.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.2.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.2.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.DataSet.3.2.0\lib\net45\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
+    <Reference Include="GridMvc, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grid.Mvc.3.0.0\lib\net40\GridMvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Humanizer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Humanizer.Core.2.2.0\lib\netstandard1.0\Humanizer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionFilters\RBACAttribute.cs" />
+    <Compile Include="AppReports\rptCasualConstribution.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\rptCasualPayslip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\rptCasualReportA.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\rptContributionSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\rptPayeDeduction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\rptPaymentCheckSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\rptPayRollJournal.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\rptProcessedClientInvoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\rptProcessedCostSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\rptTier1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\rptTier2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DevExtremeBundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\RBAC_ExtendedMethods.cs" />
+    <Compile Include="Common\RBAC_IdentityExtendedMethods.cs" />
+    <Compile Include="Configuration\AllocationContainersConfiguration.cs" />
+    <Compile Include="Configuration\BranchConfiguration.cs" />
+    <Compile Include="Configuration\CasualPaymentSetupConfiguration.cs" />
+    <Compile Include="Configuration\ClientDetailsConfiguration.cs" />
+    <Compile Include="Configuration\ContainerConfiguration.cs" />
+    <Compile Include="Configuration\CostSheetConfiguration.cs" />
+    <Compile Include="Configuration\CostSheetItemsConfiguration.cs" />
+    <Compile Include="Configuration\EmployeeCategoryConfiguration.cs" />
+    <Compile Include="Configuration\EmployeeCategoryGroupingConfiguration.cs" />
+    <Compile Include="Configuration\EmployeeClientGroupConfiguration.cs" />
+    <Compile Include="Configuration\EmployeeConfiguration.cs" />
+    <Compile Include="Configuration\EmployeeContributionsConfiguration.cs" />
+    <Compile Include="Configuration\EmployeeGroupConfiguration.cs" />
+    <Compile Include="Configuration\EmployeeRelationsConfiguration.cs" />
+    <Compile Include="Configuration\FieldClientsConfiguration.cs" />
+    <Compile Include="Configuration\FieldContainersTypeConfiguration.cs" />
+    <Compile Include="Configuration\FieldLocationAreaConfiguration.cs" />
+    <Compile Include="Configuration\ForemenConfiguration.cs" />
+    <Compile Include="Configuration\GangAllocationConfiguration.cs" />
+    <Compile Include="Configuration\GangConfiguration.cs" />
+    <Compile Include="Configuration\GangMemberExemptionConfiguration.cs" />
+    <Compile Include="Configuration\GangSheetHeaderConfiguration.cs" />
+    <Compile Include="Configuration\GangSheetItemSConfiguration.cs" />
+    <Compile Include="Configuration\MasterSequenceConfiguration.cs" />
+    <Compile Include="Configuration\OperationalWorkingHoursConfiguration.cs" />
+    <Compile Include="Configuration\PaymentSetupConfiguration.cs" />
+    <Compile Include="Configuration\ProcessedInvoiceConfiguration.cs" />
+    <Compile Include="Configuration\ProcessedSheetCasualConfiguration.cs" />
+    <Compile Include="Configuration\TaxSetupConfiguration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BackOfficeController.cs" />
+    <Compile Include="Controllers\BranchController.cs" />
+    <Compile Include="Controllers\ClientDetailsController.cs" />
+    <Compile Include="Controllers\DataManagerController.cs" />
+    <Compile Include="Controllers\EmployeeCategoryController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\ForemanOperationController.cs" />
+    <Compile Include="Controllers\ForemenController.cs" />
+    <Compile Include="Controllers\GangAdviceManagerController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageFieldClientController.cs" />
+    <Compile Include="Controllers\ManageGangController.cs" />
+    <Compile Include="Controllers\MasterSetupController.cs" />
+    <Compile Include="Controllers\OperationController.cs" />
+    <Compile Include="Controllers\PaymentSetupController.cs" />
+    <Compile Include="Controllers\ReportManagerController.cs" />
+    <Compile Include="Controllers\SequenceController.cs" />
+    <Compile Include="Controllers\UnauthorisedController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\DashBoardHelper.cs" />
+    <Compile Include="Helper\DataProcessingHelper.cs" />
+    <Compile Include="Helper\EmployeeHelper.cs" />
+    <Compile Include="Helper\GangAllocationHelper.cs" />
+    <Compile Include="Helper\GangHelper.cs" />
+    <Compile Include="Helper\ReportHeaders.cs" />
+    <Compile Include="Helper\SequenceHelper.cs" />
+    <Compile Include="Helper\TreeBuilder.cs" />
+    <Compile Include="Helper\TreeBuilderHelper.cs" />
+    <Compile Include="InvoiceHub\InvoiceHub.cs" />
+    <Compile Include="InvoiceHub\TimeAuditHub.cs" />
+    <Compile Include="Migrations\201708201337307_InitialCreate.cs" />
+    <Compile Include="Migrations\201708201337307_InitialCreate.Designer.cs">
+      <DependentUpon>201708201337307_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708202009374_sequence_update.cs" />
+    <Compile Include="Migrations\201708202009374_sequence_update.Designer.cs">
+      <DependentUpon>201708202009374_sequence_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708210952541_modelUpdate.cs" />
+    <Compile Include="Migrations\201708210952541_modelUpdate.Designer.cs">
+      <DependentUpon>201708210952541_modelUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708211533553_employee_category.cs" />
+    <Compile Include="Migrations\201708211533553_employee_category.Designer.cs">
+      <DependentUpon>201708211533553_employee_category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708260739595_EmployeeMigration.cs" />
+    <Compile Include="Migrations\201708260739595_EmployeeMigration.Designer.cs">
+      <DependentUpon>201708260739595_EmployeeMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708260806557_Employee_Contribution_Relation.cs" />
+    <Compile Include="Migrations\201708260806557_Employee_Contribution_Relation.Designer.cs">
+      <DependentUpon>201708260806557_Employee_Contribution_Relation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708260838526_ModelUpdate_Employee.cs" />
+    <Compile Include="Migrations\201708260838526_ModelUpdate_Employee.Designer.cs">
+      <DependentUpon>201708260838526_ModelUpdate_Employee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708280730377_GaansMigration.cs" />
+    <Compile Include="Migrations\201708280730377_GaansMigration.Designer.cs">
+      <DependentUpon>201708280730377_GaansMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708281047137_GangSheetHEader_And_Items.cs" />
+    <Compile Include="Migrations\201708281047137_GangSheetHEader_And_Items.Designer.cs">
+      <DependentUpon>201708281047137_GangSheetHEader_And_Items.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708281358139_FieldAgent_Migration.cs" />
+    <Compile Include="Migrations\201708281358139_FieldAgent_Migration.Designer.cs">
+      <DependentUpon>201708281358139_FieldAgent_Migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708290807070_editGangHeader.cs" />
+    <Compile Include="Migrations\201708290807070_editGangHeader.Designer.cs">
+      <DependentUpon>201708290807070_editGangHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708290840201_editGangHeaderNarration.cs" />
+    <Compile Include="Migrations\201708290840201_editGangHeaderNarration.Designer.cs">
+      <DependentUpon>201708290840201_editGangHeaderNarration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708290914361_GangAdviceProc.cs" />
+    <Compile Include="Migrations\201708290914361_GangAdviceProc.Designer.cs">
+      <DependentUpon>201708290914361_GangAdviceProc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709011639093_EmplyeeGroup.cs" />
+    <Compile Include="Migrations\201709011639093_EmplyeeGroup.Designer.cs">
+      <DependentUpon>201709011639093_EmplyeeGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709021211497_category_grouping.cs" />
+    <Compile Include="Migrations\201709021211497_category_grouping.Designer.cs">
+      <DependentUpon>201709021211497_category_grouping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709021454565_GangSheetItemsUpdate.cs" />
+    <Compile Include="Migrations\201709021454565_GangSheetItemsUpdate.Designer.cs">
+      <DependentUpon>201709021454565_GangSheetItemsUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709041515300_Field_Update.cs" />
+    <Compile Include="Migrations\201709041515300_Field_Update.Designer.cs">
+      <DependentUpon>201709041515300_Field_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709041529291_Foremen_Edit.cs" />
+    <Compile Include="Migrations\201709041529291_Foremen_Edit.Designer.cs">
+      <DependentUpon>201709041529291_Foremen_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709051331038_PaymentSetup.cs" />
+    <Compile Include="Migrations\201709051331038_PaymentSetup.Designer.cs">
+      <DependentUpon>201709051331038_PaymentSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709052011435_CasualSetupInitial.cs" />
+    <Compile Include="Migrations\201709052011435_CasualSetupInitial.Designer.cs">
+      <DependentUpon>201709052011435_CasualSetupInitial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709060951116_TaxModel.cs" />
+    <Compile Include="Migrations\201709060951116_TaxModel.Designer.cs">
+      <DependentUpon>201709060951116_TaxModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709121935425_ContainerModel.cs" />
+    <Compile Include="Migrations\201709121935425_ContainerModel.Designer.cs">
+      <DependentUpon>201709121935425_ContainerModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709141840231_Allocation_Containers_Gang.cs" />
+    <Compile Include="Migrations\201709141840231_Allocation_Containers_Gang.Designer.cs">
+      <DependentUpon>201709141840231_Allocation_Containers_Gang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709142038057_ModelContainerUpdate.cs" />
+    <Compile Include="Migrations\201709142038057_ModelContainerUpdate.Designer.cs">
+      <DependentUpon>201709142038057_ModelContainerUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709191508512_gang_sheet_allocation.cs" />
+    <Compile Include="Migrations\201709191508512_gang_sheet_allocation.Designer.cs">
+      <DependentUpon>201709191508512_gang_sheet_allocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709191839431_request_code_container.cs" />
+    <Compile Include="Migrations\201709191839431_request_code_container.Designer.cs">
+      <DependentUpon>201709191839431_request_code_container.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709191927577_CasualProc.cs" />
+    <Compile Include="Migrations\201709191927577_CasualProc.Designer.cs">
+      <DependentUpon>201709191927577_CasualProc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709191935405_CasualMemberFilter.cs" />
+    <Compile Include="Migrations\201709191935405_CasualMemberFilter.Designer.cs">
+      <DependentUpon>201709191935405_CasualMemberFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709201052171_CostSheet_migration.cs" />
+    <Compile Include="Migrations\201709201052171_CostSheet_migration.Designer.cs">
+      <DependentUpon>201709201052171_CostSheet_migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709250937437_modelUpdateNew.cs" />
+    <Compile Include="Migrations\201709250937437_modelUpdateNew.Designer.cs">
+      <DependentUpon>201709250937437_modelUpdateNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710021258437_NextModelUpdate.cs" />
+    <Compile Include="Migrations\201710021258437_NextModelUpdate.Designer.cs">
+      <DependentUpon>201710021258437_NextModelUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710021301188_NextModelUpdateProcessedSheet.cs" />
+    <Compile Include="Migrations\201710021301188_NextModelUpdateProcessedSheet.Designer.cs">
+      <DependentUpon>201710021301188_NextModelUpdateProcessedSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710021528458_costsheet.cs" />
+    <Compile Include="Migrations\201710021528458_costsheet.Designer.cs">
+      <DependentUpon>201710021528458_costsheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710041052345_PaymentWorkScheme.cs" />
+    <Compile Include="Migrations\201710041052345_PaymentWorkScheme.Designer.cs">
+      <DependentUpon>201710041052345_PaymentWorkScheme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710050856066_CasualPaymentModified.cs" />
+    <Compile Include="Migrations\201710050856066_CasualPaymentModified.Designer.cs">
+      <DependentUpon>201710050856066_CasualPaymentModified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710051019302_ProcessedShedule.cs" />
+    <Compile Include="Migrations\201710051019302_ProcessedShedule.Designer.cs">
+      <DependentUpon>201710051019302_ProcessedShedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710051121545_ProcessedSheduleModelEdit.cs" />
+    <Compile Include="Migrations\201710051121545_ProcessedSheduleModelEdit.Designer.cs">
+      <DependentUpon>201710051121545_ProcessedSheduleModelEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710061449063_PaymentSetupModified2.cs" />
+    <Compile Include="Migrations\201710061449063_PaymentSetupModified2.Designer.cs">
+      <DependentUpon>201710061449063_PaymentSetupModified2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710062335449_taxes.cs" />
+    <Compile Include="Migrations\201710062335449_taxes.Designer.cs">
+      <DependentUpon>201710062335449_taxes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710071813084_allowance_payment.cs" />
+    <Compile Include="Migrations\201710071813084_allowance_payment.Designer.cs">
+      <DependentUpon>201710071813084_allowance_payment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710071859039_Taxonallowance.cs" />
+    <Compile Include="Migrations\201710071859039_Taxonallowance.Designer.cs">
+      <DependentUpon>201710071859039_Taxonallowance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710111050359_clientgrouping.cs" />
+    <Compile Include="Migrations\201710111050359_clientgrouping.Designer.cs">
+      <DependentUpon>201710111050359_clientgrouping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710111319523_clientPremium.cs" />
+    <Compile Include="Migrations\201710111319523_clientPremium.Designer.cs">
+      <DependentUpon>201710111319523_clientPremium.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710111429202_temp_update.cs" />
+    <Compile Include="Migrations\201710111429202_temp_update.Designer.cs">
+      <DependentUpon>201710111429202_temp_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710111523369_allowance_off_onCasual.cs" />
+    <Compile Include="Migrations\201710111523369_allowance_off_onCasual.Designer.cs">
+      <DependentUpon>201710111523369_allowance_off_onCasual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710121027225_AdviceList.cs" />
+    <Compile Include="Migrations\201710121027225_AdviceList.Designer.cs">
+      <DependentUpon>201710121027225_AdviceList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710121240463_AdviceListForApproval.cs" />
+    <Compile Include="Migrations\201710121240463_AdviceListForApproval.Designer.cs">
+      <DependentUpon>201710121240463_AdviceListForApproval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710121307376_AdviceListForContainer.cs" />
+    <Compile Include="Migrations\201710121307376_AdviceListForContainer.Designer.cs">
+      <DependentUpon>201710121307376_AdviceListForContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710121535133_approvalNote.cs" />
+    <Compile Include="Migrations\201710121535133_approvalNote.Designer.cs">
+      <DependentUpon>201710121535133_approvalNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710131323236_GangEditOnGangHeader.cs" />
+    <Compile Include="Migrations\201710131323236_GangEditOnGangHeader.Designer.cs">
+      <DependentUpon>201710131323236_GangEditOnGangHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710131352298_GangCostSheetDetails.cs" />
+    <Compile Include="Migrations\201710131352298_GangCostSheetDetails.Designer.cs">
+      <DependentUpon>201710131352298_GangCostSheetDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710131509118_GangCasualsDetails.cs" />
+    <Compile Include="Migrations\201710131509118_GangCasualsDetails.Designer.cs">
+      <DependentUpon>201710131509118_GangCasualsDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710171051137_OperationalWorkingHrs.cs" />
+    <Compile Include="Migrations\201710171051137_OperationalWorkingHrs.Designer.cs">
+      <DependentUpon>201710171051137_OperationalWorkingHrs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710180856082_PfInclusion.cs" />
+    <Compile Include="Migrations\201710180856082_PfInclusion.Designer.cs">
+      <DependentUpon>201710180856082_PfInclusion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710181118028_CostSheetHours.cs" />
+    <Compile Include="Migrations\201710181118028_CostSheetHours.Designer.cs">
+      <DependentUpon>201710181118028_CostSheetHours.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710181149476_ProcessedCostSheetProc.cs" />
+    <Compile Include="Migrations\201710181149476_ProcessedCostSheetProc.Designer.cs">
+      <DependentUpon>201710181149476_ProcessedCostSheetProc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710191646312_ProcessedInvoiceModel.cs" />
+    <Compile Include="Migrations\201710191646312_ProcessedInvoiceModel.Designer.cs">
+      <DependentUpon>201710191646312_ProcessedInvoiceModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710191744156_ClientInvoiceSummaryProc.cs" />
+    <Compile Include="Migrations\201710191744156_ClientInvoiceSummaryProc.Designer.cs">
+      <DependentUpon>201710191744156_ClientInvoiceSummaryProc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710260944490_FieldLocations.cs" />
+    <Compile Include="Migrations\201710260944490_FieldLocations.Designer.cs">
+      <DependentUpon>201710260944490_FieldLocations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710310748149_CasualListProcA.cs" />
+    <Compile Include="Migrations\201710310748149_CasualListProcA.Designer.cs">
+      <DependentUpon>201710310748149_CasualListProcA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710311149379_CasualDetailContribution.cs" />
+    <Compile Include="Migrations\201710311149379_CasualDetailContribution.Designer.cs">
+      <DependentUpon>201710311149379_CasualDetailContribution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710311408238_ContributionSummary.cs" />
+    <Compile Include="Migrations\201710311408238_ContributionSummary.Designer.cs">
+      <DependentUpon>201710311408238_ContributionSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710311557530_PayrollJournal.cs" />
+    <Compile Include="Migrations\201710311557530_PayrollJournal.Designer.cs">
+      <DependentUpon>201710311557530_PayrollJournal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711011323537_CasualPayslip.cs" />
+    <Compile Include="Migrations\201711011323537_CasualPayslip.Designer.cs">
+      <DependentUpon>201711011323537_CasualPayslip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711020755104_PayeDeduction.cs" />
+    <Compile Include="Migrations\201711020755104_PayeDeduction.Designer.cs">
+      <DependentUpon>201711020755104_PayeDeduction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711020938561_PaymentChecklistSheet.cs" />
+    <Compile Include="Migrations\201711020938561_PaymentChecklistSheet.Designer.cs">
+      <DependentUpon>201711020938561_PaymentChecklistSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711021132087_TierOneContribution.cs" />
+    <Compile Include="Migrations\201711021132087_TierOneContribution.Designer.cs">
+      <DependentUpon>201711021132087_TierOneContribution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711021210512_TierTwoContribution.cs" />
+    <Compile Include="Migrations\201711021210512_TierTwoContribution.Designer.cs">
+      <DependentUpon>201711021210512_TierTwoContribution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711131223207_FieldLocationmigra.cs" />
+    <Compile Include="Migrations\201711131223207_FieldLocationmigra.Designer.cs">
+      <DependentUpon>201711131223207_FieldLocationmigra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AllocationContainers.cs" />
+    <Compile Include="Models\Branch.cs" />
+    <Compile Include="Models\CasualPaymentSetup.cs" />
+    <Compile Include="Models\CostSheet.cs" />
+    <Compile Include="Models\CostSheetItems.cs" />
+    <Compile Include="Models\EmployeeClientGroup.cs" />
+    <Compile Include="Models\FieldLocationArea.cs" />
+    <Compile Include="Models\GangAllocation.cs" />
+    <Compile Include="Models\GangMemberExemption.cs" />
+    <Compile Include="Models\OperationalWorkingHours.cs" />
+    <Compile Include="Models\ProcessedInvoice.cs" />
+    <Compile Include="Models\ProcessedSheetCasual.cs" />
+    <Compile Include="Models\VesselContainer.cs" />
+    <Compile Include="Models\EmployeeCategoryGrouping.cs" />
+    <Compile Include="Models\EmployeeGroup.cs" />
+    <Compile Include="Models\FieldClients.cs" />
+    <Compile Include="Models\FieldContainersType.cs" />
+    <Compile Include="Models\Foremen.cs" />
+    <Compile Include="Models\Gang.cs" />
+    <Compile Include="Models\ClientDetails.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeeCategory.cs" />
+    <Compile Include="Models\EmployeeContributions.cs" />
+    <Compile Include="Models\EmployeeRelations.cs" />
+    <Compile Include="Models\GangSheetHeader.cs" />
+    <Compile Include="Models\GangSheetItems.cs" />
+    <Compile Include="Models\MasterSequence.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PaymentSetup.cs" />
+    <Compile Include="Models\RBACInitializer.cs" />
+    <Compile Include="Models\RBACModel.cs" />
+    <Compile Include="Models\RBACPermission.cs" />
+    <Compile Include="Models\RBACRole.cs" />
+    <Compile Include="Models\RBACRolePermissions.cs" />
+    <Compile Include="Models\RBACUser.cs" />
+    <Compile Include="Models\RBACUserRole.cs" />
+    <Compile Include="Models\RBACViewModels.cs" />
+    <Compile Include="Models\SequenceNumbering.cs" />
+    <Compile Include="Models\TaxSetup.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ApplicationUserViewModel.cs" />
+    <Compile Include="ViewModel\AssignedContainers.cs" />
+    <Compile Include="ViewModel\CostSheetHeader.cs" />
+    <Compile Include="ViewModel\EmployeeViewModel.cs" />
+    <Compile Include="ViewModel\GangAdviceViewModel.cs" />
+    <Compile Include="ViewModel\NewGangEntry.cs" />
+    <Compile Include="ViewModel\PermissionDeleteModel.cs" />
+    <Compile Include="ViewModel\PermissionViewModel.cs" />
+    <Compile Include="ViewModel\ReportFilters.cs" />
+    <Compile Include="ViewModel\UserRoleDeleteModel.cs" />
+    <Compile Include="ViewModel\VesselContainerViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="assets\css\AdminLTE.min.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\font-awesome.min.css" />
+    <Content Include="assets\css\Fontes.css" />
+    <Content Include="assets\css\please-wait.css" />
+    <Content Include="assets\css\skin-blue.min.css" />
+    <Content Include="assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\img\labour_img_one.jpg" />
+    <Content Include="assets\img\labour_work_three.jpg" />
+    <Content Include="assets\img\labour_work_two.jpg" />
+    <Content Include="assets\img\logo.jpg" />
+    <Content Include="assets\js\AdminLTE.js" />
+    <Content Include="assets\js\app.min.js" />
+    <Content Include="assets\js\bootstrap.js" />
+    <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\js\demo.js" />
+    <Content Include="assets\js\html5shiv.min.js" />
+    <Content Include="assets\js\jquery.js" />
+    <Content Include="assets\js\jquery.validate.min.js" />
+    <Content Include="assets\js\jquery.validate.unobtrusive.min.js" />
+    <Content Include="assets\js\modernizr.js" />
+    <Content Include="assets\js\please-wait.min.js" />
+    <Content Include="assets\js\respond.min.js" />
+    <Content Include="assets\plugins\datatables\dataTables.bootstrap.css" />
+    <Content Include="assets\plugins\datatables\dataTables.bootstrap.js" />
+    <Content Include="assets\plugins\datatables\dataTables.bootstrap.min.js" />
+    <Content Include="assets\plugins\datatables\extensions\AutoFill\css\dataTables.autoFill.css" />
+    <Content Include="assets\plugins\datatables\extensions\AutoFill\css\dataTables.autoFill.min.css" />
+    <Content Include="assets\plugins\datatables\extensions\AutoFill\examples\columns.html" />
+    <Content Include="assets\plugins\datatables\extensions\AutoFill\examples\complete-callback.html" />
+    <Content Include="assets\plugins\datatables\extensions\AutoFill\examples\fill-both.html" />
+    <Content Include="assets\plugins\datatables\extensions\AutoFill\examples\fill-horizontal.html" />
+    <Content Include="assets\plugins\datatables\extensions\AutoFill\examples\index.html" />
+    <Content Include="assets\plugins\datatables\extensions\AutoFill\examples\scrolling.html" />
+    <Content Include="assets\plugins\datatables\extensions\AutoFill\examples\simple.html" />
+    <Content Include="assets\plugins\datatables\extensions\AutoFill\examples\step-callback.html" />
+    <Content Include="assets\plugins\datatables\extensions\AutoFill\images\filler.png" />
+    <Content Include="assets\plugins\datatables\extensions\AutoFill\js\dataTables.autoFill.js" />
+    <Content Include="assets\plugins\datatables\extensions\AutoFill\js\dataTables.autoFill.min.js" />
+    <Content Include="assets\plugins\datatables\extensions\AutoFill\Readme.txt" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\css\dataTables.colReorder.css" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\css\dataTables.colReorder.min.css" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\examples\alt_insert.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\examples\colvis.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\examples\col_filter.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\examples\fixedcolumns.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\examples\fixedheader.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\examples\index.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\examples\jqueryui.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\examples\new_init.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\examples\predefined.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\examples\realtime.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\examples\reset.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\examples\scrolling.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\examples\server_side.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\examples\simple.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\examples\state_save.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\images\insert.png" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\js\dataTables.colReorder.js" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\js\dataTables.colReorder.min.js" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\License.txt" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\css\dataTables.colVis.css" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\css\dataTables.colvis.jqueryui.css" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\css\dataTables.colVis.min.css" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\examples\button_order.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\examples\exclude_columns.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\examples\group_columns.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\examples\index.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\examples\jqueryui.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\examples\mouseover.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\examples\new_init.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\examples\restore.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\examples\simple.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\examples\text.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\examples\title_callback.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\examples\two_tables.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\examples\two_tables_identical.html" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\js\dataTables.colVis.js" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\js\dataTables.colVis.min.js" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\License.txt" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\css\dataTables.fixedColumns.css" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\css\dataTables.fixedColumns.min.css" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\examples\bootstrap.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\examples\colvis.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\examples\col_filter.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\examples\css_size.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\examples\index.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\examples\index_column.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\examples\left_right_columns.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\examples\right_column.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\examples\rowspan.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\examples\server-side-processing.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\examples\simple.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\examples\size_fixed.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\examples\size_fluid.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\examples\two_columns.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\js\dataTables.fixedColumns.js" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\js\dataTables.fixedColumns.min.js" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\License.txt" />
+    <Content Include="assets\plugins\datatables\extensions\FixedHeader\css\dataTables.fixedHeader.css" />
+    <Content Include="assets\plugins\datatables\extensions\FixedHeader\css\dataTables.fixedHeader.min.css" />
+    <Content Include="assets\plugins\datatables\extensions\FixedHeader\examples\header_footer.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedHeader\examples\index.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedHeader\examples\simple.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedHeader\examples\top_left_right.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedHeader\examples\two_tables.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedHeader\examples\zIndexes.html" />
+    <Content Include="assets\plugins\datatables\extensions\FixedHeader\js\dataTables.fixedHeader.js" />
+    <Content Include="assets\plugins\datatables\extensions\FixedHeader\js\dataTables.fixedHeader.min.js" />
+    <Content Include="assets\plugins\datatables\extensions\FixedHeader\Readme.txt" />
+    <Content Include="assets\plugins\datatables\extensions\KeyTable\css\dataTables.keyTable.css" />
+    <Content Include="assets\plugins\datatables\extensions\KeyTable\css\dataTables.keyTable.min.css" />
+    <Content Include="assets\plugins\datatables\extensions\KeyTable\examples\events.html" />
+    <Content Include="assets\plugins\datatables\extensions\KeyTable\examples\html.html" />
+    <Content Include="assets\plugins\datatables\extensions\KeyTable\examples\index.html" />
+    <Content Include="assets\plugins\datatables\extensions\KeyTable\examples\scrolling.html" />
+    <Content Include="assets\plugins\datatables\extensions\KeyTable\examples\simple.html" />
+    <Content Include="assets\plugins\datatables\extensions\KeyTable\js\dataTables.keyTable.js" />
+    <Content Include="assets\plugins\datatables\extensions\KeyTable\js\dataTables.keyTable.min.js" />
+    <Content Include="assets\plugins\datatables\extensions\KeyTable\Readme.txt" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\css\dataTables.responsive.css" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\child-rows\column-control.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\child-rows\custom-renderer.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\child-rows\disable-child-rows.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\child-rows\index.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\child-rows\right-column.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\child-rows\whole-row-control.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\display-control\auto.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\display-control\classes.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\display-control\complexHeader.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\display-control\fixedHeader.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\display-control\index.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\display-control\init-classes.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\index.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\initialisation\ajax.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\initialisation\className.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\initialisation\default.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\initialisation\index.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\initialisation\new.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\initialisation\option.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\styling\bootstrap.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\styling\compact.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\styling\foundation.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\styling\index.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\examples\styling\scrolling.html" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\js\dataTables.responsive.js" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\js\dataTables.responsive.min.js" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\License.txt" />
+    <Content Include="assets\plugins\datatables\extensions\Scroller\css\dataTables.scroller.css" />
+    <Content Include="assets\plugins\datatables\extensions\Scroller\css\dataTables.scroller.min.css" />
+    <Content Include="assets\plugins\datatables\extensions\Scroller\examples\api_scrolling.html" />
+    <Content Include="assets\plugins\datatables\extensions\Scroller\examples\data\2500.txt" />
+    <Content Include="assets\plugins\datatables\extensions\Scroller\examples\data\ssp.php" />
+    <Content Include="assets\plugins\datatables\extensions\Scroller\examples\index.html" />
+    <Content Include="assets\plugins\datatables\extensions\Scroller\examples\large_js_source.html" />
+    <Content Include="assets\plugins\datatables\extensions\Scroller\examples\server-side_processing.html" />
+    <Content Include="assets\plugins\datatables\extensions\Scroller\examples\simple.html" />
+    <Content Include="assets\plugins\datatables\extensions\Scroller\examples\state_saving.html" />
+    <Content Include="assets\plugins\datatables\extensions\Scroller\images\loading-background.png" />
+    <Content Include="assets\plugins\datatables\extensions\Scroller\js\dataTables.scroller.js" />
+    <Content Include="assets\plugins\datatables\extensions\Scroller\js\dataTables.scroller.min.js" />
+    <Content Include="assets\plugins\datatables\extensions\Scroller\Readme.txt" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\css\dataTables.tableTools.css" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\css\dataTables.tableTools.min.css" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\ajax.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\alter_buttons.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\bootstrap.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\button_text.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\collection.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\defaults.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\index.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\jqueryui.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\multiple_tables.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\multi_instance.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\new_init.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\pdf_message.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\plug-in.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\select_column.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\select_multi.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\select_os.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\select_single.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\simple.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\examples\swf_path.html" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\collection.png" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\collection_hover.png" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\copy.png" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\copy_hover.png" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\csv.png" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\csv_hover.png" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\pdf.png" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\pdf_hover.png" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\print.png" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\print_hover.png" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\xls.png" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\xls_hover.png" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\js\dataTables.tableTools.js" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\js\dataTables.tableTools.min.js" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\swf\copy_csv_xls.swf" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\swf\copy_csv_xls_pdf.swf" />
+    <Content Include="assets\plugins\datatables\images\sort_asc.png" />
+    <Content Include="assets\plugins\datatables\images\sort_asc_disabled.png" />
+    <Content Include="assets\plugins\datatables\images\sort_both.png" />
+    <Content Include="assets\plugins\datatables\images\sort_desc.png" />
+    <Content Include="assets\plugins\datatables\images\sort_desc_disabled.png" />
+    <Content Include="assets\plugins\datatables\jquery.dataTables.css" />
+    <Content Include="assets\plugins\datatables\jquery.dataTables.js" />
+    <Content Include="assets\plugins\datatables\jquery.dataTables.min.css" />
+    <Content Include="assets\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="assets\plugins\datatables\jquery.dataTables_themeroller.css" />
+    <Content Include="assets\plugins\fastclick\fastclick.js" />
+    <Content Include="assets\plugins\fastclick\fastclick.min.js" />
+    <Content Include="assets\plugins\iCheck\flat\blue%402x.png" />
+    <Content Include="assets\plugins\iCheck\flat\blue.css" />
+    <Content Include="assets\plugins\iCheck\flat\blue.png" />
+    <Content Include="assets\plugins\iCheck\icheck.js" />
+    <Content Include="assets\plugins\iCheck\icheck.min.js" />
+    <Content Include="assets\plugins\IziModal\css\iziModal.css" />
+    <Content Include="assets\plugins\IziModal\css\iziModal.min.css" />
+    <Content Include="assets\plugins\IziModal\js\iziModal.js" />
+    <Content Include="assets\plugins\IziModal\js\iziModal.min.js" />
+    <Content Include="assets\plugins\PleaseWait\please-wait.css" />
+    <Content Include="assets\plugins\PleaseWait\please-wait.js" />
+    <Content Include="assets\plugins\PleaseWait\please-wait.min.js" />
+    <Content Include="assets\plugins\PNotify\pnotify.animate.js" />
+    <Content Include="assets\plugins\PNotify\pnotify.brighttheme.css" />
+    <Content Include="assets\plugins\PNotify\pnotify.buttons.css" />
+    <Content Include="assets\plugins\PNotify\pnotify.buttons.js" />
+    <Content Include="assets\plugins\PNotify\pnotify.callbacks.js" />
+    <Content Include="assets\plugins\PNotify\pnotify.confirm.js" />
+    <Content Include="assets\plugins\PNotify\pnotify.css" />
+    <Content Include="assets\plugins\PNotify\pnotify.desktop.js" />
+    <Content Include="assets\plugins\PNotify\pnotify.history.css" />
+    <Content Include="assets\plugins\PNotify\pnotify.history.js" />
+    <Content Include="assets\plugins\PNotify\pnotify.js" />
+    <Content Include="assets\plugins\PNotify\pnotify.mobile.css" />
+    <Content Include="assets\plugins\PNotify\pnotify.mobile.js" />
+    <Content Include="assets\plugins\PNotify\pnotify.nonblock.js" />
+    <Content Include="assets\plugins\slimScroll\jquery.slimscroll.js" />
+    <Content Include="assets\plugins\slimScroll\jquery.slimscroll.min.js" />
+    <Content Include="assets\plugins\SweetAlert2\sweetalert2.css" />
+    <Content Include="assets\plugins\SweetAlert2\sweetalert2.js" />
+    <Content Include="assets\plugins\SweetAlert2\sweetalert2.min.css" />
+    <Content Include="assets\plugins\SweetAlert2\sweetalert2.min.js" />
+    <Content Include="Content\bootstrap-fileinput.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrapTable\bootstrap-table.css" />
+    <Content Include="Content\bootstrapTable\bootstrap-table.js" />
+    <Content Include="Content\bootstrapTable\extensions\accent-neutralise\bootstrap-table-accent-neutralise.js" />
+    <Content Include="Content\bootstrapTable\extensions\angular\bootstrap-table-angular.js" />
+    <Content Include="Content\bootstrapTable\extensions\auto-refresh\bootstrap-table-auto-refresh.css" />
+    <Content Include="Content\bootstrapTable\extensions\auto-refresh\bootstrap-table-auto-refresh.js" />
+    <Content Include="Content\bootstrapTable\extensions\click-edit-row\bootstrap-table-click-edit-row.css" />
+    <Content Include="Content\bootstrapTable\extensions\click-edit-row\bootstrap-table-click-edit-row.js" />
+    <Content Include="Content\bootstrapTable\extensions\cookie\bootstrap-table-cookie.js" />
+    <Content Include="Content\bootstrapTable\extensions\copy-rows\bootstrap-table-copy-rows.js" />
+    <Content Include="Content\bootstrapTable\extensions\editable\bootstrap-table-editable.js" />
+    <Content Include="Content\bootstrapTable\extensions\export\bootstrap-table-export.js" />
+    <Content Include="Content\bootstrapTable\extensions\filter-control\bootstrap-table-filter-control.css" />
+    <Content Include="Content\bootstrapTable\extensions\filter-control\bootstrap-table-filter-control.js" />
+    <Content Include="Content\bootstrapTable\extensions\filter\bootstrap-table-filter.js" />
+    <Content Include="Content\bootstrapTable\extensions\flat-json\bootstrap-table-flat-json.js" />
+    <Content Include="Content\bootstrapTable\extensions\group-by-v2\bootstrap-table-group-by.css" />
+    <Content Include="Content\bootstrapTable\extensions\group-by-v2\bootstrap-table-group-by.js" />
+    <Content Include="Content\bootstrapTable\extensions\group-by\bootstrap-table-group-by.css" />
+    <Content Include="Content\bootstrapTable\extensions\group-by\bootstrap-table-group-by.js" />
+    <Content Include="Content\bootstrapTable\extensions\i18n-enhance\bootstrap-table-i18n-enhance.js" />
+    <Content Include="Content\bootstrapTable\extensions\key-events\bootstrap-table-key-events.js" />
+    <Content Include="Content\bootstrapTable\extensions\mobile\bootstrap-table-mobile.js" />
+    <Content Include="Content\bootstrapTable\extensions\multi-column-toggle\bootstrap-table-multi-toggle.js" />
+    <Content Include="Content\bootstrapTable\extensions\multiple-search\bootstrap-table-multiple-search.js" />
+    <Content Include="Content\bootstrapTable\extensions\multiple-selection-row\bootstrap-table-multiple-selection-row.css" />
+    <Content Include="Content\bootstrapTable\extensions\multiple-selection-row\bootstrap-table-multiple-selection-row.js" />
+    <Content Include="Content\bootstrapTable\extensions\multiple-sort\bootstrap-table-multiple-sort.js" />
+    <Content Include="Content\bootstrapTable\extensions\natural-sorting\bootstrap-table-natural-sorting.js" />
+    <Content Include="Content\bootstrapTable\extensions\print\bootstrap-table-print.js" />
+    <Content Include="Content\bootstrapTable\extensions\reorder-columns\bootstrap-table-reorder-columns.js" />
+    <Content Include="Content\bootstrapTable\extensions\reorder-rows\bootstrap-table-reorder-rows.css" />
+    <Content Include="Content\bootstrapTable\extensions\reorder-rows\bootstrap-table-reorder-rows.js" />
+    <Content Include="Content\bootstrapTable\extensions\resizable\bootstrap-table-resizable.js" />
+    <Content Include="Content\bootstrapTable\extensions\select2-filter\bootstrap-table-select2-filter.js" />
+    <Content Include="Content\bootstrapTable\extensions\sticky-header\bootstrap-table-sticky-header.css" />
+    <Content Include="Content\bootstrapTable\extensions\sticky-header\bootstrap-table-sticky-header.js" />
+    <Content Include="Content\bootstrapTable\extensions\toolbar\bootstrap-table-toolbar.js" />
+    <Content Include="Content\bootstrapTable\extensions\tree-column\bootstrap-table-tree-column.css" />
+    <Content Include="Content\bootstrapTable\extensions\tree-column\bootstrap-table-tree-column.js" />
+    <Content Include="Content\bootstrapTable\extensions\tree-column\icon.png" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-af-ZA.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-ar-SA.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-ca-ES.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-cs-CZ.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-da-DK.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-de-DE.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-el-GR.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-en-US.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-es-AR.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-es-CL.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-es-CR.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-es-ES.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-es-MX.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-es-NI.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-es-SP.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-et-EE.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-eu-EU.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-fa-IR.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-fr-BE.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-fr-FR.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-he-IL.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-hr-HR.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-hu-HU.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-id-ID.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-it-IT.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-ja-JP.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-ka-GE.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-ko-KR.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-ms-MY.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-nb-NO.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-nl-NL.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-pl-PL.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-pt-BR.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-pt-PT.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-ro-RO.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-ru-RU.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-sk-SK.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-sv-SE.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-th-TH.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-tr-TR.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-uk-UA.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-ur-PK.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-uz-Latn-UZ.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-vi-VN.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-zh-CN.js" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-zh-TW.js" />
+    <Content Include="Content\daterangepicker.css" />
+    <Content Include="Content\dx.android5.light.css" />
+    <Content Include="Content\dx.common.css" />
+    <Content Include="Content\dx.contrast.compact.css" />
+    <Content Include="Content\dx.contrast.css" />
+    <Content Include="Content\dx.dark.compact.css" />
+    <Content Include="Content\dx.dark.css" />
+    <Content Include="Content\dx.ios7.default.css" />
+    <Content Include="Content\dx.light.compact.css" />
+    <Content Include="Content\dx.light.css" />
+    <Content Include="Content\dx.spa.css" />
+    <Content Include="Content\dx.win10.black.css" />
+    <Content Include="Content\dx.win10.white.css" />
+    <Content Include="Content\dx.win8.black.css" />
+    <Content Include="Content\dx.win8.white.css" />
+    <Content Include="Content\fullcalendar.css" />
+    <Content Include="Content\fullcalendar.min.css" />
+    <Content Include="Content\fullcalendar.print.css" />
+    <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\jasny\jasny-bootstrap.css" />
+    <Content Include="Content\jasny\jasny-bootstrap.js" />
+    <Content Include="Content\jqTree\jstree.js" />
+    <Content Include="Content\jqTree\jstree.min.js" />
+    <Content Include="Content\jqTree\themes\default-dark\32px.png" />
+    <Content Include="Content\jqTree\themes\default-dark\40px.png" />
+    <Content Include="Content\jqTree\themes\default-dark\style.css" />
+    <Content Include="Content\jqTree\themes\default-dark\style.min.css" />
+    <Content Include="Content\jqTree\themes\default-dark\throbber.gif" />
+    <Content Include="Content\jqTree\themes\default\32px.png" />
+    <Content Include="Content\jqTree\themes\default\40px.png" />
+    <Content Include="Content\jqTree\themes\default\style.css" />
+    <Content Include="Content\jqTree\themes\default\style.min.css" />
+    <Content Include="Content\jqTree\themes\default\throbber.gif" />
+    <Content Include="Content\layouts\Desktop\DesktopLayout.css" />
+    <Content Include="Content\layouts\Desktop\DesktopLayout.html" />
+    <Content Include="Content\layouts\Desktop\DesktopLayout.js" />
+    <Content Include="Content\layouts\Empty\EmptyLayout.css" />
+    <Content Include="Content\layouts\Empty\EmptyLayout.html" />
+    <Content Include="Content\layouts\Empty\EmptyLayout.js" />
+    <Content Include="Content\layouts\Popup\PopupLayout.css" />
+    <Content Include="Content\layouts\Popup\PopupLayout.html" />
+    <Content Include="Content\layouts\Popup\PopupLayout.js" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\loginjs.js" />
+    <Content Include="Content\LoginStyles.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\nprogress.css" />
+    <Content Include="Content\semantic\components\accordion.css" />
+    <Content Include="Content\semantic\components\accordion.js" />
+    <Content Include="Content\semantic\components\accordion.min.css" />
+    <Content Include="Content\semantic\components\accordion.min.js" />
+    <Content Include="Content\semantic\components\ad.css" />
+    <Content Include="Content\semantic\components\ad.min.css" />
+    <Content Include="Content\semantic\components\api.js" />
+    <Content Include="Content\semantic\components\api.min.js" />
+    <Content Include="Content\semantic\components\breadcrumb.css" />
+    <Content Include="Content\semantic\components\breadcrumb.min.css" />
+    <Content Include="Content\semantic\components\button.css" />
+    <Content Include="Content\semantic\components\button.min.css" />
+    <Content Include="Content\semantic\components\card.css" />
+    <Content Include="Content\semantic\components\card.min.css" />
+    <Content Include="Content\semantic\components\checkbox.css" />
+    <Content Include="Content\semantic\components\checkbox.js" />
+    <Content Include="Content\semantic\components\checkbox.min.css" />
+    <Content Include="Content\semantic\components\checkbox.min.js" />
+    <Content Include="Content\semantic\components\colorize.js" />
+    <Content Include="Content\semantic\components\colorize.min.js" />
+    <Content Include="Content\semantic\components\comment.css" />
+    <Content Include="Content\semantic\components\comment.min.css" />
+    <Content Include="Content\semantic\components\container.css" />
+    <Content Include="Content\semantic\components\container.min.css" />
+    <Content Include="Content\semantic\components\dimmer.css" />
+    <Content Include="Content\semantic\components\dimmer.js" />
+    <Content Include="Content\semantic\components\dimmer.min.css" />
+    <Content Include="Content\semantic\components\dimmer.min.js" />
+    <Content Include="Content\semantic\components\divider.css" />
+    <Content Include="Content\semantic\components\divider.min.css" />
+    <Content Include="Content\semantic\components\dropdown.css" />
+    <Content Include="Content\semantic\components\dropdown.js" />
+    <Content Include="Content\semantic\components\dropdown.min.css" />
+    <Content Include="Content\semantic\components\dropdown.min.js" />
+    <Content Include="Content\semantic\components\embed.css" />
+    <Content Include="Content\semantic\components\embed.js" />
+    <Content Include="Content\semantic\components\embed.min.css" />
+    <Content Include="Content\semantic\components\embed.min.js" />
+    <Content Include="Content\semantic\components\feed.css" />
+    <Content Include="Content\semantic\components\feed.min.css" />
+    <Content Include="Content\semantic\components\flag.css" />
+    <Content Include="Content\semantic\components\flag.min.css" />
+    <Content Include="Content\semantic\components\form.css" />
+    <Content Include="Content\semantic\components\form.js" />
+    <Content Include="Content\semantic\components\form.min.css" />
+    <Content Include="Content\semantic\components\form.min.js" />
+    <Content Include="Content\semantic\components\grid.css" />
+    <Content Include="Content\semantic\components\grid.min.css" />
+    <Content Include="Content\semantic\components\header.css" />
+    <Content Include="Content\semantic\components\header.min.css" />
+    <Content Include="Content\semantic\components\icon.css" />
+    <Content Include="Content\semantic\components\icon.min.css" />
+    <Content Include="Content\semantic\components\image.css" />
+    <Content Include="Content\semantic\components\image.min.css" />
+    <Content Include="Content\semantic\components\input.css" />
+    <Content Include="Content\semantic\components\input.min.css" />
+    <Content Include="Content\semantic\components\item.css" />
+    <Content Include="Content\semantic\components\item.min.css" />
+    <Content Include="Content\semantic\components\label.css" />
+    <Content Include="Content\semantic\components\label.min.css" />
+    <Content Include="Content\semantic\components\list.css" />
+    <Content Include="Content\semantic\components\list.min.css" />
+    <Content Include="Content\semantic\components\loader.css" />
+    <Content Include="Content\semantic\components\loader.min.css" />
+    <Content Include="Content\semantic\components\menu.css" />
+    <Content Include="Content\semantic\components\menu.min.css" />
+    <Content Include="Content\semantic\components\message.css" />
+    <Content Include="Content\semantic\components\message.min.css" />
+    <Content Include="Content\semantic\components\modal.css" />
+    <Content Include="Content\semantic\components\modal.js" />
+    <Content Include="Content\semantic\components\modal.min.css" />
+    <Content Include="Content\semantic\components\modal.min.js" />
+    <Content Include="Content\semantic\components\nag.css" />
+    <Content Include="Content\semantic\components\nag.js" />
+    <Content Include="Content\semantic\components\nag.min.css" />
+    <Content Include="Content\semantic\components\nag.min.js" />
+    <Content Include="Content\semantic\components\popup.css" />
+    <Content Include="Content\semantic\components\popup.js" />
+    <Content Include="Content\semantic\components\popup.min.css" />
+    <Content Include="Content\semantic\components\popup.min.js" />
+    <Content Include="Content\semantic\components\progress.css" />
+    <Content Include="Content\semantic\components\progress.js" />
+    <Content Include="Content\semantic\components\progress.min.css" />
+    <Content Include="Content\semantic\components\progress.min.js" />
+    <Content Include="Content\semantic\components\rail.css" />
+    <Content Include="Content\semantic\components\rail.min.css" />
+    <Content Include="Content\semantic\components\rating.css" />
+    <Content Include="Content\semantic\components\rating.js" />
+    <Content Include="Content\semantic\components\rating.min.css" />
+    <Content Include="Content\semantic\components\rating.min.js" />
+    <Content Include="Content\semantic\components\reset.css" />
+    <Content Include="Content\semantic\components\reset.min.css" />
+    <Content Include="Content\semantic\components\reveal.css" />
+    <Content Include="Content\semantic\components\reveal.min.css" />
+    <Content Include="Content\semantic\components\search.css" />
+    <Content Include="Content\semantic\components\search.js" />
+    <Content Include="Content\semantic\components\search.min.css" />
+    <Content Include="Content\semantic\components\search.min.js" />
+    <Content Include="Content\semantic\components\segment.css" />
+    <Content Include="Content\semantic\components\segment.min.css" />
+    <Content Include="Content\semantic\components\shape.css" />
+    <Content Include="Content\semantic\components\shape.js" />
+    <Content Include="Content\semantic\components\shape.min.css" />
+    <Content Include="Content\semantic\components\shape.min.js" />
+    <Content Include="Content\semantic\components\sidebar.css" />
+    <Content Include="Content\semantic\components\sidebar.js" />
+    <Content Include="Content\semantic\components\sidebar.min.css" />
+    <Content Include="Content\semantic\components\sidebar.min.js" />
+    <Content Include="Content\semantic\components\site.css" />
+    <Content Include="Content\semantic\components\site.js" />
+    <Content Include="Content\semantic\components\site.min.css" />
+    <Content Include="Content\semantic\components\site.min.js" />
+    <Content Include="Content\semantic\components\state.js" />
+    <Content Include="Content\semantic\components\state.min.js" />
+    <Content Include="Content\semantic\components\statistic.css" />
+    <Content Include="Content\semantic\components\statistic.min.css" />
+    <Content Include="Content\semantic\components\step.css" />
+    <Content Include="Content\semantic\components\step.min.css" />
+    <Content Include="Content\semantic\components\sticky.css" />
+    <Content Include="Content\semantic\components\sticky.js" />
+    <Content Include="Content\semantic\components\sticky.min.css" />
+    <Content Include="Content\semantic\components\sticky.min.js" />
+    <Content Include="Content\semantic\components\tab.css" />
+    <Content Include="Content\semantic\components\tab.js" />
+    <Content Include="Content\semantic\components\tab.min.css" />
+    <Content Include="Content\semantic\components\tab.min.js" />
+    <Content Include="Content\semantic\components\table.css" />
+    <Content Include="Content\semantic\components\table.min.css" />
+    <Content Include="Content\semantic\components\transition.css" />
+    <Content Include="Content\semantic\components\transition.js" />
+    <Content Include="Content\semantic\components\transition.min.css" />
+    <Content Include="Content\semantic\components\transition.min.js" />
+    <Content Include="Content\semantic\components\video.css" />
+    <Content Include="Content\semantic\components\video.js" />
+    <Content Include="Content\semantic\components\video.min.css" />
+    <Content Include="Content\semantic\components\video.min.js" />
+    <Content Include="Content\semantic\components\visibility.js" />
+    <Content Include="Content\semantic\components\visibility.min.js" />
+    <Content Include="Content\semantic\components\visit.js" />
+    <Content Include="Content\semantic\components\visit.min.js" />
+    <Content Include="Content\semantic\semantic.css" />
+    <Content Include="Content\semantic\semantic.js" />
+    <Content Include="Content\semantic\semantic.min.css" />
+    <Content Include="Content\semantic\semantic.min.js" />
+    <Content Include="Content\sweetalert2.css" />
+    <Content Include="Content\sweetalert2.min.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="js\backoffice\gangrequestApproval.js" />
+    <Content Include="js\dashboard.js" />
+    <Content Include="js\data.js" />
+    <Content Include="js\GangRequest\gangRequestManager.js" />
+    <Content Include="js\Invoicing\processCostSheet.js" />
+    <Content Include="js\Invoicing\timeAllocation.js" />
+    <Content Include="js\manageCostSheet.js" />
+    <Content Include="js\mastersetup\fieldLocation.js" />
+    <Content Include="Scripts\AccountLogin.js" />
+    <Content Include="Scripts\aspnet\dx.aspnet.data.js" />
+    <Content Include="Scripts\aspnet\dx.aspnet.mvc.js" />
+    <Content Include="Scripts\bootstrap-fileinput.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Readme\NProgressjs_README.md" />
+    <Content Include="App_Readme\NProgressjs_LICENSE" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\Readme.md" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\psd\printer.psd" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\psd\file_types.psd" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\psd\copy document.psd" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\psd\collection.psd" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\Readme.md" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\css\dataTables.responsive.scss" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\Readme.md" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\Readme.md" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\Readme.md" />
+    <Content Include="assets\fonts\SourceSansPro-SemiboldIt.woff2" />
+    <Content Include="assets\fonts\SourceSansPro-Semibold.woff2" />
+    <Content Include="assets\fonts\SourceSansPro-Regular.woff2" />
+    <Content Include="assets\fonts\SourceSansPro-LightIt.woff2" />
+    <Content Include="assets\fonts\SourceSansPro-Light.woff2" />
+    <Content Include="assets\fonts\SourceSansPro-It.woff2" />
+    <Content Include="assets\fonts\SourceSansPro-Bold.woff2" />
+    <Content Include="assets\fonts\FontAwesome.otf" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Grid.mvc.readme" />
+    <Content Include="Content\bootstrapTable\extensions\accent-neutralise\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\accent-neutralise\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\auto-refresh\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\auto-refresh\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\click-edit-row\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\cookie\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\cookie\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\copy-rows\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\copy-rows\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\editable\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\editable\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\export\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\export\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\filter-control\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\filter-control\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\filter\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\filter\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\flat-json\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\flat-json\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\group-by-v2\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\group-by-v2\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\group-by\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\group-by\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\i18n-enhance\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\i18n-enhance\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\key-events\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\key-events\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\mobile\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\mobile\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\multi-column-toggle\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\multi-column-toggle\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\multiple-search\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\multiple-search\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\multiple-selection-row\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\multiple-selection-row\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\multiple-sort\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\multiple-sort\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\natural-sorting\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\natural-sorting\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\print\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\reorder-columns\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\reorder-columns\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\reorder-rows\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\reorder-rows\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\resizable\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\resizable\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\select2-filter\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\select2-filter\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\sticky-header\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\sticky-header\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\toolbar\extension.json" />
+    <Content Include="Content\bootstrapTable\extensions\toolbar\README.md" />
+    <Content Include="Content\bootstrapTable\extensions\tree-column\bootstrap-table-tree-column.less" />
+    <Content Include="Content\bootstrapTable\extensions\tree-column\extension.json" />
+    <Content Include="Content\bootstrapTable\locale\bootstrap-table-en-US.js.template" />
+    <Content Include="Content\bootstrapTable\locale\README.md" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\icons\dxiconsios.woff" />
+    <Content Include="Content\icons\dxiconsios.ttf" />
+    <Content Include="Content\icons\dxicons.woff" />
+    <Content Include="Content\icons\dxicons.ttf" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\cldr.js" />
+    <Content Include="Scripts\cldr.min.js" />
+    <Content Include="Scripts\cldr\event.js" />
+    <Content Include="Scripts\cldr\event.min.js" />
+    <Content Include="Scripts\cldr\supplemental.js" />
+    <Content Include="Scripts\cldr\supplemental.min.js" />
+    <Content Include="Scripts\cldr\unresolved.js" />
+    <Content Include="Scripts\cldr\unresolved.min.js" />
+    <Content Include="Scripts\custom\customPermission.js" />
+    <Content Include="Scripts\custom\userRoleManager.js" />
+    <Content Include="Scripts\daterangepicker.js" />
+    <Content Include="Scripts\devextreme-localization\dx.messages.de.js" />
+    <Content Include="Scripts\devextreme-localization\dx.messages.en.js" />
+    <Content Include="Scripts\devextreme-localization\dx.messages.ja.js" />
+    <Content Include="Scripts\devextreme-localization\dx.messages.ru.js" />
+    <Content Include="Scripts\devextreme-localization\dx.web.de.js" />
+    <Content Include="Scripts\devextreme-localization\dx.web.ja.js" />
+    <Content Include="Scripts\devextreme-localization\dx.web.ru.js" />
+    <Content Include="Scripts\dx.all.debug.js" />
+    <Content Include="Scripts\dx.all.js" />
+    <Content Include="Scripts\dx.aspnet.mvc.js" />
+    <Content Include="Scripts\dx.mobile.debug.js" />
+    <Content Include="Scripts\dx.mobile.js" />
+    <Content Include="Scripts\dx.viz-web.debug.js" />
+    <Content Include="Scripts\dx.viz-web.js" />
+    <Content Include="Scripts\dx.viz.debug.js" />
+    <Content Include="Scripts\dx.viz.js" />
+    <Content Include="Scripts\dx.web.debug.js" />
+    <Content Include="Scripts\dx.web.js" />
+    <Content Include="Scripts\fullcalendar.js" />
+    <Content Include="Scripts\globalize.js" />
+    <Content Include="Scripts\globalize.min.js" />
+    <Content Include="Scripts\globalize\currency.js" />
+    <Content Include="Scripts\globalize\currency.min.js" />
+    <Content Include="Scripts\globalize\date.js" />
+    <Content Include="Scripts\globalize\date.min.js" />
+    <Content Include="Scripts\globalize\message.js" />
+    <Content Include="Scripts\globalize\message.min.js" />
+    <Content Include="Scripts\globalize\number.js" />
+    <Content Include="Scripts\globalize\number.min.js" />
+    <Content Include="Scripts\globalize\plural.js" />
+    <Content Include="Scripts\globalize\relative-time.js" />
+    <Content Include="Scripts\globalize\unit.js" />
+    <Content Include="Scripts\gridmvc.js" />
+    <Content Include="Scripts\gridmvc.lang.ru.js" />
+    <Content Include="Scripts\gridmvc.min.js" />
+    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.3.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.easing.1.3.js" />
+    <Content Include="Scripts\jquery.easing.min.js" />
+    <Content Include="Scripts\jquery.freezeheader.js" />
+    <Content Include="Scripts\jquery.number.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jszip.js" />
+    <Content Include="Scripts\jszip.min.js" />
+    <Content Include="Scripts\knockout-3.4.2.debug.js" />
+    <Content Include="Scripts\knockout-3.4.2.js" />
+    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\localization\dx.all.de.js" />
+    <Content Include="Scripts\localization\dx.all.ja.js" />
+    <Content Include="Scripts\localization\dx.all.ru.js" />
+    <Content Include="Scripts\localization\dx.mobile.de.js" />
+    <Content Include="Scripts\localization\dx.mobile.ja.js" />
+    <Content Include="Scripts\localization\dx.mobile.ru.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\nprogress.js" />
+    <Content Include="Scripts\nprogress.min.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\sweetalert2.js" />
+    <Content Include="Scripts\sweetalert2.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\vectormap-data\africa.js" />
+    <Content Include="Scripts\vectormap-data\canada.js" />
+    <Content Include="Scripts\vectormap-data\eurasia.js" />
+    <Content Include="Scripts\vectormap-data\europe.js" />
+    <Content Include="Scripts\vectormap-data\usa.js" />
+    <Content Include="Scripts\vectormap-data\world.js" />
+    <Content Include="Scripts\vectormap-utils\dx.vectormaputils.debug.js" />
+    <Content Include="Scripts\vectormap-utils\dx.vectormaputils.js" />
+    <Content Include="Scripts\vectormap-utils\dx.vectormaputils.node.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="semanticfonts\Lato-Regular.eot" />
+    <Content Include="semanticfonts\Lato-Regular.ttf" />
+    <Content Include="semanticfonts\Lato-Regular.woff" />
+    <Content Include="semanticfonts\Lato-Regular.woff2" />
+    <Content Include="Views\Shared\Profile.cshtml" />
+    <Content Include="Views\Shared\Menus.cshtml" />
+    <Content Include="Views\Shared\Erro.cshtml" />
+    <Content Include="Views\Shared\_MainLogin.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Admin\AddRole.cshtml" />
+    <Content Include="Views\Admin\ChangePassword.cshtml" />
+    <Content Include="Views\Admin\CreateUser.cshtml" />
+    <Content Include="Views\Admin\DeleteUser.cshtml" />
+    <Content Include="Views\Admin\EditUser.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\PermissionIndex.cshtml" />
+    <Content Include="Views\Admin\RoleEdit.cshtml" />
+    <Content Include="Views\Admin\RoleIndex.cshtml" />
+    <Content Include="Views\Admin\_AddPermissionToRole.cshtml" />
+    <Content Include="Views\Admin\_AddRoleToPermission.cshtml" />
+    <Content Include="Views\Admin\_AddUserToUsersTableForRole.cshtml" />
+    <Content Include="Views\Admin\_DeletePermissionRole.cshtml" />
+    <Content Include="Views\Admin\_DeleteUserRole.cshtml" />
+    <Content Include="Views\Admin\_ListEditableUserRole.cshtml" />
+    <Content Include="Views\Admin\_ListPermissionsForRole.cshtml" />
+    <Content Include="Views\Admin\_ListRolesTableForPermission.cshtml" />
+    <Content Include="Views\Admin\_ListUserRoleTable.cshtml" />
+    <Content Include="Views\Unauthorised\Index.cshtml" />
+    <Content Include="Views\Shared\_GridPager.cshtml" />
+    <Content Include="Views\Shared\_Grid.cshtml" />
+    <Content Include="Views\Shared\_CustomMessage.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Sequence\Index.cshtml" />
+    <Content Include="Views\Sequence\_AddSequence.cshtml" />
+    <Content Include="Views\Sequence\_DeleteSequence.cshtml" />
+    <Content Include="Views\Sequence\_EditSequence.cshtml" />
+    <Content Include="Views\Sequence\_ManageSequence.cshtml" />
+    <Content Include="Views\Branch\Index.cshtml" />
+    <Content Include="Views\Branch\_EditBranch.cshtml" />
+    <Content Include="Views\ClientDetails\Index.cshtml" />
+    <Content Include="Views\ClientDetails\Create.cshtml" />
+    <Content Include="Views\ClientDetails\Edit.cshtml" />
+    <Content Include="Views\EmployeeCategory\Index.cshtml" />
+    <Content Include="Views\EmployeeCategory\_EditCategory.cshtml" />
+    <Content Include="Views\Employee\Create.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\Edit.cshtml" />
+    <Content Include="Views\ManageGang\Index.cshtml" />
+    <Content Include="Views\ManageGang\_EditGang.cshtml" />
+    <Content Include="Views\GangAdviceManager\Index.cshtml" />
+    <Content Include="Views\GangAdviceManager\GangRequest.cshtml" />
+    <Content Include="Views\ManageFieldClient\Index.cshtml" />
+    <Content Include="Views\ManageFieldClient\Create.cshtml" />
+    <Content Include="Views\ManageFieldClient\_EditClient.cshtml" />
+    <Content Include="Views\GangAdviceManager\GangAdviceDetails.cshtml" />
+    <Content Include="Views\GangAdviceManager\_EmployeeSearch.cshtml" />
+    <Content Include="Views\EmployeeCategory\IndexGroup.cshtml" />
+    <Content Include="Views\EmployeeCategory\_EditGroup.cshtml" />
+    <Content Include="Views\Foremen\Create.cshtml" />
+    <Content Include="Views\Foremen\Index.cshtml" />
+    <Content Include="Views\Foremen\Edit.cshtml" />
+    <Content Include="Views\PaymentSetup\Index.cshtml" />
+    <Content Include="Views\PaymentSetup\_EditClientPaymentSetup.cshtml" />
+    <Content Include="Views\PaymentSetup\_EditCasualPaymentSetup.cshtml" />
+    <Content Include="Views\PaymentSetup\_EditWorkingHours.cshtml" />
+    <Content Include="Views\ForemanOperation\Index.cshtml" />
+    <Content Include="Views\MasterSetup\ContainerIndex.cshtml" />
+    <Content Include="Views\MasterSetup\_EditContainer.cshtml" />
+    <Content Include="Views\Operation\CostSheetIndex.cshtml" />
+    <Content Include="Views\Operation\_GangContainers.cshtml" />
+    <Content Include="Views\Operation\ProcessCostSheet.cshtml" />
+    <Content Include="Views\BackOffice\Index.cshtml" />
+    <Content Include="Views\Operation\CostSheetDetails.cshtml" />
+    <Content Include="Views\Shared\_GangCasuals.cshtml" />
+    <Content Include="Views\Shared\_GangListContainers.cshtml" />
+    <Content Include="Views\BackOffice\TimeAudit.cshtml" />
+    <Content Include="Views\ReportManager\Index.cshtml" />
+    <Content Include="Views\ReportManager\_ProcessedCostSheetFilter.cshtml" />
+    <Content Include="Views\ReportManager\ReportPreview.cshtml" />
+    <Content Include="Views\Shared\_ReportLayout.cshtml" />
+    <Content Include="Views\ReportManager\_ClientInvoiceFilter.cshtml" />
+    <Content Include="Views\ReportManager\_CasualListFilter.cshtml" />
+    <Content Include="Views\ReportManager\_CasualContributionFilter.cshtml" />
+    <Content Include="Views\ReportManager\_PayrollJournalFilter.cshtml" />
+    <Content Include="Views\ReportManager\_CasualPaySlipFilter.cshtml" />
+    <Content Include="Views\ReportManager\_PayeDeductionFilter.cshtml" />
+    <Content Include="Views\ReportManager\_PaymentCheckSheet.cshtml" />
+    <Content Include="Views\ReportManager\_TiersFilter.cshtml" />
+    <Content Include="Views\DataManager\Index.cshtml" />
+    <Content Include="Views\Admin\ManageRole.cshtml" />
+    <Content Include="Views\MasterSetup\FieldLocation.cshtml" />
+    <Content Include="Views\MasterSetup\_EditFieldLocation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\semantic\themes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AppReports\rptCasualConstribution.resx">
+      <DependentUpon>rptCasualConstribution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\rptCasualPayslip.resx">
+      <DependentUpon>rptCasualPayslip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\rptCasualReportA.resx">
+      <DependentUpon>rptCasualReportA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\rptContributionSummary.resx">
+      <DependentUpon>rptContributionSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\rptPayeDeduction.resx">
+      <DependentUpon>rptPayeDeduction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\rptPaymentCheckSheet.resx">
+      <DependentUpon>rptPaymentCheckSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\rptPayRollJournal.resx">
+      <DependentUpon>rptPayRollJournal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\rptProcessedClientInvoice.resx">
+      <DependentUpon>rptProcessedClientInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\rptProcessedCostSheet.resx">
+      <DependentUpon>rptProcessedCostSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\rptTier1.resx">
+      <DependentUpon>rptTier1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\rptTier2.resx">
+      <DependentUpon>rptTier2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708201337307_InitialCreate.resx">
+      <DependentUpon>201708201337307_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708202009374_sequence_update.resx">
+      <DependentUpon>201708202009374_sequence_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708210952541_modelUpdate.resx">
+      <DependentUpon>201708210952541_modelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708211533553_employee_category.resx">
+      <DependentUpon>201708211533553_employee_category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708260739595_EmployeeMigration.resx">
+      <DependentUpon>201708260739595_EmployeeMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708260806557_Employee_Contribution_Relation.resx">
+      <DependentUpon>201708260806557_Employee_Contribution_Relation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708260838526_ModelUpdate_Employee.resx">
+      <DependentUpon>201708260838526_ModelUpdate_Employee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708280730377_GaansMigration.resx">
+      <DependentUpon>201708280730377_GaansMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708281047137_GangSheetHEader_And_Items.resx">
+      <DependentUpon>201708281047137_GangSheetHEader_And_Items.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708281358139_FieldAgent_Migration.resx">
+      <DependentUpon>201708281358139_FieldAgent_Migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708290807070_editGangHeader.resx">
+      <DependentUpon>201708290807070_editGangHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708290840201_editGangHeaderNarration.resx">
+      <DependentUpon>201708290840201_editGangHeaderNarration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708290914361_GangAdviceProc.resx">
+      <DependentUpon>201708290914361_GangAdviceProc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709011639093_EmplyeeGroup.resx">
+      <DependentUpon>201709011639093_EmplyeeGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709021211497_category_grouping.resx">
+      <DependentUpon>201709021211497_category_grouping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709021454565_GangSheetItemsUpdate.resx">
+      <DependentUpon>201709021454565_GangSheetItemsUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709041515300_Field_Update.resx">
+      <DependentUpon>201709041515300_Field_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709041529291_Foremen_Edit.resx">
+      <DependentUpon>201709041529291_Foremen_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709051331038_PaymentSetup.resx">
+      <DependentUpon>201709051331038_PaymentSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709052011435_CasualSetupInitial.resx">
+      <DependentUpon>201709052011435_CasualSetupInitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709060951116_TaxModel.resx">
+      <DependentUpon>201709060951116_TaxModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709121935425_ContainerModel.resx">
+      <DependentUpon>201709121935425_ContainerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709141840231_Allocation_Containers_Gang.resx">
+      <DependentUpon>201709141840231_Allocation_Containers_Gang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709142038057_ModelContainerUpdate.resx">
+      <DependentUpon>201709142038057_ModelContainerUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709191508512_gang_sheet_allocation.resx">
+      <DependentUpon>201709191508512_gang_sheet_allocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709191839431_request_code_container.resx">
+      <DependentUpon>201709191839431_request_code_container.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709191927577_CasualProc.resx">
+      <DependentUpon>201709191927577_CasualProc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709191935405_CasualMemberFilter.resx">
+      <DependentUpon>201709191935405_CasualMemberFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709201052171_CostSheet_migration.resx">
+      <DependentUpon>201709201052171_CostSheet_migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709250937437_modelUpdateNew.resx">
+      <DependentUpon>201709250937437_modelUpdateNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710021258437_NextModelUpdate.resx">
+      <DependentUpon>201710021258437_NextModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710021301188_NextModelUpdateProcessedSheet.resx">
+      <DependentUpon>201710021301188_NextModelUpdateProcessedSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710021528458_costsheet.resx">
+      <DependentUpon>201710021528458_costsheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710041052345_PaymentWorkScheme.resx">
+      <DependentUpon>201710041052345_PaymentWorkScheme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710050856066_CasualPaymentModified.resx">
+      <DependentUpon>201710050856066_CasualPaymentModified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710051019302_ProcessedShedule.resx">
+      <DependentUpon>201710051019302_ProcessedShedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710051121545_ProcessedSheduleModelEdit.resx">
+      <DependentUpon>201710051121545_ProcessedSheduleModelEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710061449063_PaymentSetupModified2.resx">
+      <DependentUpon>201710061449063_PaymentSetupModified2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710062335449_taxes.resx">
+      <DependentUpon>201710062335449_taxes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710071813084_allowance_payment.resx">
+      <DependentUpon>201710071813084_allowance_payment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710071859039_Taxonallowance.resx">
+      <DependentUpon>201710071859039_Taxonallowance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710111050359_clientgrouping.resx">
+      <DependentUpon>201710111050359_clientgrouping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710111319523_clientPremium.resx">
+      <DependentUpon>201710111319523_clientPremium.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710111429202_temp_update.resx">
+      <DependentUpon>201710111429202_temp_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710111523369_allowance_off_onCasual.resx">
+      <DependentUpon>201710111523369_allowance_off_onCasual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710121027225_AdviceList.resx">
+      <DependentUpon>201710121027225_AdviceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710121240463_AdviceListForApproval.resx">
+      <DependentUpon>201710121240463_AdviceListForApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710121307376_AdviceListForContainer.resx">
+      <DependentUpon>201710121307376_AdviceListForContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710121535133_approvalNote.resx">
+      <DependentUpon>201710121535133_approvalNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131323236_GangEditOnGangHeader.resx">
+      <DependentUpon>201710131323236_GangEditOnGangHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131352298_GangCostSheetDetails.resx">
+      <DependentUpon>201710131352298_GangCostSheetDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131509118_GangCasualsDetails.resx">
+      <DependentUpon>201710131509118_GangCasualsDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710171051137_OperationalWorkingHrs.resx">
+      <DependentUpon>201710171051137_OperationalWorkingHrs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710180856082_PfInclusion.resx">
+      <DependentUpon>201710180856082_PfInclusion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710181118028_CostSheetHours.resx">
+      <DependentUpon>201710181118028_CostSheetHours.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710181149476_ProcessedCostSheetProc.resx">
+      <DependentUpon>201710181149476_ProcessedCostSheetProc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710191646312_ProcessedInvoiceModel.resx">
+      <DependentUpon>201710191646312_ProcessedInvoiceModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710191744156_ClientInvoiceSummaryProc.resx">
+      <DependentUpon>201710191744156_ClientInvoiceSummaryProc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710260944490_FieldLocations.resx">
+      <DependentUpon>201710260944490_FieldLocations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710310748149_CasualListProcA.resx">
+      <DependentUpon>201710310748149_CasualListProcA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311149379_CasualDetailContribution.resx">
+      <DependentUpon>201710311149379_CasualDetailContribution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311408238_ContributionSummary.resx">
+      <DependentUpon>201710311408238_ContributionSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311557530_PayrollJournal.resx">
+      <DependentUpon>201710311557530_PayrollJournal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711011323537_CasualPayslip.resx">
+      <DependentUpon>201711011323537_CasualPayslip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711020755104_PayeDeduction.resx">
+      <DependentUpon>201711020755104_PayeDeduction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711020938561_PaymentChecklistSheet.resx">
+      <DependentUpon>201711020938561_PaymentChecklistSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711021132087_TierOneContribution.resx">
+      <DependentUpon>201711021132087_TierOneContribution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711021210512_TierTwoContribution.resx">
+      <DependentUpon>201711021210512_TierTwoContribution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711131223207_FieldLocationmigra.resx">
+      <DependentUpon>201711131223207_FieldLocationmigra.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59626</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1117/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

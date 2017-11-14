@@ -1,0 +1,47 @@
+﻿@model List<GetLabourManager.Models.ApplicationRole>
+@{
+    ViewBag.Title = "RoleIndex";
+}
+
+<div class="ui segment">
+
+    <div class="row">
+        
+        <div class="col-md-12">
+            <div style="float:right">
+                @Html.ActionLink("NEW ROLE", "AddRole", "Admin", null, new { @class = "btn btn-primary btn-sm" })
+            </div>
+           <p></p>
+        </div>
+
+        <div class="col-md-12">
+         
+            <table class="table table-striped">
+                <tr>
+                    <th>Role Name</th>
+                    <th>Role Description</th>
+                    <th>Is Admin</th>
+                    <th>Action</th>
+                </tr>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.RoleDescription</td>
+                            <td>@item.IsSysAdmin</td>
+                            @if (!item.IsSysAdmin)
+                            {
+                                <td>
+                                    @Html.ActionLink("Edit", "ManageRole", "Admin", new { Id = item.Id }, new { @class = "btn btn-primary btn-xs" }) &nbsp;
+                                    @Html.ActionLink("Delete", "RoleDelete", "Admin", new { Id = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

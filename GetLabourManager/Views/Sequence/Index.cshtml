@@ -1,0 +1,282 @@
+﻿@model GetLabourManager.Models.MasterSequence
+<div style="margin-top:0px;" id="ViewModal" class="ui basic modal">
+    <i class="close icon"></i>
+    <div class="header">SEQUENCE TASK</div>
+    <div class="content">
+
+    </div>
+</div>
+<div style="margin-top:-10px;" class="ui segment">
+    <div  id="mnu" class="ui pointing secondary menu">
+        <a class="active item" data-tab="first">CREATE SEQUENCE</a>
+        <a class="item" data-tab="second">MANAGE SEQUENCE</a>
+    </div>
+
+    <div id="fs" class="ui bottom attached active tab segment" data-tab="first">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-plus"></i> <strong> NEW SEQUENCE</strong>
+            </div>
+            <div class="panel-body">
+                <div id="frmSeq" class="ui form">
+                    <div class="field">
+                        <div class="two fields">
+                            <div class="field">
+                                <label>NAME</label>
+                                @Html.EditorFor(m => m.SequenceName, new { htmlAttributes = new { @autocomplete = "off", @placeholder = "SEQUENCE NAME", @style = "text-transform:uppercase" } })
+                            </div>
+                            <div class="field">
+                                <label>TYPE</label>
+                                @Html.DropDownListFor(c => c.SequenceType, (IEnumerable<SelectListItem>)ViewBag.SequenceType,
+                        "--SEQUENCE TYPE--", new { @class = "s ui dropdown" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="four fields">
+                            <div class="four wide field">
+                                <label>START NUMBER</label>
+                                @Html.EditorFor(m => m.SequenceNumber, new { htmlAttributes = new { @autocomplete = "off", @placeholder = "SEQUENCE NUMBER" } })
+                            </div>
+                            <div class="four wide field">
+                                <label>LENGTH</label>
+                                @Html.EditorFor(m => m.SequenceLength, new { htmlAttributes = new { @autocomplete = "off", @placeholder = "SEQUENCE LENGTH" } })
+                            </div>
+                            <div class="four wide field">
+                                <label>PREFIX</label>
+                                @Html.EditorFor(m => m.SequencePrefix, new { htmlAttributes = new { @autocomplete = "off", @placeholder = "SEQUENCE PREFIX", @style = "text-transform:uppercase" } })
+                            </div>
+                            <div class="four wide field">
+                                <label>SUFFIX</label>
+                                @Html.EditorFor(m => m.SequenceSuffix, new { htmlAttributes = new { @autocomplete = "off", @placeholder = "SEQUENCE SUFFIX", @style = "text-transform:uppercase" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <button id="btnSave" class="fluid ui primary button">
+                                <i class="save icon"></i> SAVE
+                            </button>
+                        </div>
+                    </div>
+
+                 
+                </div>
+                <div class="ui dividing header"></div>
+                <table id="tablex" data-search="true" data-show-refresh="true" data-striped="true"
+                       data-pagination="true" data-pagesize="5"
+                       data-classes="table table-hover table-condensed table-striped table-responsive"
+                       data-pagenumber="1" data-sidePagination="true"></table>
+            </div>
+        </div>
+    </div>
+    <div id="se" class="ui bottom attached tab segment" data-tab="second">
+        <table id="tablex2" data-search="true" data-show-refresh="true" data-striped="true"
+               data-pagination="true" data-pagesize="5"
+               data-classes="table table-hover table-condensed table-striped table-responsive"
+               data-pagenumber="1" data-sidePagination="true"></table>
+    </div>
+   
+</div>
+
+
+@section Scripts{
+
+<link href="~/Content/bootstrapTable/bootstrap-table.css" rel="stylesheet" />
+<script src="~/Content/bootstrapTable/bootstrap-table.js"></script>
+<link href="~/Content/sweetalert2.min.css" rel="stylesheet" />
+<script src="~/Scripts/sweetalert2.min.js"></script>
+<script src="~/Content/semantic/semantic.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.menu .item').tab();
+            $('.ui.dropdown').dropdown({ transition: 'scale' });
+            loadSequence();
+            SaveSequence();
+        });
+        function SaveSequence() {
+            $('#btnSave').bind('click', function () {
+                var seq_name = $('#SequenceName').val();
+                var seq_type = $('.s.ui.dropdown').dropdown('get value');
+                var seq_length = $('#SequenceLength').val();
+                var seq_number = $('#SequenceNumber').val();
+                var seq_prefix = $('#SequencePrefix').val();
+                var seq_suffix = $('#SequenceSuffix').val();
+
+                var VM =
+                    {
+                        Id: 0,
+                        SequenceName: seq_name,
+                        SequenceNumber: seq_number,
+                        SequenceLength: seq_length,
+                        SequencePrefix: seq_prefix,
+                        SequenceSuffix: seq_suffix,
+                        SequenceType: seq_type
+                    };
+                $('#frmSeq').addClass('loading');
+                $.post('@Url.Action("SaveSequence", "Sequence")', { model: VM }, function (data) {
+                if (data.message != 'success')
+                    $('#frmSeq').removeClass('loading');
+                else {
+                    //UpdateList();
+                    loadSequence();
+                    $('#SequenceName').val('');
+                    $('.s.ui.dropdown').dropdown('restore default value');
+                    $('#SequenceLength').val(0);
+                    $('#SequenceNumber').val(0);
+                    $('#SequencePrefix').val('');
+                    $('#SequenceSuffix').val('');
+                    $('#frmSeq').removeClass('loading');
+                }
+            });
+        });
+    }
+        window.operateEvents = {
+            'click .btn-primary': function (e, value, row, index) {
+               // window.location = '/cus/EditCorporateCustomer/' + row.Id;
+                $.get('@Url.Action("GetEdit", "Sequence")', { Id: row.ID }, function (data) {
+                    $('#ViewModal').empty();
+                    $('#ViewModal').html(data);
+                });
+
+                $('.ui.basic.modal')
+                    .modal('setting', {
+                        allowMultiple: false,
+                        onHidden: function () {
+                            loadSequence();
+                        },
+                        transition: 'scale'
+                    }).modal('show');
+
+            },
+            'click .btn-danger': function (e, value, row, index) {
+                swal({
+                    title: 'MANAGE SEQUENCE',
+                    text: "DO YOU WANT TO DELETE SEQUENCE ?",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Delete',
+                    cancelButtonText: 'No, Ignore',
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false
+                }).then(function () {
+                    $.post('/Sequence/DeleteSequence/', { Id: row.ID }, function (data) {
+                        if (data.message == 'success') {
+                            swal('SEQUENCE', 'SEQUENCE HAS BEEN DELETED', 'success');
+                            loadSequence();
+                        }
+                        else {
+                            swal('SEQUENCE', data.message, 'error');
+                        }
+                    })
+                }, function (dismiss) {
+                    if (dismiss === 'cancel') {
+                        swal('Cancelled', 'Task Cancelled', 'error');
+                    }
+                });
+            }
+        };
+        function operateFormatter(value, row, index) {
+            return [
+                '<a class="btn btn-primary btn-xs" href="javascript:void(0)" title="Edit">',
+                'Edit',
+                '</a>&nbsp;',
+                '<a class="btn btn-danger btn-xs" href="javascript:void(0)" title="Delete">',
+                'Delete',
+                '</a>'
+            ].join('');
+        }
+        function loadSequence() {
+            var $table = $('#tablex').bootstrapTable({
+                showColumns: true,
+                sortStable: true,
+                silentSort: false,
+                url:'/Sequence/SequenceList/',
+                showToggle: true,
+                columns: [
+                    {
+                        field: 'Name', align: 'left',
+                        title: 'NAME'
+                    },
+                    {
+                        field: 'Type', align: 'left',
+                        title: 'TYPE'
+                    },
+                    {
+                        field: 'Prefix', align: 'left',
+                        title: 'PREFIX'
+                    },
+                    {
+                        field: 'Suffix', align: 'left',
+                        title: 'SUFFIX'
+                    },
+                    {
+                        field: 'Length', align: 'left',
+                        title: 'LENGTH'
+                    }]
+            });
+
+            var $table2 = $('#tablex2').bootstrapTable({
+                showColumns: true,
+                sortStable: true,
+                silentSort: false,
+                url: '/Sequence/SequenceList/',
+                showToggle: true,
+                columns: [
+                    {
+                        field: 'Name', align: 'left',
+                        title: 'NAME'
+                    },
+                    {
+                        field: 'Type', align: 'left',
+                        title: 'TYPE'
+                    },
+                    {
+                        field: 'Prefix', align: 'left',
+                        title: 'PREFIX'
+                    },
+                    {
+                        field: 'Suffix', align: 'left',
+                        title: 'SUFFIX'
+                    },
+                    {
+                        field: 'Length', align: 'left',
+                        title: 'LENGTH'
+                    },
+                    {
+                        title: 'Action',
+                        align: 'center',
+                        events: operateEvents,
+                        formatter: operateFormatter
+                    }]
+            });
+
+
+            $.getJSON('/Sequence/SequenceList/', {}, function (data) {
+                $table.bootstrapTable('showLoading');
+                $table.bootstrapTable('load', data.data);
+                $table.bootstrapTable('hideLoading');
+                var options = $table.bootstrapTable('getOptions');
+
+                if (options.totalPages > 0) {
+                    $table.bootstrapTable('selectPage', options.totalPages);
+                }
+
+                $table2.bootstrapTable('showLoading');
+                $table2.bootstrapTable('load', data.data);
+                $table2.bootstrapTable('hideLoading');
+                var options = $table2.bootstrapTable('getOptions');
+
+                if (options.totalPages > 0) {
+                    $table2.bootstrapTable('selectPage', options.totalPages);
+                }
+
+
+            });
+        }
+
+    </script>
+}

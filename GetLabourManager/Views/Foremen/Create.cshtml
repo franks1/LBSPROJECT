@@ -1,0 +1,121 @@
+﻿@model  GetLabourManager.Models.Foremen
+@{
+   // ViewBag.Title = "Create";
+}
+
+<div style="margin-top:-12px;" class="ui green segment">
+   <div class="ui pointing secondary menu">
+       <a class="active item" data-tab="first">FOREMAN</a>
+   </div> 
+    <div class="ui bottom attached tab active segment" data-tab="first">
+        @using(Html.BeginForm("Create","Foremen",FormMethod.Post,new {@class="ui form" }))
+        {
+            @Html.AntiForgeryToken()
+           <div class="three fields">
+               <div class="field">
+                   <label>FIRST NAME</label>
+                   @Html.TextBoxFor(x=>x.FirstName)
+               </div>
+               <div class="field">
+                   <label>MIDDLE NAME</label>
+                   @Html.TextBoxFor(x => x.MiddleName)
+               </div>
+               <div class="field">
+                   <label>LAST NAME</label>
+                   @Html.TextBoxFor(x => x.LastName)
+               </div>
+           </div>
+          <div class="three fields">
+              <div class="field">
+                  <label>DATE OF BIRTH</label>
+                  @Html.TextBoxFor(x => x.DateOfBirth)
+              </div>
+              <div class="field">
+                  <label>DATE OF JOINED</label>
+                  @Html.TextBoxFor(x => x.DateJoined)
+              </div>
+              <div class="inline field">
+                  <br />
+                  <div class="ui s toggle checkbox">
+                      @Html.CheckBoxFor(x => x.IsClientForeman)
+                      <label>Out Field Foreman</label>
+                  </div>
+              </div>
+          </div>
+          <div id="hq" class="two fields">
+            <div class="field">
+                <label>CLIENT</label>
+                @Html.DropDownListFor(x=>x.ClientId,(IEnumerable<SelectListItem>)ViewBag.FieldClient, new { @class="ui fc search dropdown"})
+            </div>
+              <div class="field">
+                  <label>BRANCH</label>
+                  @Html.DropDownListFor(x => x.Branch, (IEnumerable<SelectListItem>)ViewBag.VBranch, new { @class = "ui bc search dropdown" })
+              </div>
+          </div>
+         <div class="row">
+             <div  class="col-md-5">
+                <button class="btn btn-success" type="submit" >
+                    <i class="fa fa-save"></i> SAVE
+                </button>
+                 &nbsp;
+                 <a href="@Url.Action("Index","Foremen")" class="btn btn-default">
+                     <i class="fa fa-remove"></i> CANCEL
+                 </a>
+             </div>
+         </div>
+        }
+    </div>
+</div>
+@section scripts{
+   
+<script src="~/Scripts/moment.min.js"></script>
+<link href="~/Content/daterangepicker.css" rel="stylesheet" /> 
+<script src="~/Scripts/daterangepicker.js"></script>
+<script src="~/Content/semantic/semantic.min.js"></script>
+    <script>
+        $(function () {
+            $('#hq').hide();
+
+
+            $('.ui.fc.dropdown').dropdown();
+            $('.ui.bc.dropdown').dropdown();
+
+            $('.ui.s.checkbox').checkbox({
+                onChecked: function (value, item) {
+                    $('#hq').show();
+                  
+                },
+                onUnchecked: function (value, item) {
+                    $('#hq').hide();
+                }
+            });
+           
+            $('input[name="DateJoined"]').daterangepicker(
+                {
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                    startDate: new Date().getDate(),
+                    locale: {
+                        format: 'DD/MM/YYYY'
+                    }
+                }, function (start, end, label) {
+                    var years = moment().diff(start, 'years');
+                });
+
+            $('input[name="DateOfBirth"]').daterangepicker(
+                {
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                    startDate: new Date().getDate(),
+                    locale: {
+                        format: 'DD/MM/YYYY'
+                    }
+                }, function (start, end, label) {
+                    var years = moment().diff(start, 'years');
+                });
+
+        });
+        
+    </script>
+    
+    }

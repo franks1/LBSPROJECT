@@ -1,0 +1,65 @@
+﻿@model GetLabourManager.Models.Branch
+@Html.HiddenFor(x=>x.Id)
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="fa fa-edit"></i> EDIT BRANCH
+    </div>
+    <div class="panel-body">
+        <div class="ui form">
+            <div class="two fields">
+                <div class="eight wide field">
+                    <label>BRANCH NAME</label>
+                    @Html.TextBoxFor(x => x.Name, new { @id = "txtEName", @maxlengh = "50", @style = "text-transform:uppercase", @placeholder = "BRANCH NAME" })
+                </div>
+                <div class="four wide field">
+                    <label>&nbsp;</label>
+                    <div class="inline field">
+                        <div class="e ui toggle checkbox">
+                            @Html.CheckBox("IsHead")
+                            <label>HEADBRANCH</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="four wide field">
+                    <label>&nbsp;</label>
+                    <button id="btnEdit" class="fluid ui primary button">
+                        <i class="fa fa-save"></i> SAVE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.e.ui.toggle').checkbox();
+        editBranch();
+    });
+
+    function editBranch() {
+        $('#btnEdit').bind('click', function () {
+            var VM = {
+                Id: $('#Id').val(),
+                Name: $('#txtEName').val(),
+                IsHead: $('.e.ui.toggle').checkbox('is checked')
+            };
+            if (VM.Name == '' || VM.Name === undefined || VM.Name == null) {
+                swal('BRANCH', 'SPECIFY BRANCH NAME', 'info');
+                return;
+            }
+
+            $.post('/Branch/EditBranch/', { model: VM }, function (data) {
+                if (data.message != 'success') {
+                    swal('BRANCH', data.message, 'error');
+                }
+                else {
+                    swal('BRANCH', 'BRANCH HAS BEEN EDITED', 'success');
+                    $('.ui.basic.modal').modal('hide');
+                }
+            })
+
+        });
+       
+    }
+</script>

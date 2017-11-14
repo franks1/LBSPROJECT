@@ -1,0 +1,89 @@
+﻿@model  int
+@if (Model == 0)
+{
+    <h2><font color="red">No Permissions...</font></h2>
+    <br />
+}
+else
+{
+    @Html.Hidden("RId",Model)
+    <table id="tablex" data-search="true" data-show-refresh="true" data-striped="true"
+           data-pagination="true" data-pagesize="5"
+           data-classes="table table-hover table-condensed table-striped table-responsive"
+           data-pagenumber="1" data-sidePagination="true"></table>
+
+  
+}
+
+<script>
+    $(function () {
+        var role_id = $('#RId').val();
+
+        window.operateEvents = {
+            'click .btn-primary': function (e, value, row, index) {
+                AssignPermission(role_id, row.PermissionId);
+            }
+        };
+        LoadPermissions(role_id);
+    })
+    
+    function operateFormatters(value, row, index) {
+        return [
+            '<a class="btn btn-primary btn-xs" href="javascript:void(0)" title="Assign">',
+            '<i class="fa fa-save"></i>',
+            '</a>&nbsp;'
+        ].join('');
+    }
+
+    function LoadPermissions(Id) {
+        var $table = $('#tablex').bootstrapTable({
+            showColumns: true,
+            url: '/Admin/getListPermissions/?RoleId=' + Id,
+            sortStable: true,
+            silentSort: false,
+            showToggle: true,
+            columns: [
+                {
+                    field: 'PermissionDescription', align: 'left',
+                    title: 'PERMISSION'
+                },
+                {
+                    title: 'ACTION',
+                    align: 'center',
+                    events: operateEvents,
+                    formatter: operateFormatters
+                }]
+        });
+
+        $.getJSON('/Admin/getListPermissions/', {RoleId:Id}, function (data) {
+            $table.bootstrapTable('showLoading');
+            $table.bootstrapTable('load', data.data);
+            $table.bootstrapTable('hideLoading');
+            var options = $table.bootstrapTable('getOptions');
+
+            if (options.totalPages > 0)
+            {
+                $table.bootstrapTable('selectPage', options.totalPages);
+            }
+        });
+    }
+
+    function AssignPermission(RoleId, PermissionId) {
+        $('#Apermissions').addClass('loading');
+        $.post("/Admin/AssignRoleFromView", { roleId: RoleId, permissionId: PermissionId }, function (data) {
+            if (data.message == 'Saved') {
+                    LoadRolePermissions(RoleId);
+                 
+                    $('#Apermissions').removeClass('loading');
+            }
+            else {
+                $('#Apermissions').removeClass('loading');
+                swal('ROLE PERMISSION', data.message, 'error');
+            }
+          
+        }); 
+
+    }
+
+</script>
+

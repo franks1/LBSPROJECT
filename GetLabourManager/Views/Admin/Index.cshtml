@@ -1,0 +1,26 @@
+﻿@model  List<GetLabourManager.ViewModel.ApplicationUserViewModel>
+@using GridMvc.Html
+@using  GridMvc
+
+<div class="ui segment">
+
+    <div class="pull-right">
+        <a href="@Url.Action("CreateUser", "Admin")" class="ui primary button">
+            <i class="fa fa-plus"></i> ADD NEW USER
+        </a>
+    </div>
+    <br />
+
+    @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(x => x.UserName).Titled("USER NAME").Filterable(true).Sortable(true);
+        columns.Add(x => x.Firstname).Titled("FIRST NAME").Filterable(true);
+        columns.Add(x => x.Lastname).Titled("LAST NAME");
+        columns.Add(x => x.RoleName).Titled("ROLE");
+        columns.Add(x => x.Id).Titled("ACTION")
+        .Filterable(false).Sanitized(false).Encoded(false).
+        RenderValueAs(a => Html.ActionLink("EDIT", "EditUser", new { id = a.Id },
+        new { @class = "btn btn-primary btn-xs" }).ToHtmlString());
+    }).WithPaging(50)
+
+</div>

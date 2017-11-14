@@ -1,0 +1,625 @@
+﻿@model GetLabourManager.Models.EmployeeCategory
+@{
+    ViewBag.Title = "Category";
+}
+<div style="margin-top:0px;" id="ViewModal" class="ui basic modal">
+    <i class="close icon"></i>
+    <div class="header">CATEGORY TASK</div>
+    <div class="content">
+
+    </div>
+</div>
+<div id="koserver" style="margin-top:-10px;" class="ui segment">
+    <div class="ui pointing secondary menu">
+        <a class="active item" data-tab="first">CATEGORY</a>
+        <a class="item" data-tab="second">ASSIGN GROUP</a>
+        <a class="item" data-tab="third">ASSIGN CLIENT</a>
+    </div>
+    <div class="ui bottom attached tab segment active" data-tab="first">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-plus"></i> NEW CATEGORY
+            </div>
+            <div class="panel-body">
+                <div class="ui form">
+                    <div class="two fields">
+                        <div class="field">
+                            <label>CATEGORY</label>
+                            @Html.TextBoxFor(c => c.Category, new { @maxlength = "50", @id = "txtCategory", @placeholder = "BRANCH NAME" })
+                        </div>
+
+                        <div class="field">
+                            <label>&nbsp;</label>
+                            <button id="btnSave" class="ui primary button">
+                                <i class="fa fa-save"></i> SAVE
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui dividing header"></div>
+                <table id="tablex" data-search="true" data-show-refresh="true" data-striped="true"
+                       data-pagination="true" data-pagesize="5"
+                       data-classes="table table-hover table-condensed table-striped table-responsive"
+                       data-pagenumber="1" data-sidePagination="true"></table>
+            </div>
+        </div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="second">
+        <div id="" class="ui celled grid">
+            <div class="eight wide  column">
+                <div class="ui small form">
+                    <div class="ui fluid field">
+                        <label>CATEGORIES</label>
+                        @Html.DropDownList("VCat", (IEnumerable<SelectListItem>)ViewBag.VCategory,"--CATEGORY--", new { @class = "ui cg search dropdown" })
+                    </div>
+                </div>
+                <div class="ui dividing header"></div>
+                <table id="tablexgroup" data-search="false" data-show-refresh="false" data-striped="true"
+                       data-pagination="true" data-pagesize="5"
+                       data-classes="table table-hover table-condensed table-striped table-responsive"
+                       data-pagenumber="1" data-sidePagination="true"></table>
+
+            </div>
+            <div class="eight wide column">
+                <label>NEW GROUP</label>
+                <table class="table table-bordered table-striped table-condensed">
+                    <tr>
+                        <th>ID</th>
+                        <th>
+                            GROUP
+                            <div class="pull-right">
+                                <button class="btn btn-success btn-xs" data-bind="click:AssignTask,enable:Groups().length>0">
+                                    <i class=" fa fa-plus"></i> ASSIGN
+                                </button>
+                            </div>
+                        </th>
+                        @*<th>
+                            <button class="btn btn-success btn-xs" data-bind="enable:Groups().length>0">
+                                <i class=" fa fa-plus"></i> ASSIGN
+                            </button>
+                        </th>*@
+                    </tr>
+                    <tbody data-bind="foreach:Groups">
+                        <tr>
+                            <td data-bind="text:Id"></td>
+                            <td data-bind="text:GroupName"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div></div>
+                <label>EXISTING GROUP</label>
+                <table class="table table-bordered table-striped table-condensed">
+                    <tr>
+                        <th>ID</th>
+                        <th>
+                            GROUP
+                        </th>
+                        <th>
+                            ACTION
+                        </th>
+                    </tr>
+                    <tbody data-bind="foreach:ExistingGroups">
+                        <tr>
+                            <td data-bind="text:Id"></td>
+                            <td data-bind="text:Name"></td>
+                            <td class="text-align-center">
+                                <button data-bind="click:$parent.RemoveItem" class="btn btn-danger btn-xs">
+                                    <i class="fa fa-remove"></i> REMOVE
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="third">
+        <div id="" class="ui celled grid">
+            <div class="eight wide  column">
+                <div class="ui small form">
+                    <div class="ui fluid field">
+                        <label>CATEGORIES</label>
+                        @Html.DropDownList("VCats", (IEnumerable<SelectListItem>)ViewBag.VCategory, 
+                       "--CATEGORY--", new { @class = "ui cgc search dropdown" })
+                    </div>
+                </div>
+                <div class="ui dividing header"></div>
+                <table id="tablexclient" data-search="false" data-show-refresh="false" data-striped="true"
+                       data-pagination="true" data-pagesize="5"
+                       data-classes="table table-hover table-condensed table-striped table-responsive"
+                       data-pagenumber="1" data-sidePagination="true"></table>
+
+            </div>
+            <div class="eight wide column">
+                <label>NEW CLIENT</label>
+                <table class="table table-bordered table-striped table-condensed">
+                    <tr>
+                        <th>ID</th>
+                        <th>
+                            CLIENT
+                            <div class="pull-right">
+                                <button class="btn btn-success btn-xs" data-bind="click:AssignClientTask,enable:Clients().length>0">
+                                    <i class=" fa fa-plus"></i> ASSIGN
+                                </button>
+                            </div>
+                        </th>
+                    </tr>
+                    <tbody data-bind="foreach:Clients">
+                        <tr>
+                            <td data-bind="text:Id"></td>
+                            <td data-bind="text:Name"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div></div>
+                <label>ASSIGNED CLIENTS</label>
+                <table class="table table-bordered table-striped table-condensed">
+                    <tr>
+                        <th>ID</th>
+                        <th>
+                            CLIENTS
+                        </th>
+                        <th>
+                            ACTION
+                        </th>
+                    </tr>
+                    <tbody data-bind="foreach:ExistingClients">
+                        <tr>
+                            <td data-bind="text:Id"></td>
+                            <td data-bind="text:Name"></td>
+                            <td class="text-align-center">
+                                <button data-bind="click:$parent.RemoveClients" class="btn btn-danger btn-xs">
+                                    <i class="fa fa-remove"></i> REMOVE
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    
+<link href="~/Content/bootstrapTable/bootstrap-table.css" rel="stylesheet" />
+<script src="~/Content/bootstrapTable/bootstrap-table.js"></script>
+<link href="~/Content/sweetalert2.min.css" rel="stylesheet" />
+<script src="~/Scripts/sweetalert2.min.js"></script>
+<script src="~/Content/semantic/semantic.min.js"></script>
+<script src="~/Scripts/knockout-3.4.2.js"></script>
+<script>
+    $(function () {
+        $('.menu .item').tab();
+
+        var model = new groupJoin();
+        ko.applyBindings(model, document.getElementById('koserver'));
+        $('.ui.cg.dropdown').dropdown({
+            onChange: function (value, text, $element) {
+                model.ShowExistingGroups(value);
+            }
+        });
+
+        $('.ui.cgc.dropdown').dropdown({
+            onChange: function (value, text, $element) {
+                model.ShowExistingClients(value);
+            }
+        });
+
+        loadCategory();
+        addCategory();
+        loadGroup(model);
+        loadClients(model);
+    });
+
+      window.operateEvents = {
+            'click .btn-primary': function (e, value, row, index) {
+               // window.location = '/cus/EditCorporateCustomer/' + row.Id;
+                $.get('@Url.Action("GetEdit", "EmployeeCategory")', { Id: row.Id }, function (data) {
+                    $('#ViewModal').empty();
+                    $('#ViewModal').html(data);
+                });
+                $('.ui.basic.modal')
+                    .modal('setting', {
+                        allowMultiple: false,
+                        onHidden: function () {
+                            loadCategory();
+                        },
+                        transition: 'scale'
+                    }).modal('show');
+            },
+            'click .btn-danger': function (e, value, row, index) {
+                swal({
+                    title: 'MANAGE CATEGORY',
+                    text: "DO YOU WANT TO DELETE CATEGORY ?",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Delete',
+                    cancelButtonText: 'No, Ignore',
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false
+                }).then(function () {
+                    $.post('/EmployeeCategory/DeleteCategory/', { Id: row.Id }, function (data) {
+                        if (data.message == 'success')
+                        {
+                            swal('CATEGORY', 'CATEGORY HAS BEEN DELETED', 'success');
+                            loadCategory();
+                        }
+                        else
+                        {
+                            swal('CATEGORY', data.message, 'error');
+                        }
+                    })
+                }, function (dismiss) {
+                    if (dismiss === 'cancel')
+                    {
+                        swal('Cancelled', 'Task Cancelled', 'error');
+                    }
+                });
+            }
+        };
+        function operateFormatter(value, row, index) {
+            return [
+                '<a class="btn btn-primary btn-xs" href="javascript:void(0)" title="Edit">',
+                'Edit',
+                '</a>&nbsp;',
+                '<a class="btn btn-danger btn-xs" href="javascript:void(0)" title="Delete">',
+                'Delete',
+                '</a>'
+            ].join('');
+      }
+
+        function loadCategory() {
+            var $table = $('#tablex').bootstrapTable({
+                showColumns: true,
+                sortStable: true,
+                silentSort: false,
+                url:'/EmployeeCategory/CategoryList/',
+                showToggle: true,
+                columns: [
+                    {
+                        field: 'Name', align: 'left',
+                        title: 'CATEGORY'
+                    },
+                    {
+                        title: 'Action',
+                        align: 'center',
+                        events: operateEvents,
+                        formatter: operateFormatter
+                    }]
+            });
+
+            $.getJSON('/EmployeeCategory/CategoryList/', {}, function (data) {
+                $table.bootstrapTable('showLoading');
+                $table.bootstrapTable('load', data.data);
+                $table.bootstrapTable('hideLoading');
+                var options = $table.bootstrapTable('getOptions');
+
+                if (options.totalPages > 0) {
+                    $table.bootstrapTable('selectPage', options.totalPages);
+                }
+            });
+        }
+
+        function addCategory() {
+            $('#btnSave').bind('click', function () {
+                var VM = {
+                    Id: 0,
+                    Category: $('#txtCategory').val(),
+                        };
+                if (VM.Category == '' || VM.Category === undefined || VM.Category == null) {
+                    swal('CATEGORY', 'SPECIFY CATEGORY NAME', 'info');
+                    return;
+                }
+
+                swal({
+                    title: 'CATGEORY',
+                    text: "DO YOU WANT TO CREATE NEW CATEGORY ?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Create',
+                    cancelButtonText: 'No, Ignore',
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false
+                }).then(function () {
+                    $.post('/EmployeeCategory/SaveCategory/', { model: VM }, function (data) {
+                        if (data.message == 'success')
+                        {
+                            loadCategory();
+                            swal('CATEGORY', 'CATEGORY CREATED', 'success');
+                            $('#txtCategory').val('');
+                        }
+                        else {
+                            swal('CATEGORY', data.message, 'error');
+                        }
+                    });
+                }, function (dismiss) {
+                    if (dismiss === 'cancel') {
+                        swal('Cancelled', 'Task Cancelled', 'error');
+                    }
+                });
+
+            });
+        }
+
+        function loadGroup(model) {
+            var $table = $('#tablexgroup').bootstrapTable({
+              //  showColumns: true,
+                sortStable: true,
+                silentSort: false,
+                url: '/EmployeeCategory/GroupList/',
+            //    showToggle: true,
+                onCheck: function (row, $element)
+                {
+                    var vm = { Id: row.Id, GroupName: row.Name };
+                    model.AddCasualItem(vm);
+                },
+                onUncheck: function (row, $element) {
+                    var vm = { Id: row.Id, GroupName: row.Name };
+
+                    model.RemoveCasualItem(vm);
+                },
+                onCheckAll: function (row) {
+                    model.ResetCasual();
+                    for (var i = 0; i < row.length; i++) {
+                        var vm = { Id: row[i].Id, GroupName: row[i].Name };
+                        model.AddCasualItem(vm);
+                    }
+                },
+                onUncheckAll: function (row) {
+                    model.ResetCasual();
+                    //for (var i = 0; i < row.length; i++) {
+                    //    var vm = { Id: row[i].Id, GroupName: row[i].Name };
+                    //    model.RemoveCasualItem(vm);
+                    //}
+                },
+                columns: [
+                    {
+                        checkbox: true,
+                        align: 'center',
+                    },
+                    {
+                        field: 'Name', align: 'left',
+                        title: 'GROUP NAME'
+                    }]
+            });
+
+            $.getJSON('/EmployeeCategory/GroupList/', {}, function (data) {
+                $table.bootstrapTable('showLoading');
+                $table.bootstrapTable('load', data.data);
+                $table.bootstrapTable('hideLoading');
+                var options = $table.bootstrapTable('getOptions');
+
+                if (options.totalPages > 0) {
+                    $table.bootstrapTable('selectPage', options.totalPages);
+                }
+            });
+        }
+
+        function loadClients(model) {
+            var $table = $('#tablexclient').bootstrapTable({
+                //  showColumns: true,
+                sortStable: true,
+                silentSort: false,
+                url: '/EmployeeCategory/ClientList/',
+                //    showToggle: true,
+                onCheck: function (row, $element) {
+                    var vm = { Id: row.Id, Name: row.Name };
+                    model.AddClientItem(vm);
+                },
+                onUncheck: function (row, $element) {
+                    var vm = { Id: row.Id,Name: row.Name };
+                    model.RemoveClientItem(vm);
+                },
+                onCheckAll: function (row) {
+                    model.ResetClients();
+                    for (var i = 0; i < row.length; i++) {
+                        var vm = { Id: row[i].Id, Name: row[i].Name };
+                        model.AddClientItem(vm);
+                    }
+                },
+                onUncheckAll: function (row) {
+                    model.ResetClients();
+
+                },
+                columns: [
+                    {
+                        checkbox: true,
+                        align: 'center',
+                    },
+                    {
+                        field: 'Name', align: 'left',
+                        title: 'CLIENT'
+                    }]
+            });
+
+            $.getJSON('/EmployeeCategory/ClientList/', {}, function (data) {
+                $table.bootstrapTable('showLoading');
+                $table.bootstrapTable('load', data.data);
+                $table.bootstrapTable('hideLoading');
+                var options = $table.bootstrapTable('getOptions');
+
+                if (options.totalPages > 0) {
+                    $table.bootstrapTable('selectPage', options.totalPages);
+                }
+            });
+        }
+
+        var groupJoin = function () {
+            var self = this;
+            self.Groups = ko.observableArray([]);
+            self.ExistingGroups = ko.observableArray([]);
+            self.AddCasualItem = function (item) {
+                self.Groups.push(item);
+            }
+
+            self.RemoveCasualItem = function (item_value) {
+                ko.utils.arrayForEach(self.Groups(), function (item) {
+                    if (item.Id == item_value.Id) {
+                        self.Groups.remove(item);
+                    }
+                })
+            }
+
+            self.ResetCasual = function () {
+                self.Groups([]);
+            }
+
+            self.AddCasualRange = function (item) {
+                self.Groups.push(item);
+            }
+
+            self.AssignTask = function ()
+            {
+                if (self.Groups().length > 0)
+                {
+                    var result = self.Groups();
+                    var category_value = $('.ui.cg.dropdown').dropdown('get value')
+                    $.post('/EmployeeCategory/AssignGroup/', { Items: result, category:category_value}, function (data) {
+                        if (data.message == 'success')
+                        {
+                            self.Groups([]);
+                            swal('GROUP', 'GROUP HAS BEEN ASSIGNED TO CATEGORY', 'success');
+                            self.ShowExistingGroups(category_value);
+                        }
+                        else
+                        {
+                            swal('GROUP', data.message, 'error');
+                        }
+                    });
+                }
+                else
+                {
+                    swal('GROUP','GROUP HAS NOT BEEN SELECTED', 'error');
+                }
+            }
+
+            self.ShowExistingGroups = function (category) {
+                $.getJSON('/EmployeeCategory/getAssignedGroups/', { category: category }, function (data) {
+                    self.ExistingGroups(data.data);
+                })
+            }
+
+            self.RemoveItem = function (item)
+            {
+                swal({
+                    title: 'CATEGORY GROUP',
+                    text: "DO YOU WANT TO DELETE GROUP?",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Delete',
+                    cancelButtonText: 'No, Ignore',
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false
+                }).then(function () {
+                    $.post('/EmployeeCategory/DeleteJoinedGroup/', { Id: item.Id }, function (data) {
+                        if (data.message != 'success') {
+                            swal('GROUP', data.message, 'error');
+                        }
+                        else {
+                            swal('GROUP', 'GROUP HAS BEEN REMOVED', 'success');
+                            var val_id = $('.ui.cg.dropdown').dropdown('get value');
+                            self.ShowExistingGroups(val_id);
+                        }
+                    });
+
+                }, function (dismiss) {
+                    if (dismiss === 'cancel') {
+                        swal('GROUP', 'Task Cancelled', 'error');
+                    }
+                });
+            }
+
+            //CLIENTS
+            self.Clients = ko.observableArray([]);
+            self.ExistingClients = ko.observableArray([]);
+            self.RemoveClients = function (item) {
+                swal({
+                    title: 'CATEGORY CLIENTS',
+                    text: "DO YOU WANT TO DELETE CLIENTS ?",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Delete',
+                    cancelButtonText: 'No, Ignore',
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false
+                }).then(function () {
+                    $.post('/EmployeeCategory/DeleteJoinedClient/', { Id: item.Id }, function (data) {
+                        if (data.message != 'success') {
+                            swal('CLIENTS', data.message, 'error');
+                        }
+                        else {
+                            swal('CLIENTS', 'CLIENTS HAS BEEN REMOVED', 'success');
+                            var val_id = $('.ui.cgc.dropdown').dropdown('get value');
+                            self.ShowExistingClients(val_id);
+                        }
+                    });
+
+                }, function (dismiss) {
+                    if (dismiss === 'cancel') {
+                        swal('CLIENTS', 'Task Cancelled', 'error');
+                    }
+                });
+            }
+            self.AddClientItem = function (item) {
+                self.Clients.push(item);
+            }
+
+            self.AssignClientTask = function () {
+                if (self.Clients().length > 0) {
+                    var result = self.Clients();
+                    var category_value = $('.ui.cgc.dropdown').dropdown('get value');
+                    $.post('/EmployeeCategory/AssignClients/', { Items: result, category: category_value }, function (data) {
+                        if (data.message == 'success') {
+                            self.Clients([]);
+                            swal('CLIENTS', 'CLIENTS HAS BEEN ASSIGNED TO CATEGORY', 'success');
+                            self.ShowExistingClients(category_value);
+                        }
+                        else {
+                            swal('CLIENTS', data.message, 'error');
+                        }
+                    });
+                }
+                else {
+                    swal('CLIENTS', 'CLIENTS HAS NOT BEEN SELECTED', 'error');
+                }
+            }
+
+            self.RemoveClientItem = function (item_value) {
+                ko.utils.arrayForEach(self.Clients(), function (item) {
+                    if (item.Id == item_value.Id) {
+                        self.Clients.remove(item);
+                    }
+                })
+            }
+
+            self.ResetClients = function () {
+                self.Clients([]);
+            }
+
+            self.ShowExistingClients= function (category) {
+                $.getJSON('/EmployeeCategory/getAssignedClients/', { category: category }, function (data) {
+                    self.ExistingClients(data.data);
+                })
+            }
+        }
+
+
+
+
+</script>
+    }
+
+

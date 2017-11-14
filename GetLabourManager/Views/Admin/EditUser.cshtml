@@ -1,0 +1,131 @@
+﻿@model GetLabourManager.ViewModel.ApplicationUserViewModel
+
+<div id="mstudent" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="mstudents" style="width: 100%">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="koserver" style="margin-top:-15px;" class="ui segment">
+  @Html.Hidden("UIDF", Model.Id)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-thumb-tack"></i>
+                    <strong>
+                       @Html.DisplayFor(x=>x.UserName)'S &nbsp;  Details
+                    </strong>
+                </div>
+                @using (Html.BeginForm("EditUser", "Admin", FormMethod.Post,new {@class="ui small form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    @Html.HiddenFor(c => c.Id);
+                    <div class="panel-body">
+                        <div class="three fields">
+                            <div class="field">
+                                <label>USER NAME</label>
+                                @Html.TextBoxFor(x=>x.UserName)
+                            </div>
+                            <div class="field">
+                                <label>FIRST NAME</label>
+                                @Html.TextBoxFor(x => x.Firstname)
+                            </div>
+                            <div class="field">
+                                <label>LAST NAME</label>
+                                @Html.TextBoxFor(x => x.Lastname)
+                            </div>
+                        </div>
+                        <div class="three fields">
+                            <div class="field">
+                                <label>EMAIL</label>
+                                @Html.TextBoxFor(x => x.Email)
+                            </div>
+                            <div class="field">
+                                <label>STATUS</label>
+                                @Html.DropDownList("UserStatus", (IEnumerable<SelectListItem>)ViewBag.UStatus,
+                                 new {  @class="ui s dropdown"})
+                            </div>
+                            <div class="field">
+                                <label>&nbsp;</label>
+
+                               <button class="btn btn-primary">
+                                   <i class="fa fa-edit"></i> SAVE
+                               </button>
+                                &nbsp;
+                                <button id="btnBack" class="btn btn-default">
+                                    <i class="fa fa-arrow-left"></i> BACK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="ui celled grid">
+                <div class="eight wide column">
+                    @Html.Partial("_ListEditableUserRole")
+                </div>
+                <div class="eight wide column">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-thumb-tack"></i>
+                            <strong>
+                                User Roles
+                            </strong>
+                        </div>
+                        <div class="panel-body">
+                            <div class="panel" id="RolesTable">
+                                @Html.Partial("_ListUserRoleTable", Model.Id)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+</div>
+
+
+
+@section Scripts {
+<script src="~/Content/semantic/semantic.min.js"></script>
+<script src="~/Scripts/custom/userRoleManager.js"></script>
+<script src="~/Scripts/knockout-3.4.2.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var model = new MainUserRoles();
+            ko.applyBindings(model, document.getElementById('koserver'));
+            model.LoadDetails();
+            model.EnableRoleRemoval();
+
+            $('a[data-url]').attr('href', 'javascript://');
+            setReference();
+            $('.ui.s.dropdown').dropdown();
+            $('#btnBack').click(function () {
+                window.location = '/';
+            })
+        });
+
+        function setReference() {
+            $('#idTable').on('click', 'a.deleteRole', function () {
+             
+                var anchor = $(this);
+                var id = this.id;
+                var userid = anchor.data('uid');
+                var roleID = id;
+                showModal(userid, roleID);
+            });
+        }
+
+    </script>
+
+}

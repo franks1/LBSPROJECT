@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Unauthorized Request";
+    Layout = "~/Views/Shared/_CustomMessage.cshtml";
+}
+<style>
+    /* Set padding to keep content from hitting the edges */
+    .body-content {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+
+    .main {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+</style>
+
+<div class="main body-content">
+    <div class="ui primary pointing menu">
+        <a class="active item" data-tab="first"><strong>UNPERMITTED REQUEST</strong></a>
+    </div>
+
+    <div class="ui bottom attached active tab segment">
+        <div align="center" style="margin-top:50px;">
+            <div class="note note-danger">
+                <h1>
+                    SORRY , YOU DO NOT HAVE  PERMISSION TO VIEW THE REQUESTED PAGE !
+                    <br />
+                    <a href="@Request.UrlReferrer" class="ui very large default button">
+                      <i class="fa fa-arrow-left"></i>  BACK
+                    </a>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+

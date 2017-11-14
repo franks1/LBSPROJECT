@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Reporting";
+}
+
+<div class="ui segment">
+    <div id="frmOption" class="ui form">
+        <div class="fluid field">
+            <label>SELECT REPORT OPTION</label>
+            <div id="lookupContainer"></div>
+            @Html.DropDownList("VROption", (IEnumerable<SelectListItem>)ViewBag.VROption, "--REPORT OPTION--", new
+       {
+           @class = "ui r search dropdown"
+       })
+        </div>
+        <div class="ui dividing header"></div>
+        <div id="frmFrame">
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/semantic/semantic.min.js"></script>
+    <script src="~/Scripts/knockout-3.4.2.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/daterangepicker.js"></script>
+    <link href="~/Content/daterangepicker.css" rel="stylesheet" />
+    <script>
+        $(function () {
+            $('.ui.r.dropdown').dropdown({
+                fullTextSearch: true,
+                direction: 'downward',
+                transition: 'horizontal flip',
+                onChange: function (value, text, $element) {
+                    $('#frmFrame').empty();
+                    $('#frmOption').addClass('loading');
+                    $('#frmFrame').load('/ReportManager/ReportOption/', { option: value }, function (data) {
+                        $('#frmFrame').empty();
+                        $('#frmFrame').html(data);
+                        $('#frmOption').removeClass('loading');
+                    });
+                }
+            });
+        })
+    </script>
+
+}
+

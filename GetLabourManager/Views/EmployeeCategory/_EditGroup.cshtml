@@ -1,0 +1,68 @@
+﻿@model GetLabourManager.Models.EmployeeGroup
+@Html.HiddenFor(x => x.Id)
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="fa fa-edit"></i> EDIT GROUP
+    </div>
+    <div class="panel-body">
+        <div class="ui form">
+            <div class="three fields">
+                <div class="eight wide field">
+                    <label>CATEGORY NAME</label>
+                    @Html.TextBoxFor(x => x.GroupName, new { @id = "txtEName", @maxlengh = "50", @style = "text-transform:uppercase", @placeholder = "BRANCH NAME" })
+                </div>
+                <div class="four wide field">
+                    <label>&nbsp;</label>
+                    <button id="btnEdit" class="fluid ui primary button">
+                        <i class="fa fa-save"></i> SAVE
+                    </button>
+                </div>
+                <div class="four wide field">
+                    <label>&nbsp;</label>
+                    <button id="btnCancel" class="fluid ui default button">
+                        <i class="fa fa-remove"></i> CANCEL
+                    </button>
+                </div>
+                  
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+        $(function () {
+            editCategory();
+            $('#btnCancel').bind('click', function () {
+                $('.ui.basic.modal').modal('hide');
+            })
+        });
+
+        function editCategory() {
+            $('#btnEdit').bind('click', function () {
+                var VM =
+                {
+                    Id: $('#Id').val(),
+                    GroupName: $('#txtEName').val(),
+                };
+
+                if (VM.GroupName == '' || VM.GroupName === undefined || VM.GroupName == null)
+                {
+                    swal('GROUP', 'SPECIFY GROUP NAME', 'info');
+                    return;
+                }
+
+                $.post('/EmployeeCategory/EditGroup/', { model: VM }, function (data) {
+                    if (data.message != 'success') {
+                        swal('GROUP', data.message, 'error');
+                    }
+                    else {
+                        swal('GROUP', 'GROUP HAS BEEN EDITED', 'success');
+                        $('.ui.basic.modal').modal('hide');
+                    }
+                })
+
+            });
+
+        }
+</script>

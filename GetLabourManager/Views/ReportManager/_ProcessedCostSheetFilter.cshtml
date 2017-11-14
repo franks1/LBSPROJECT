@@ -1,0 +1,217 @@
+﻿
+<div id="koserver" class="ui pointing secondary menu">
+    <a class="active item" data-tab="first"><i class="fa fa-print"></i> &nbsp; PROCESSED COST SHEET</a>
+
+</div>
+<div class="ui bottom attached tab segment active" data-tab="first">
+
+    <div class="ui small form">
+        <br />
+        <div class="four fields">
+            <div class="three wide field">
+                <label>&nbsp;</label>
+                <div class="inline field">
+                    <div class="ui act toggle checkbox">
+                        @Html.CheckBox("IsActive", false, new { id = "chkActive", @class = "ui c checkbox" })
+                        <label>OPTIONS</label>
+                    </div>
+                </div>
+            </div>
+            <div id="lookSearchClient" class="seven wide field">
+                <label>CLIENTS</label>
+                @Html.DropDownList("VCat", (IEnumerable<SelectListItem>)ViewBag.VClients,
+               "--CLIENTS--", new { @class = "ui cg search dropdown" })
+            </div>
+            @*<div id="lookSearchClient" class="seven wide field">
+                <label>CLIENT</label>
+                <div id="lookupClient"></div>
+            </div>*@
+            <div class="three wide field">
+                <label>&nbsp;</label>
+
+            </div>
+            <div class="three wide field">
+                <label>&nbsp;</label>
+
+            </div>
+        </div>
+
+        <div class="four fields">
+            <div class="three wide field">
+                <label>&nbsp;</label>
+                <div class="inline field">
+                    <div class="ui date_ toggle checkbox">
+                        @Html.CheckBox("IsDate", false, new { id = "chkDate", @class = "ui d checkbox" })
+                        <label>OPTIONS</label>
+                    </div>
+                </div>
+            </div>
+            <div id="dtFrom" class="three wide field">
+                <label>FROM</label>
+                @Html.TextBox("DateFrom")
+
+            </div>
+            <div id="dtTo" class="three wide field">
+                <label>TO</label>
+
+                @Html.TextBox("DateTo")
+
+            </div>
+            <div class="seven wide field">
+                <label>&nbsp;</label>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="field">
+        <button id="btnPreview" data-bind="click:Preview" class="btn btn-primary">
+            <i class="fa fa-print"></i> PREVIEW REPORT
+        </button>
+        &nbsp;
+        <button id="btnCancel" class="btn btn-default">
+            <i class="fa fa-remove"></i> CANCEL
+        </button>
+    </div>
+
+
+</div>
+
+<script>
+    $(function () {
+        $(".ui.cg.dropdown").dropdown({
+            fullTextSearch:true
+        });
+        // var model = new processedCostSheet();
+        closeClientFilters(false); closeDateFilters(false);
+        //  ko.applyBindings(model, document.getElementById('koserver'));
+        $('input[name="DateFrom"]').daterangepicker(
+            {
+                singleDatePicker: true,
+                showDropdowns: true,
+                startDate: new Date().getDate(),
+                locale: {
+                    format: 'DD/MM/YYYY'
+                }
+            });
+
+        $('input[name="DateTo"]').daterangepicker(
+            {
+                singleDatePicker: true,
+                showDropdowns: true,
+                startDate: new Date().getDate(),
+                locale: {
+                    format: 'DD/MM/YYYY'
+                }
+            });
+
+        $('#btnPreview').click(function () {
+            var lookup = $(".ui.r.dropdown").dropdown('get value');
+            var lookupclient = $(".ui.cg.dropdown").dropdown('get text');
+
+            var VM = {
+                ReportOption: lookup,
+                ClientId: 0,
+                ClientName: lookupclient,
+                FromDate: $('#DateFrom').val(),
+                ToDate: $('#DateTo').val(),
+                Status: '',
+                Casual: '',
+                RequestCode: '',
+                Invoice: '',
+                IsDateRangeActive: $('.ui.date_.checkbox').checkbox('is checked'),
+            };
+            var baseUrl = '/ReportManager/ReportPreview/';
+            var queryString = $.param(VM);
+            window.location = baseUrl + '?' + queryString;
+        
+        });
+
+        $('#btnCancel').click(function () {
+            $(".ui.r.dropdown").dropdown('restore default text');
+
+            $('#frmFrame').empty();
+            $('#frmFrame').transition('scale');
+        });
+
+        //$('#lookupClient').dxLookup({
+        //    dataSource: new DevExpress.data.DataSource({
+        //        loadMode: "json",
+        //        load: function () {
+        //            return $.getJSON('/BackOffice/getFieldClients/');
+        //        }
+        //    }),
+        //    valueExpr: "Name",
+        //    displayExpr: "Name",
+        //    onItemClick: function (info) {
+
+        //    }
+        //});
+        $('.ui.act.checkbox').checkbox({
+            onChecked: function () {
+                // model.ApplyFilter(true);
+                closeClientFilters(true);
+            },
+            onUnchecked: function () {
+                // model.ApplyFilter(false);
+                closeClientFilters(false);
+            }
+        });
+        //
+        $('.ui.date_.checkbox').checkbox({
+            onChecked: function () {
+                // model.ApplyFilter(true);
+                closeDateFilters(true);
+            },
+            onUnchecked: function () {
+                // model.ApplyFilter(false);
+                closeDateFilters(false);
+            }
+        });
+    })
+
+    function closeClientFilters(value) {
+        if (value == false) {
+            $('#lookSearchClient').fadeOut(200);
+            //  $('#dtTo').fadeOut(200);
+            //  $('#dtFrom').fadeOut(200);
+        }
+        else {
+            $('#lookSearchClient').fadeIn(200);
+            // $('#dtTo').fadeIn(200);
+            // $('#dtFrom').fadeIn(200);
+        }
+    }
+
+    function closeDateFilters(value) {
+        if (value == false) {
+            $('#dtTo').fadeOut(200);
+            $('#dtFrom').fadeOut(200);
+        }
+        else {
+            $('#dtTo').fadeIn(200);
+            $('#dtFrom').fadeIn(200);
+        }
+    }
+
+
+    var processedCostSheet = function () {
+        var self = this;
+        self.IsFilterSet = ko.observable(false);
+        self.Preview = function () {
+
+        }
+    }
+
+    //processedCostSheet.prototype = {
+    //    ApplyFilter: function (value) {
+    //        var self = this;
+
+    //        self.IsFilterSet(value);
+    //    }
+    //}
+
+
+
+</script>
+

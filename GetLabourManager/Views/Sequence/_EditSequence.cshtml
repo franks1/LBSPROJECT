@@ -1,0 +1,91 @@
+﻿@model  GetLabourManager.Models.MasterSequence
+
+@Html.HiddenFor(c => c.Id)
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="fa fa-edit"></i> <strong> EDIT SEQUENCE</strong>
+    </div>
+    <div class="panel-body">
+        <div class="ui form">
+            <div class="field">
+                <div class="two fields">
+                    <div class="eight wide field">
+                        @Html.EditorFor(m => m.SequenceName, new { htmlAttributes = new { @id = "ESequenceName", @autocomplete = "off", @placeholder = "SEQUENCE NAME", @style = "text-transform:uppercase" } })
+                    </div>
+                    <div class="twelve wide field">
+                        @Html.DropDownListFor(c => c.SequenceType, (IEnumerable<SelectListItem>)ViewBag.SequenceTypes,
+                             new { @class = "e ui dropdown" })
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="four fields">
+                    <div class="four wide field">
+                        <label>START NUMBER</label>
+                        @Html.EditorFor(m => m.SequenceNumber, new { htmlAttributes = new { @id = "ESequenceNumber", @autocomplete = "off", @placeholder = "SEQUENCE NUMBER" } })
+                    </div>
+                    <div class="four wide field">
+                        <label>LENGTH</label>
+                        @Html.EditorFor(m => m.SequenceLength, new { htmlAttributes = new { @id = "ESequenceLength", @autocomplete = "off", @placeholder = "SEQUENCE LENGTH" } })
+                    </div>
+                    <div class="four wide field">
+                        <label>PREFIX</label>
+                        @Html.EditorFor(m => m.SequencePrefix, new { htmlAttributes = new { @id = "ESequencePrefix", @autocomplete = "off", @placeholder = "SEQUENCE PREFIX", @style = "text-transform:uppercase" } })
+                    </div>
+                    <div class="four wide field">
+                        <label>SUFFIX</label>
+                        @Html.EditorFor(m => m.SequenceSuffix, new { htmlAttributes = new { @id = "ESequenceSuffix", @autocomplete = "off", @placeholder = "SEQUENCE SUFFIX", @style = "text-transform:uppercase" } })
+                    </div>
+                </div>
+            </div>
+            <div class="field pull-right">
+                <button id="btnEditSequence" class="ui positive button">
+                    <i class="save icon"></i> SAVE
+                </button>
+                <button id="btnDeleteSequence" class="ui default button">
+                    <i class="delete icon"></i> CANCEL
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('.e.ui.dropdown').dropdown();
+        $('#btnEditSequence').on('click', function () {
+            var Id = $('#Id').val();
+            var seq_type = $('.e.ui.dropdown').dropdown('get value');
+            var name = $('#ESequenceName').val();
+            var seq_length = $('#ESequenceLength').val();
+            var seq_number = $('#ESequenceNumber').val();
+            var seq_prefix = $('#ESequencePrefix').val();
+            var seq_suffix = $('#ESequenceSuffix').val();
+
+
+            var ViewModel = {
+                Id: Id,
+                SequenceName: name,
+                SequenceNumber: seq_number,
+                SequenceLength: seq_length,
+                SequencePrefix: seq_prefix,
+                SequenceSuffix: seq_suffix,
+                SequenceType: seq_type
+            };
+            $.post('@Url.Action("EditSavedSequence", "Sequence")', { model: ViewModel }, function (data) {
+                if (data.message != 'success') {
+                    alert(data.message);
+                }
+                else {
+                    $('.ui.basic.modal')
+                                    .modal('hide');
+                }
+            })
+        });
+        $('#btnDeleteSequence').on('click', function () {
+            $('.ui.basic.modal')
+                   .modal('hide');
+        });
+    });
+</script>

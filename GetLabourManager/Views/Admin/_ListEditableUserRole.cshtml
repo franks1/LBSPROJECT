@@ -1,0 +1,48 @@
+﻿<div id="kcl" class="panel panel-default">
+    <div class="panel-heading">
+        <i class="fa fa-thumb-tack"></i><strong> Roles</strong>
+    </div>
+    <div class="panel-body">
+        <div class="ui small form">
+            <div class="ui fluid field">
+                <label>ROLES</label>
+                @Html.DropDownList("RoleId", null, "-- SEARCH FOR ROLES --", new { @class = "ui search r dropdown" })
+            </div>
+            <div class="ui fluid field" >
+                <button id="AddRole" class="ui fluid primary button">
+                    <i class="fa fa-plus"></i> ASSIGN ROLE
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.ui.r.dropdown').dropdown({
+                fullTextSearch: false,
+                direction:'upward'
+            });
+        $('#AddRole').on('click', function () {
+          
+            var val_data = $('.ui.r.dropdown').dropdown('get value');
+            var uid = $('#UIDF').val();
+            AssignRole(uid, val_data);
+
+        });
+        });
+
+        function AssignRole(UserId, RoleId) {
+            $('#rlist').addClass('loading');
+            $.post('/Admin/AddRoleForUser/', { UserId: UserId, RoleId: RoleId }, function (data) {
+                $('.ui.r.dropdown').dropdown('restore default value');
+                $('#rlist').removeClass('loading');
+                setTimeout(function () {
+                    window.location = window.location;
+                }, 200);
+            })
+        }
+
+</script>
+    
+  

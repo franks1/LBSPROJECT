@@ -1,0 +1,84 @@
+﻿@model GetLabourManager.Models.FieldLocationArea
+
+<div id="frmEdit" class="ui small form">
+    @Html.HiddenFor(x=>x.Id)
+    <div class="four fields">
+        <div class="field">
+            <label>AREA</label>
+           
+            @Html.TextBoxFor(x=>x.Location)
+        </div>
+
+        <div class="field">
+            <label>LATITUDE</label>
+           
+            @Html.TextBoxFor(x => x.LocationLat)
+        </div>
+        <div class="field">
+            <label>LONGITUDE</label>
+           
+            @Html.TextBoxFor(x => x.LocationLong)
+        </div>
+        <div class="field">
+            <label>&nbsp;</label>
+            <button id="btnEdit" data-bind="" class="ui primary button">
+                <i class="fa fa-edit"></i> SAVE LOCATION
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        var id = $('#Id').val();
+        $('#btnEdit').click(function () {
+            EditLocation(id);
+        })
+    })
+
+    function EditLocation(id)
+    {
+
+        var VM =
+            {
+                Id: id,
+                Location: $('#Location').val(),
+                LocationLat: $('#LocationLat').val(),
+                LocationLong: $('#LocationLong').val()
+            };
+
+        if (VM.Location == '' | VM.Location == undefined || VM.Location == null) {
+            swal('FIELD LOCATION', 'PLEASE SPECIFY LOCATION', 'error');
+            return;
+        }
+
+        if (VM.LocationLat == '' | VM.LocationLat == undefined || VM.LocationLat == null) {
+            swal('FIELD LOCATION', 'PLEASE SPECIFY LATITUDE', 'error');
+            return;
+        }
+
+        if (VM.LocationLong == '' | VM.LocationLong == undefined || VM.LocationLong == null) {
+            swal('FIELD LOCATION', 'PLEASE SPECIFY LONGITUDE', 'error');
+            return;
+        }
+
+        $('#frmEdit').addClass('loading');
+        $.post('/MasterSetup/EditLocation', { model: VM }, function (data) {
+            $('#frmEdit').removeClass('loading');
+            try {
+                if (data.message = 'success')
+                {
+                    LoadFieldLocation();
+                    $('#myModal').modal('hide');
+                }
+                else
+                {
+                    swal('FIELD LOCATION', data.message, 'error');
+                }
+            } catch (e) {
+                $('#frmEdit').removeClass('loading');
+            }
+        })
+    }
+
+</script>

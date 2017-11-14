@@ -1,0 +1,41 @@
+﻿
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="search icon"></i> SEARCH CASUALS
+        <div style="margin-top:-5px;" class="pull-right">
+            <button id="btnAdd" data-bind="click:AddToGang" class="ui positive button">
+                <i class="fa fa-plus"></i> ADD TO GANG REQUEST
+            </button>
+        </div>
+    </div>
+    <div class="panel-body">
+       
+        <table style="background-color:#337ab7"  id="tablesearchs" data-search="true"
+               data-show-refresh="true"
+               data-pagination="true" data-pagesize="5" data-row-style="rowStyle"
+               data-classes="table table-hover table-condensed table-responsive"
+               data-pagenumber="1" data-sidePagination="true"></table>
+        
+        
+    </div>
+</div>
+
+<script>
+    $(function () {
+        var model = new selectedCasuals();
+        ko.applyBindings(model, document.getElementById('koserver2'));
+      //  LoadCasuals(model);
+    })
+
+
+
+    var selectedCasuals = function () {
+        var self = this;
+       
+
+       
+    }
+
+
+</script>

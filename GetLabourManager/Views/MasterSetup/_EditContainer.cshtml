@@ -1,0 +1,60 @@
+﻿@model GetLabourManager.Models.VesselContainer
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <i class="fa fa-heading"></i> EDIT CONTAINER
+    </div>
+    <div class="panel panel-body">
+        <div class="ui form">
+            @Html.HiddenFor(x=>x.Id)
+            <div class="two fields">
+                <div class="field">
+                    <label>CONTAINER</label>
+                    @Html.TextBoxFor(x=>x.Continer, new { @maxlength = "80", @id = "txtEditContainer", @placeholder = "DESCRIPTION" })
+                </div>
+
+                <div class="field">
+                    <label>&nbsp;</label>
+                    <button id="btnEditSave" class="ui primary button">
+                        <i class="fa fa-edit"></i> EDIT
+                    </button>
+                    &nbsp;
+                    <button id="btnCancel" class="ui default button">
+                        <i class="fa fa-remove"></i> CANCEL
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#btnCancel').click(function () {
+            $('.ui.basic.modal').modal('hide');
+        })
+
+        $('#btnEditSave').click(function () {
+            var VM = {
+                Id: $('#Id').val(),
+                Continer: $('#txtEditContainer').val()
+            };
+            if (VM.Continer == '' || VM.Continer === undefined || VM.Continer == null) {
+                swal('CONTAINER', 'SPECIFY CONTAINER NAME', 'info');
+                return;
+            }
+
+            $.post('/MasterSetup/EditContiner/', { model: VM }, function (data) {
+                if (data.message == 'success') {
+                    $('#txtContainer').val('');
+                    loadContainer();
+                    $('.ui.basic.modal').modal('hide');
+                }
+                else {
+                    swal('CONTAINER', data.message, 'error');
+                }
+            });
+
+        })
+
+    })
+</script>

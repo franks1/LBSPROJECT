@@ -1,0 +1,113 @@
+﻿@model GetLabourManager.Models.ApplicationRole
+@{
+    ViewBag.Title = "Edit Role";
+}
+<div style="margin-top:-15px;" class="ui segment">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-thumb-tack">
+                <strong>
+                    Role Details
+                </strong>
+            </i>
+        </div>
+        <div class="panel-body">
+
+            @using (Html.BeginForm("ManageRole", "Admin", FormMethod.Post, new { @class = "ui small form" }))
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                @Html.HiddenFor(m => Model.Id)
+
+                <div class="two fields">
+                    <div class="field">
+                        <label>ROLE</label>
+                        @Html.TextBoxFor(X => X.Name)
+                    </div>
+                    <div class="field">
+                        <label>DESCRIPTION</label>
+                        @Html.TextBoxFor(X => X.RoleDescription)
+                    </div>
+                </div>
+                    <div class="two fields">
+                        <div class="inline field">
+                            <div class="ui s toggle checkbox">
+                                @Html.CheckBoxFor(x => x.IsSysAdmin)
+                                <label>ADMIN ROLE</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fa fa-edit"></i> SAVE
+                            </button>
+
+                        </div>
+                    </div>
+
+            }
+
+        </div>
+
+    </div>
+
+    <div class="ui celled grid">
+
+        <div class="eight wide column">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-thumb-tack">
+                        <strong>
+                            ADD PERMISSION TO ROLE
+                        </strong>
+                    </i>
+                </div>
+                <div class="panel-body">
+                    <div id="PermissionList">
+                        @*ViewBag.Permissions as List<GetLabourManager.Models.PERMISSION>*@
+                        @Html.Partial("_AddPermissionToRole", Model.Id)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="eight wide column">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-thumb-tack">
+                        <strong>
+                            ASSIGNED PERMISSIONS FOR ROLES
+                        </strong>
+                    </i>
+                </div>
+                <div class="panel-body">
+                    <div id="PermissionView">
+                        @Html.Partial("_ListPermissionsForRole", Model.Id)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+@section scripts{
+    <script src="~/Content/semantic/semantic.min.js"></script>
+    @*<script src="~/Scripts/custom/customPermission.js"></script>*@
+    <link href="~/Content/bootstrapTable/bootstrap-table.css" rel="stylesheet" />
+    <script src="~/Content/bootstrapTable/bootstrap-table.js"></script>
+    <link href="~/Content/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.ui.s.checkbox').checkbox();
+          //  AssignPermissions();
+           // DeletePermission();
+        });
+    </script>
+}
+

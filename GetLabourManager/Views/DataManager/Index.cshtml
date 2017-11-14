@@ -1,0 +1,318 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="ui segment">
+    <div class="ui pointing secondary menu">
+        <a class="active item" data-tab="first"><i class="fa fa-file-excel-o"></i>&nbsp; CASUALS</a>
+        <a class="item" data-tab="second"><i class="fa fa-file-excel-o"></i>&nbsp; GUARANTOR</a>
+        <a class="item" data-tab="third"><i class="fa fa-file-excel-o"></i>&nbsp; NEXT OF KIN</a>
+        <a class="item" data-tab="fourth"><i class="fa fa-file-excel-o"></i> &nbsp;CONTRIBUTION</a>
+        <a class="item" data-tab="fifth"><i class="fa fa-file-excel-o"></i> &nbsp;FIELD CLIENTS</a>
+        <a class="item" data-tab="sixth"><i class="fa fa-file-excel-o"></i> &nbsp;GANG TYPE</a>
+        <a class="item" data-tab="seventh"><i class="fa fa-file-excel-o"></i> &nbsp;GANGS</a>
+
+    </div>
+    <div class="ui bottom attached tab segment active" data-tab="first">
+        @using (Html.BeginForm("ImportCasuals", "DataManager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            if ((ViewBag.ResponseMessage as string) == "")
+            {
+                <label class="text-danger">&nbsp; @ViewBag.ResponseMessage</label>
+            }
+
+           else if ((ViewBag.ResponseMessage as string) != "File Successfully imported")
+            {
+                <label class="text-danger"><i class="fa fa-remove"></i>&nbsp; @ViewBag.ResponseMessage</label>
+            }
+            else
+            {
+                <label class="text-success"><i class="fa fa-check"></i>&nbsp; @ViewBag.ResponseMessage</label>
+            }
+
+            <div class="ui fluid field">
+
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="input-group input-large">
+                        <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                            <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                            <span class="fileinput-filename"></span>
+                        </div>
+                        <span class="input-group-addon btn default btn-file">
+                            <span class="fileinput-new"> Select file </span>
+                            <span class="fileinput-exists"> Change </span>
+                            <input type="hidden" value="" name="..."><input type="file" name="posted_data">
+                        </span>
+                        <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                    </div>
+                </div>
+            </div>
+            <span>
+                <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-upload"></i> Import Casuals</button>
+            </span>
+
+        }
+
+      
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="second">
+        @using (Html.BeginForm("ImportGuarantor", "DataManager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            if ((ViewBag.ResponseMessage2 as string) == "")
+            {
+                <label class="text-danger">&nbsp; @ViewBag.ResponseMessage2</label>
+            }
+
+            else if ((ViewBag.ResponseMessage2 as string) != "File Successfully imported")
+            {
+                <label class="text-danger"><i class="fa fa-remove"></i>&nbsp; @ViewBag.ResponseMessage2</label>
+            }
+            else
+            {
+                <label class="text-success"><i class="fa fa-check"></i>&nbsp; @ViewBag.ResponseMessage2</label>
+            }
+
+            <div class="ui fluid field">
+
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="input-group input-large">
+                        <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                            <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                            <span class="fileinput-filename"></span>
+                        </div>
+                        <span class="input-group-addon btn default btn-file">
+                            <span class="fileinput-new"> Select file </span>
+                            <span class="fileinput-exists"> Change </span>
+                            <input type="hidden" value="" name="..."><input type="file" name="posted_data">
+                        </span>
+                        <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                    </div>
+                </div>
+            </div>
+            <span>
+                <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-upload"></i> Import Guarantor</button>
+            </span>
+
+        }
+
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="third">
+        @using (Html.BeginForm("ImportNextOfKin", "DataManager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            if ((ViewBag.ResponseMessage3 as string) == "")
+            {
+                <label class="text-danger">&nbsp; @ViewBag.ResponseMessage3</label>
+            }
+
+            else if ((ViewBag.ResponseMessage3 as string) != "File Successfully imported")
+            {
+                <label class="text-danger"><i class="fa fa-remove"></i>&nbsp; @ViewBag.ResponseMessage3</label>
+            }
+            else
+            {
+                <label class="text-success"><i class="fa fa-check"></i>&nbsp; @ViewBag.ResponseMessage3</label>
+            }
+
+            <div class="ui fluid field">
+
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="input-group input-large">
+                        <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                            <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                            <span class="fileinput-filename"></span>
+                        </div>
+                        <span class="input-group-addon btn default btn-file">
+                            <span class="fileinput-new"> Select file </span>
+                            <span class="fileinput-exists"> Change </span>
+                            <input type="hidden" value="" name="..."><input type="file" name="posted_data">
+                        </span>
+                        <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                    </div>
+                </div>
+            </div>
+            <span>
+                <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-upload"></i> Import Next Of Kin</button>
+            </span>
+
+        }
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="fourth">
+        @using (Html.BeginForm("ImportContribution", "DataManager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            if ((ViewBag.ResponseMessage4 as string) == "")
+            {
+                <label class="text-danger">&nbsp; @ViewBag.ResponseMessage4</label>
+            }
+
+            else if ((ViewBag.ResponseMessage4 as string) != "File Successfully imported")
+            {
+                <label class="text-danger"><i class="fa fa-remove"></i>&nbsp; @ViewBag.ResponseMessage4</label>
+            }
+            else
+            {
+                <label class="text-success"><i class="fa fa-check"></i>&nbsp; @ViewBag.ResponseMessage4</label>
+            }
+
+            <div class="ui fluid field">
+
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="input-group input-large">
+                        <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                            <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                            <span class="fileinput-filename"></span>
+                        </div>
+                        <span class="input-group-addon btn default btn-file">
+                            <span class="fileinput-new"> Select file </span>
+                            <span class="fileinput-exists"> Change </span>
+                            <input type="hidden" value="" name="..."><input type="file" name="posted_data">
+                        </span>
+                        <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                    </div>
+                </div>
+            </div>
+            <span>
+                <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-upload"></i> Import Contribution</button>
+            </span>
+
+        }
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="fifth">
+        @using (Html.BeginForm("ImportFieldClient", "DataManager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            if ((ViewBag.ResponseMessage5 as string) == "")
+            {
+                <label class="text-danger">&nbsp; @ViewBag.ResponseMessage5</label>
+            }
+
+            else if ((ViewBag.ResponseMessage5 as string) != "File Successfully imported")
+            {
+                <label class="text-danger"><i class="fa fa-remove"></i>&nbsp; @ViewBag.ResponseMessage5</label>
+            }
+            else
+            {
+                <label class="text-success"><i class="fa fa-check"></i>&nbsp; @ViewBag.ResponseMessage5</label>
+            }
+
+            <div class="ui fluid field">
+
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="input-group input-large">
+                        <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                            <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                            <span class="fileinput-filename"></span>
+                        </div>
+                        <span class="input-group-addon btn default btn-file">
+                            <span class="fileinput-new"> Select file </span>
+                            <span class="fileinput-exists"> Change </span>
+                            <input type="hidden" value="" name="..."><input type="file" name="posted_data">
+                        </span>
+                        <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                    </div>
+                </div>
+            </div>
+            <span>
+                <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-upload"></i> Import Field Client</button>
+            </span>
+
+        }
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="sixth">
+        @using (Html.BeginForm("ImportGangType", "DataManager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            if ((ViewBag.ResponseMessage6 as string) == "")
+            {
+                <label class="text-danger">&nbsp; @ViewBag.ResponseMessage6</label>
+            }
+
+            else if ((ViewBag.ResponseMessage6 as string) != "File Successfully imported")
+            {
+                <label class="text-danger"><i class="fa fa-remove"></i>&nbsp; @ViewBag.ResponseMessage6</label>
+            }
+            else
+            {
+                <label class="text-success"><i class="fa fa-check"></i>&nbsp; @ViewBag.ResponseMessage6</label>
+            }
+
+            <div class="ui fluid field">
+
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="input-group input-large">
+                        <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                            <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                            <span class="fileinput-filename"></span>
+                        </div>
+                        <span class="input-group-addon btn default btn-file">
+                            <span class="fileinput-new"> Select file </span>
+                            <span class="fileinput-exists"> Change </span>
+                            <input type="hidden" value="" name="..."><input type="file" name="posted_data">
+                        </span>
+                        <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                    </div>
+                </div>
+            </div>
+            <span>
+                <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-upload"></i> Import Gang Type</button>
+            </span>
+
+        }
+    </div>
+
+    <div class="ui bottom attached tab segment" data-tab="seventh">
+        @using (Html.BeginForm("ImportGangs", "DataManager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            if ((ViewBag.ResponseMessage7 as string) == "")
+            {
+                <label class="text-danger">&nbsp; @ViewBag.ResponseMessage7</label>
+            }
+
+            else if ((ViewBag.ResponseMessage7 as string) != "File Successfully imported")
+            {
+                <label class="text-danger"><i class="fa fa-remove"></i>&nbsp; @ViewBag.ResponseMessage7</label>
+            }
+            else
+            {
+                <label class="text-success"><i class="fa fa-check"></i>&nbsp; @ViewBag.ResponseMessage7</label>
+            }
+
+            <div class="ui fluid field">
+
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="input-group input-large">
+                        <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                            <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                            <span class="fileinput-filename"></span>
+                        </div>
+                        <span class="input-group-addon btn default btn-file">
+                            <span class="fileinput-new"> Select file </span>
+                            <span class="fileinput-exists"> Change </span>
+                            <input type="hidden" value="" name="..."><input type="file" name="posted_data">
+                        </span>
+                        <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                    </div>
+                </div>
+            </div>
+            <span>
+                <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-upload"></i> Import Gangs</button>
+            </span>
+
+        }
+    </div>
+</div>
+
+
+
+
+@section scripts{
+    <script src="~/Content/semantic/semantic.min.js"></script>
+    <link href="~/Content/bootstrap-fileinput.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap-fileinput.js"></script>
+
+
+    <script>
+        $(function () {
+            $('.menu .item').tab();
+        })
+    </script>
+}
+

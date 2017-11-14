@@ -1,0 +1,54 @@
+﻿@model GetLabourManager.Models.PERMISSION
+@{if (Model.ROLES == null)
+    {
+        <h2><font color="red">No Associated Roles...</font></h2>
+        <br />
+    }
+    else
+    {
+        <table id="permissionsTable" class="table table-striped table-hover">
+            <tr>
+                <th>
+                    Role
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    <center>Action</center>
+                </th>
+            </tr>
+            <tbody>
+                @foreach (var item in Model.ROLES)
+                {
+                    //if(item.IsSysAdmin != true)
+                    //{
+                    <tr>
+                        <td>@Html.DisplayFor(x => item.Name)</td>
+                        <td>@Html.DisplayFor(x => item.RoleDescription)</td>
+                        <td>
+                            <center>
+                                <a id="@item.Id" data-modal="" href="@Url.Action("DeletePermission","Admin",
+                                    new { Id = item.Id, permissionId = Model.PermissionId })"
+                                   class="deleteRole" data-url="" data-permissionid=@Model.PermissionId
+                                   data-roleid=@item.Id>
+
+                                    <i class="fa fa-close"></i>
+                                </a>
+                                @*<button id="deleteRole"
+                                    class="btn btn-danger btn-sm" permissionid=@Model.PermissionId
+                                           roleid=@item.Id>Delete</button>*@
+                                @*@Html.ActionLink("Delete", "PermissionDelete", "Admin", new { Id = item.Id, PermissionId = Model.PermissionId },
+                                    new { @class = "btn btn-danger btn-sm" })*@
+                            </center>
+                        </td>
+                    </tr>
+                        @*}*@
+                }
+            </tbody>
+        </table>
+    }
+}
+<script type="text/javascript">
+
+</script>

@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="ui blue segment">
+
+    <div class="ui pointing secondary menu">
+        <a class="active item" data-tab="first">COST SHEET</a>
+    </div>
+    <div class="ui bottom attached tab segment active" data-tab="first">
+       
+        <table id="tablex" data-search="true" data-show-refresh="true" data-striped="true"
+               data-pagination="true" data-pagesize="5"
+               data-classes="table table-hover table-condensed table-striped table-responsive"
+               data-pagenumber="1" data-sidePagination="true"></table>
+    </div>
+</div>
+
+@section scripts{
+    <link href="~/Content/bootstrapTable/bootstrap-table.css" rel="stylesheet" />
+    <script src="~/Content/bootstrapTable/bootstrap-table.js"></script>
+    <script>
+        $(function () {
+            LoadData();
+        });
+        function operateFormatter(value, row, index) {
+            var note = '';
+            if (row.Status == 'APPLIED')
+            {
+                note = '<a class="btn btn-success btn-xs" href="javascript:void(0)" title="Timeline">' +
+                    '<i class="fa fa-clock-o"></i> Timeline' + '</a>&nbsp;';
+            }
+            else
+            {
+                note = '<a class="btn btn-danger btn-xs" href="javascript:void(0)" title="Timeline">' +
+                    '<i class="fa fa-clock-o"></i> Timeline' + '</a>&nbsp;';
+            }
+
+
+            return [
+                note
+                //'<a class="btn btn-success btn-xs" href="javascript:void(0)" title="Timeline">',
+                //'<i class="fa fa-clock-o"></i> Timeline',
+                //'</a>&nbsp;',
+            ].join('');
+        }
+
+        window.operateEvents = {
+            'click .btn-success': function (e, value, row, index) {
+                var uri = '/Operation/CostSheetDetails/?code=' + encodeURIComponent(row.RequestCode);
+                //  var decoded = //encodeURI(uri)
+                //window.open(uri);
+                window.location = uri;
+            },
+            'click .btn-danger': function (e, value, row, index) {
+                var uri = '/Operation/CostSheetDetails/?code=' + encodeURIComponent(row.RequestCode);
+                //  var decoded = //encodeURI(uri)
+                //window.open(uri);
+                window.location = uri;
+
+            }
+        };
+
+        function LoadData() {
+            var $table = $('#tablex').bootstrapTable({
+                showColumns: true,
+                url: '/Operation/getCostSheetData/',
+                sortStable: true,
+                silentSort: false,
+                showToggle: true,
+                columns: [
+                    {
+                        field: 'DateEntered', align: 'left',
+                        title: 'DATE'
+                    },
+                    {
+                        field: 'RequestCode', align: 'left',
+                        title: 'REQUEST CODE'
+                    },
+                    {
+                        field: 'Gang', align: 'left',
+                        title: 'GANG'
+                    },
+                    {
+                        field: 'UserName', align: 'left',
+                        title: 'PREPARED BY'
+                    },
+                    {
+                        field: 'PreparedFor', align: 'left',
+                        title: 'CLIENT'
+                    },
+                    {
+                        field: 'TotalCasuals', align: 'right',
+                        title: 'CASUALS'
+                    },
+                    {
+                        field: 'Status', align: 'left',
+                        title: 'STATUS'
+                    },
+                    {
+                        title: 'ACTION',
+                        align: 'center',
+                        events: operateEvents,
+                        formatter: operateFormatter
+                    }]
+            });
+
+            $.getJSON('/Operation/getCostSheetData/', {}, function (data) {
+                $table.bootstrapTable('showLoading');
+                $table.bootstrapTable('load', data.data);
+                $table.bootstrapTable('hideLoading');
+                var options = $table.bootstrapTable('getOptions');
+
+                if (options.totalPages > 0) {
+                    $table.bootstrapTable('selectPage', options.totalPages);
+                }
+            });
+        }
+    </script>
+}
+

@@ -1,0 +1,81 @@
+﻿@Html.Hidden("ReqID", ViewBag.Term as string)
+<div id="gridContainer"></div>
+<script>
+    $(function () {
+        var query = $('#ReqID').val();
+        var makeAsyncDataSource = function (file) {
+            return new DevExpress.data.CustomStore({
+                load: function (loadOptions) {
+                    var deferred = $.Deferred(),
+                        args = {};
+
+                    if (loadOptions.sort) {
+                        args.orderby = loadOptions.sort[0].selector;
+                        if (loadOptions.sort[0].desc)
+                            args.orderby += " desc";
+                    }
+
+                    //  args.skip = loadOptions.skip || 0;
+                    // args.take = loadOptions.take || 2;
+
+                    $.ajax({
+                        url: "/Operation/getGangContainers/?term=" + query,
+                        data: args,
+                        success: function (result) {
+                            //  debugger;
+                            deferred.resolve(result.items, { totalCount: result.totalCount });
+                        },
+                        error: function () {
+                            deferred.reject("Data Loading Error");
+                        },
+                        timeout: 5000
+                    });
+
+                    return deferred.promise();
+                }
+            });
+
+        };
+        var MAIN_DS_ = new DevExpress.data.DataSource({
+            store: makeAsyncDataSource('')
+        });
+
+        $("#gridContainer").dxDataGrid({
+            dataSource: MAIN_DS_,
+            showColumnLines: false,
+            showRowLines: true,
+            rowAlternationEnabled: true,
+            showBorders: true,
+            columnAutoWidth: true,
+            showBorders: true,
+            showRowLines: true,
+            showColumnLines: true,
+            remoteOperations: {
+                sorting: false,
+                paging: true
+            },
+            paging: {
+                pageSize: 20,
+                pageIndex: 0,
+                enabled: true
+            },
+            pager: {
+                showPageSizeSelector: false,
+                allowedPageSizes: "auto",
+                visible: true,
+                infoText: "Page {0} of {1} ({2} Items)",
+                showNavigationButtons: true,
+                showInfo: true
+            },
+            searchPanel: {
+                visible: true,
+                highlightSearchText: true,
+                text: "",
+                placeholder: "Search..."
+            },
+            columns: [
+                "Container", "ContainerNumber", "Category"]
+        }).dxDataGrid("instance");
+        MAIN_DS_.reload();
+    })
+</script>

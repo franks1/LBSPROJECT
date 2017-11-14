@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "FieldLocation";
+}
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="fa fa-tags"></i> DETAILS</h4>
+            </div>
+            <div id="modContent" class="modal-body">
+                <div class="center" id="casuals_mod">
+                    <i id="pMessage" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="koserver" style="margin-top:-15px;" class="ui segment">
+    <div class="ui pointing secondary menu">
+        <a class="active item" data-tab="first"> <i class="fa fa-map"></i> &nbsp;FIELD LOCATION</a>
+
+    </div>
+    <div class="ui bottom attached active tab segment" data-tab="first">
+        <div id="fmLoc" class="ui small form">
+         
+            <div class="four fields">
+                <div class="field">
+                    <label>AREA</label>
+                    <input id="txtArea" type="text" maxlength="50" value="" placeholder="LOCATION" />
+                </div>
+
+                <div class="field">
+                    <label>LATITUDE</label>
+                    <input id="txtLat" type="number" maxlength="50" value="" placeholder="LAT" />
+                </div>
+                <div class="field">
+                    <label>LONGITUDE</label>
+                    <input id="txtLng" type="number" maxlength="50" value="" placeholder="LONG" />
+                </div>
+                <div class="field">
+                    <label>&nbsp;</label>
+                    <button data-bind="click:AddLocation" class="ui primary button">
+                        <i class="fa fa-map-marker"></i> SAVE LOCATION
+                    </button>
+                </div>
+            </div>
+        </div>
+       <div class="ui dividing header"><i class="fa fa-map"></i> &nbsp; MAP LOCATIONS</div>
+        <table id="tablex" data-search="true" data-show-refresh="true" data-striped="true"
+               data-pagination="true" data-pagesize="5"
+               data-classes="table table-hover table-condensed table-striped table-responsive"
+               data-pagenumber="1" data-sidePagination="true"></table>
+
+
+    </div>
+    
+
+</div>
+
+@section scripts{
+    <link href="~/Content/bootstrapTable/bootstrap-table.css" rel="stylesheet" />
+<script src="~/Content/bootstrapTable/bootstrap-table.js"></script>
+<link href="~/Content/sweetalert2.min.css" rel="stylesheet" />
+<script src="~/Scripts/sweetalert2.min.js"></script>
+<script src="~/Scripts/knockout-3.4.2.js"></script>
+<script src="~/js/mastersetup/fieldLocation.js"></script>
+
+    }

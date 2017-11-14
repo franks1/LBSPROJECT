@@ -1,0 +1,19 @@
+﻿
+@model DevExpress.XtraReports.UI.XtraReport
+
+@{
+    Layout = "~/Views/Shared/_ReportLayout.cshtml";
+}
+
+<div class="ui segment">
+    @*<div class="ui pointing menu">
+        <a class="active item" data-tab="first"><strong>REPORT</strong></a>
+    </div>*@
+    <div class="ui bottom attached active tab segment" data-tab="first">
+        @Html.DevExpress().WebDocumentViewer(settings =>
+        {
+            settings.Name = "WebReport";
+        }).Bind(Model).GetHtml()
+    </div>
+</div>
+

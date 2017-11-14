@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div id="koserver">
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3 id="odo1" data-bind="text:Casuals"></h3>
+                    <p>Registered Casuals</p>
+                </div>
+                <div class="icon">
+                    <i style="margin-top:5px;" class="fa fa-user-plus"></i>
+                </div>
+                <a href="@Url.Action("Index","Employee")" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3 id="odo2" data-bind="text:Gangs"></h3>
+                    <p>Gangs</p>
+                </div>
+                <div class="icon">
+                    <i style="margin-top:9px;" class="fa fa-group"></i>
+                </div>
+                <a href="@Url.Action("Index","GangAdviceManager")" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3 id="odo3" data-bind="text:Users"></h3>
+                    <p>Users</p>
+                </div>
+                <div class="icon">
+                    <i style="margin-top:5px;" class="fa fa-user"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3 id="odo4" data-bind="text:Foremen"></h3>
+                    <p>Foremen</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+    <div class="row">
+        <div class="col-md-12" >
+            <div class="ui steps">
+                <div class="step">
+                    <i class="orange truck icon"></i>
+                    <div class="contents">
+                        <div class="title">Gang Request</div>
+                        <div class="description">Request For Gangs</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="brown cubes icon"></i>
+                    <div class="contents">
+                        <div class="title">Gang Allocation</div>
+                        <div class="description">Vessel Assignment</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="blue wait icon"></i>
+                    <div class="contents">
+                        <div class="title">Time Audit</div>
+                        <div class="description">Time Allocation</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="green payment icon"></i>
+                    <div class="contents">
+                        <div class="title">Payment</div>
+                        <div class="description">Confirm Payment</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="teal print icon"></i>
+                    <div class="contents">
+                        <div class="title">Reporting</div>
+                        <div class="description">Print Reports</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <br />
+    <div class="row">
+        <section class="col-lg-10 connectedSortable">
+            <div class="nav-tabs-custom">
+                <!-- Tabs within a box -->
+                <ul class="nav nav-tabs pull-right">
+                    <li class="active"><a href="#revenue-chart" data-toggle="tab">MONTHLY GANG ADVICE</a></li>
+                    @*<li><a href="#sales-chart" data-toggle="tab">Donut</a></li>*@
+                    <li class="pull-left header"><i class="fa fa-line-chart"></i> Chart</li>
+                </ul>
+                <div class="tab-content no-padding">
+                    <div id="chart" style="margin-left:5px;height:350px;"></div>
+                    <!-- Morris chart - Sales -->
+                    @*<div class="chart tab-pane active" id="line-chart" style="position: relative; height: 300px;"></div>
+                        <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>*@
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div style="display:none;" class="ui green segment">
+
+        <div class="ui pointing secondary menu">
+            <a class="active item" data-tab="first">ADD</a>
+        </div>
+
+        <div class="ui bottom attached active tab segment" data-tab="first">
+
+            <div class="ui slider checkbox">
+                <input type="checkbox" name="chkbbox" />
+                <label>OPTION</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+@*<link href="~/Content/dx.spa.css" rel="stylesheet" />*@
+@*<link href="~/Content/dx.common.css" rel="stylesheet" />
+<link href="~/Content/dx.light.css" rel="stylesheet" />
+<script src="~/Scripts/dx.viz-web.js"></script>*@
+<script src="~/js/data.js"></script>
+<script src="~/Scripts/knockout-3.4.2.js"></script>
+<script src="~/js/dashboard.js"></script>
+    <script>
+   
+    </script>
+}

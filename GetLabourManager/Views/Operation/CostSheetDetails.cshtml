@@ -1,0 +1,270 @@
+﻿
+@{
+    ViewBag.Title = "CreateCostSheet";
+}
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="fa fa-tags"></i> DETAILS</h4>
+            </div>
+            <div id="modContent" class="modal-body">
+                <div class="center"  id="casuals_mod">
+                    <i id="pMessage" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="koserver">
+    @if ((bool)ViewBag.IsFound == true)
+    {
+   
+    @Html.Hidden("RequestCodeId", ViewBag.NumberCode as string)
+
+    <div style="margin-top:-12px;" class="ui segment">
+
+        @if (ViewBag.VStatus as string == "APPROVED")
+        {
+            <div style="margin-left:70px;" class="ui ordered steps">
+                <div class="completed step">
+                    <div class="contents">
+                        <div class="title">Gang Request</div>
+                        <div class="description">Passed</div>
+                    </div>
+                </div>
+                <div class="completed step">
+                    <div class="contents">
+                        <div class="title">Allocated Gangs</div>
+                        <div class="description">Passed</div>
+                    </div>
+                </div>
+                <div class="completed step">
+                    <div class="contents">
+                        <div class="title">Request Approval</div>
+                        <div class="description">Passed</div>
+                    </div>
+                </div>
+                <div class="active step">
+                    <div class="contents">
+                        <div class="title">Time Allocation</div>
+                        <div class="description"><i class="fa fa-clock-o"></i> Time Audit-Pending</div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div style="margin-left:70px;" class="ui ordered steps">
+                <div class="completed step">
+                    <div class="contents">
+                        <div class="title">Gang Request</div>
+                        <div class="description">Passed</div>
+                    </div>
+                </div>
+                <div class="completed step">
+                    <div class="contents">
+                        <div class="title">Allocated Gangs</div>
+                        <div class="description">Passed</div>
+                    </div>
+                </div>
+                <div class="completed step">
+                    <div class="contents">
+                        <div class="title">Request Approval</div>
+                        <div class="description">Passed</div>
+                    </div>
+                </div>
+                <div class="completed step">
+                    <div class="contents">
+                        <div class="title">Time Allocation</div>
+                        <div class="description"><i class="fa fa-clock-o"></i> Passed</div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        
+        <div class="ui dividing header"></div>
+
+        <table id="tblList" class="table table-striped table-no-bordered table-hover table-condensed">
+            <tr>
+                <th>GANG REQUEST</th>
+                <th>GANG TYPE</th>
+                <th>CLIENT</th>
+                <th class="text-right">CASUALS</th>
+                <th class="text-right">VESSELS/CONTAINER</th>
+                <th class="text-center">ACTION</th>
+            </tr>
+            <tbody data-bind="foreach:Entries">
+                <tr>
+                    <td data-bind="text:RequestCode"></td>
+                    <td data-bind="text:Category"></td>
+                    <td data-bind="text:Name"></td>
+                    <td class="text-right" data-bind="text:Casuals"></td>
+                    <td class="text-right" data-bind="text:Vessels"></td>
+                    <td class="text-center">
+                        <button data-act="cs" data-vid="0" class="btn btn-success btn-xs">
+                            <i class="fa fa-user"></i> CASUALS
+                        </button>
+                        &nbsp;
+                        <button data-act="ct" data-vid="1" class="btn btn-success btn-xs">
+                            <i class="fa fa-cubes"></i> CONTAINERS
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p></p>
+        <button data-bind="click:navigateBack" id="btnback" class="btn btn-default btn-lg">
+            <i class="fa fa-arrow-left"></i> BACK
+        </button>
+
+    </div>
+
+    }
+    else
+    {
+    <div class="ui pointing menu">
+        <a class="active item" data-tab="first">RESOURCE NOT FOUND</a>
+    </div>
+    <div class="ui segment">
+        <div class="ui bottom attached tab segment active" data-tab="first">
+            <div class="ui floating message">
+                <label> <i class="info icon"></i> REQUEST NOT FOUND</label>
+            </div>
+        </div>
+    </div>
+
+    }
+</div>
+
+<div>
+    @*<div class="ui bottom attached tab-content segment active" data-tab="first">
+            <div id="lienTask" class="ui small form">
+                <div class="three fields">
+                    <div class="field">
+                        <label>GANG REQUEST NUMBER</label>
+                        @Html.DropDownList("RequestCode", (IEnumerable<SelectListItem>)ViewBag.VRequest,
+                       "--GANG REQUEST--", new { @class = "ui g search dropdown prompt" })
+
+                        <div style="display:none;" class="gang ui search">
+                            <div class="ui left icon input">
+                                <input id="txtsearch" class="prompt" placeholder="Search Gang Request...">
+                                <i class="search icon"></i>
+                            </div>
+                            <div class="results"></div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>REQUEST DATE</label>
+                        <input id="txtDate" type="text" readonly="readonly" />
+                    </div>
+                    <div class="field">
+                        <label>CLIENT</label>
+                        <input id="txtClient" type="text" readonly="readonly" />
+                    </div>
+                </div>
+
+                <div class="three fields">
+                    <div class="field">
+                        <label>GANG TYPE</label>
+                        @Html.TextBox("GangName", "", new { @readonly = "readonly" })
+                    </div>
+                    <div class="field">
+                        <label>SHIFT</label>
+                        @Html.TextBox("WShift", "", new { @readonly = "readonly" })
+                    </div>
+                    <div class="field">
+                        <label>WEEK</label>
+                        @Html.TextBox("WWeek", "", new { @readonly = "readonly" })
+                    </div>
+                </div>
+
+                <div class="three fields">
+                    <div class="field">
+                        <label>COST SHEET DATE</label>
+                        <input type="text" id="txtCostSheetDate" readonly="readonly" name="txtCostSheetDate" />
+                    </div>
+                    <div class="field">
+                        <label>HOURS WORKED</label>
+                        <input type="number" value="0.00" id="txtHrs" />
+                    </div>
+                    <div class="field">
+                        <label>OVERTIME HOURS</label>
+                        <input type="number" value="0.00" id="txtOverTimeHrs" />
+                    </div>
+                </div>
+
+                <div class="ui dividing header">
+                    COST SHEET ENTRIES <i class="glyphicon glyphicon-arrow-down"></i>
+                    &nbsp; &nbsp;
+                    <button data-bind="event:{click:AddCostSheet}" class="btn btn-success">
+                        <i class="fa fc-agenda-view"></i>  RAISE COST SHEET
+                    </button>
+                </div>
+
+                <table id="tablex" class="table table-striped">
+                    <tr>
+                        <th>NUMBER</th>
+                        <th>NAME</th>
+                        <th>GANG</th>
+                        <th>GROUP</th>
+                        <th>CONTAINERS/VESSEL</th>
+
+                        <th class="text-center">ACTION</th>
+                    </tr>
+                    <tbody data-bind="foreach:Entries">
+                        <tr>
+
+                            <td tabindex="2" width="150" class="ui small form">
+                                <input readonly="readonly" class="input-sm" type="text" data-num="1"
+                                       data-bind="textInput:StaffCode,attr:{id:'st-'+$index()}" />
+                            </td>
+                            <td tabindex="3" width="270" class="ui small form">
+                                <input readonly="readonly" class="input-sm" type="text"
+                                       data-num="2" data-bind="textInput:FullName,attr:{id:'No-'+$index()}" />
+                            </td>
+                            <td tabindex="1" width="200" class="ui small form">
+                                <input readonly="readonly" class="input-sm" data-num="3"
+                                       type="text" data-bind="textInput:Gang,attr:{id:'De-'+$index()}" />
+                            </td>
+                            <td tabindex="1" width="150" class="ui small form">
+                                <input readonly="readonly" class="input-sm" data-num="4" type="text"
+                                       data-bind="value:GroupName,attr:{id:'Dt-'+$index()}" />
+                            </td>
+                            <td width="100" class="ui small form">
+                                <input readonly="readonly" class="input-sm" type="text" data-num="5"
+                                       data-bind="textInput:Containers,attr:{id:'Ch-'+$index()}" />
+                            </td>
+
+
+                            <td class="text-center">
+                                <button data-bind="click:$parent.viewContainer" class="btn btn-danger btn-xs">
+                                    <i class="fa fa-remove"></i> VIEW
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p></p>
+
+            </div>
+        </div>*@
+
+</div>
+
+
+@section scripts{
+    <link href="~/Content/dx.common.css" rel="stylesheet" />
+    <link href="~/Content/dx.light.css" rel="stylesheet" />
+    <script src="~/Scripts/dx.all.js"></script>
+    <link href="~/Content/semantic/components/step.css" rel="stylesheet" />
+    <script src="~/Scripts/knockout-3.4.2.js"></script>
+    <script src="~/js/manageCostSheet.js"></script>
+}

@@ -1,0 +1,93 @@
+﻿@model GetLabourManager.Models.FieldClients
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <i class="fa fa-edit"></i> EDIT DETAILS
+    </div>
+    <div class="panel-body">
+        @Html.HiddenFor(x => x.Id, new { @id = "fi" })
+        @Html.HiddenFor(x => x.Status,new { @id = "fs"})
+        @Html.HiddenFor(x => x.FieldClientType,new { @id="fc"})
+        <div class="ui small form">
+            <div class="three fields">
+                <div class="field">
+                    <label>NAME</label>
+                    @Html.TextBoxFor(x => x.Name, new { @id = "fn", @maxlength = "100", @autocomplete = "off", @placeholder = "FIELD CLIENT NAME" })
+                </div>
+                <div class="field">
+                    <label>TELEPHONE-1</label>
+                    @Html.TextBoxFor(x => x.Telephone1, new { @id = "fc1", @maxlength = "15", @autocomplete = "off", @placeholder = "PHONE OPTION-1" })
+                </div>
+                <div class="field">
+                    <label>TELEPHONE-2</label>
+                    @Html.TextBoxFor(x => x.Telephone2, new { @id = "fc2", @maxlength = "15", @autocomplete = "off", @placeholder = "PHONE OPTION-2" })
+                </div>
+            </div>
+            <div class="three fields">
+                <div class="field">
+                    <label>EMAIL ADDRESS</label>
+                    @Html.TextBoxFor(x => x.EmailAddress, new { @id = "fce", @maxlength = "30", @autocomplete = "off", @placeholder = "EMAIL ADDRESS" })
+                </div>
+                <div class="field">
+                    <label>RESIDENCE ADDRESS</label>
+                    @Html.TextBoxFor(x => x.Address, new { @id = "fca", @maxlength = "50", @autocomplete = "off", @placeholder = "RESIDENCE ADDRESS" })
+                </div>
+                <div class="field">
+                    <label>PREMIUM (%)</label>
+                    @Html.TextBoxFor(x => x.Premium, new {@id= "EPremium", @maxlength = "7", @type = "number", @autocomplete = "off", @placeholder = "0.00" })
+                </div>
+            </div>
+            <div class="field">
+                <button id="btnEdit" class="ui positive button">
+                    <i class="fa fa-save"></i> SAVE
+                </button>
+                &nbsp;
+                <button id="btnCancel" class="ui default button">
+                    <i class="fa fa-remove"></i> CANCEL
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#btnCancel').click(function () {
+            $('.ui.basic.modal').modal('hide');
+        })
+
+        $('#btnEdit').click(function () {
+            if ($('#EPremium').val() == '' || $('#EPremium').val() == null || $('#EPremium').val() == undefined) {
+                swal('FIELD CLIENT', 'PLEASE SPECIFY PREMIUM', 'info');
+                return;
+            }
+            if ($('#EPremium').val() <= 0) {
+                swal('FIELD CLIENT', 'PREMIUM RATE MUST BE > 0.00', 'info');
+                return;
+            }
+
+            var VM =
+                {
+                    Id: $('#fi').val(),
+                    Name: $('#fn').val(),
+                    Address: $('#fca').val(),
+                    Telephone1: $('#fc1').val(),
+                    Telephone2: $('#fc1').val(),
+                    EmailAddress: $('#fce').val(),
+                    Status: 'ACTIVE',
+                    FieldClientType: 'FIELD',
+                    Premium: $('#EPremium').val()
+                };
+
+            $.post('/ManageFieldClient/EditClient/', { model: VM }, function (data) {
+                if (data.message != 'success') {
+                    swal('FIELD CLIENT', data.message, 'error');
+                }
+                else {
+                    $('.ui.basic.modal').modal('hide');
+                }
+            })
+
+
+        });
+    })
+</script>

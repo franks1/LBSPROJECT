@@ -1,0 +1,60 @@
+﻿@using System
+@*@using BeyondThemes.Bootstrap*@
+<!DOCTYPE html>
+<!--
+BeyondAdmin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.6
+Version: 1.6.0
+Purchase: https://wrapbootstrap.com/theme/beyondadmin-adminapp-angularjs-mvc-WB06R48S4
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta Http-Equiv="Cache-Control" Content="no-cache" />
+    <meta Http-Equiv="Pragma" Content="no-cache" />
+    <meta Http-Equiv="Expires" Content="0" />
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
+    <link href="~/Content/semantic/semantic.css" rel="stylesheet" />
+    <link href="~/Content/login.css" rel="stylesheet" />
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+    <div class="ui sidebar menu large compact container icon labelled vertical">
+        <a class="item" href="#"><i class="global icon"></i>Branches</a>
+        <a class="item" href="#"><i class="car icon"></i>Find Branch</a>
+    </div>
+    <div class="pusher">
+        <div class="ui vertical aligned center segment landing inverted">
+            <div class="transbg">
+                <div class="ui container">
+                    <div class="ui secondary inverted top large pointing menu">
+                        <div class="left item">
+                            <a class="toc item">
+                                <i class="sidebar icon"></i>
+                            </a>
+                        </div>
+                        <div class="right item">
+                            <a class="active item" href="#">Home</a>
+                            <a class="item" href="#">Branches</a>
+                        </div>
+                    </div>
+                </div>
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</body>
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    <script src="~/Content/semantic/semantic.min.js"></script>
+    <script src="~/Content/loginjs.js"></script>
+    @RenderSection("Scripts", required: false)
+
+<!--  /Body -->
+</html>

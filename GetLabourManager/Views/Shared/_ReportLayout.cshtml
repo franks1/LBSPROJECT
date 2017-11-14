@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/semantic/semantic.min.css" rel="stylesheet" />
+    <link href="~/assets/css/please-wait.css" rel="stylesheet" />
+    <script src="~/assets/js/please-wait.min.js"></script>
+
+
+    @Scripts.Render("~/bundles/jquery")
+
+   
+    @Html.DevExpress().GetStyleSheets(
+        new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.Report },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.GridView },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.TreeList }
+    )
+    @Html.DevExpress().GetScripts(
+        new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+        new Script { ExtensionSuite = ExtensionSuite.Report },
+        new Script { ExtensionSuite = ExtensionSuite.GridView },
+        new Script { ExtensionSuite = ExtensionSuite.TreeList }
+    )
+    <style>
+        /* Set padding to keep content from hitting the edges */
+        .body-content {
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        .main {
+            padding-top: 15px;
+            padding-bottom: 50px;
+        }
+    </style>
+    @*@Styles.Render("~/Content/DevExtremeBundle")
+    @Scripts.Render("~/Scripts/DevExtremeBundle")*@
+</head>
+<body class="main body-content">
+ <script>
+     function Splash() {
+         var splash = window.pleaseWait({
+             //logo: "/assets/img/logo.jpg",
+             backgroundColor: '#3c8dbc',
+             loadingHtml: "<h3 class='loading-message'>Report Preview...</h3>" +
+             '<div class="sk-folding-cube"><div class="sk-cube1 sk-cube" ></div><div class="sk-cube2 sk-cube"></div><div class="sk-cube4 sk-cube"></div><div class="sk-cube3 sk-cube"></div></div>'
+         });
+
+         return splash;
+     }
+
+     waiter = Splash();
+     $(document)
+         .ready(function () {
+             setTimeout(function () {
+                 waiter.finish();
+             }, 1700);
+         });
+ </script>
+    <div>
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/bootstrap")
+    @*<script src="~/MVCGridHandler.axd/script.js"></script>*@
+    <!--Beyond Scripts-->
+   
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/semantic/semantic.min.js"></script>
+    <!--Page Related Scripts-->
+    @RenderSection("scripts", required: false)
+</body>
+</html>

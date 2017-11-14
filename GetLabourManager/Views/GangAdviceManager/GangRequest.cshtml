@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "GANG ADVICE";
+}
+
+<div id="koserver" style="margin-top:-12px;" class="ui teal segment">
+    <div id="frmAdvice" class="ui small form">
+        <div class="four fields">
+            <div class="field">
+                <label>REQUEST CODE</label>
+                @Html.TextBox("RequestCode", ViewBag.VRequestCode as string, new { @readonly = "" })
+            </div>
+
+            <div class="field">
+                <label>REQUEST DATE</label>
+                @Html.TextBox("DateIssued", new { @readonly = "" })
+            </div>
+            <div class="field">
+                <label>GANG TYPE</label>
+                @Html.DropDownList("VCat", (IEnumerable<SelectListItem>)ViewBag.VCategory,
+               "--GANG TYPE--", new { @class = "ui cg search dropdown" })
+            </div>
+            <div class="field">
+                <label>CLIENT</label>
+                @*@Html.DropDownList("FieldClient", (IEnumerable<SelectListItem>)ViewBag.VClients, new { @class = "ui cl search dropdown" })*@
+                <select class="" data-bind="options:ClientList,
+                                        optionsCaption:'--GANG CLIENTS--',
+                                        optionsText:'Name',optionsValue:'Id',
+                                        value:'Id'" id="clientDrop" name="clientDrop"></select>
+
+            </div>
+        </div>
+        <div class="four fields">
+            <div class="field">
+                <label>SHIFT</label>
+                @Html.DropDownList("VShift", (IEnumerable<SelectListItem>)ViewBag.VShift, "--SHIFT--", new { @class = "ui vs search dropdown" })
+            </div>
+
+            <div class="field">
+                <label>WEEK</label>
+                @Html.DropDownList("VWeek", (IEnumerable<SelectListItem>)ViewBag.VWeekScheme, "--WEEK--", new { @class = "ui vw search dropdown" })
+            </div>
+            <div class="field">
+                <label>GANG</label>
+                @Html.DropDownList("Gangs", (IEnumerable<SelectListItem>)ViewBag.VGangs,"--GANGS--", new { @class = "ui g search dropdown" })
+            </div>
+            <div class="field">
+                <label>GROUP</label>
+                <select class="ui gr dropdown" data-bind="options:GroupList,
+                                        optionsCaption:'--CATEGORY GROUP--',
+                                        optionsText:'GroupName',optionsValue:'Id',
+                                        value:'Id'" id="groupDrop" name="groupDrop"></select>
+            </div>
+        </div>
+
+        <div class="ui celled grid">
+            <div class="ui eight wide column">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-user"></i> <strong> CASUALS</strong>
+                    </div>
+                    <div class="panel-body">
+                        <table id="tablex" data-search="true" data-show-refresh="true" data-striped="true"
+                               data-pagination="true" data-pagesize="5"
+                               data-classes="table table-hover table-condensed table-striped table-responsive"
+                               data-pagenumber="1" data-sidePagination="true"></table>
+                    </div>
+                </div>
+            </div>
+            <div class="ui eight wide column">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-arrow-right"></i> <strong> GANG MEMBERS</strong>
+                        <div class="pull-right" style="margin-top:-5px;">
+                            <button data-bind="click:SaveEntries" class="btn btn-sm btn-success"><i class="fa fa-save"></i> SAVE TASK</button>
+                            <button data-bind="click:CancelTask" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i> CANCEL TASK</button>
+                            &nbsp; &nbsp; &nbsp;  <button data-bind="click:IndexView" class="btn btn-sm btn-default"><i class="fa fa-arrow-left"></i> BACK</button>
+
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="ui dividing header"><i class="fa fa-map-marker"></i>&nbsp; LOCATION </div>
+                        <div class="ui fluid field">
+                            @Html.DropDownList("VLoc", (IEnumerable<SelectListItem>)ViewBag.VLocations,
+                            "--FIELD LOCATION--", new { @class = "ui l search dropdown" })
+                        </div>
+                        <div id="myMessageContainer" style="position: relative; overflow: hidden;
+                         overflow-y: scroll; height: 280px; width: 100%;">
+                            <table id="grid" class="table table-striped table-hover table-condensed table-bordered">
+                                <tr>
+                                    <th>SN</th>
+                                    <th>NAME</th>
+                                    <th>GANG</th>
+                                    <th class="text-center">ACTION</th>
+                                </tr>
+                                <tbody data-bind="foreach:{data: sheetItems, beforeRemove: hideProduct,afterAdd: showProduct}">
+                                    <tr>
+                                        <td data-bind="text:$index()+1"></td>
+                                        <td data-bind="text:Name"></td>
+                                        <td data-bind="text:GroupName"></td>
+                                        <td class="text-center">
+                                            <button data-bind="click:$parent.removeItem" class="btn btn-danger btn-xs">
+                                                <i class="fa fa-remove"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p></p>
+        <div class="ui dividing header"></div>
+
+    </div>
+</div>
+@section scripts{
+
+    <script src="~/Scripts/moment.min.js"></script>
+    <link href="~/Content/daterangepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/daterangepicker.js"></script>
+    <link href="~/Content/bootstrapTable/bootstrap-table.css" rel="stylesheet" />
+    <script src="~/Content/bootstrapTable/bootstrap-table.js"></script>
+    <link href="~/Content/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert2.min.js"></script>
+    <script src="~/Scripts/knockout-3.4.2.js"></script>
+    <script src="~/Content/semantic/semantic.min.js"></script>
+    <script src="~/js/GangRequest/gangRequestManager.js"></script>
+
+}

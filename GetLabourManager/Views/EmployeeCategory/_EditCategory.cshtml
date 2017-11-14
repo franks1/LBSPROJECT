@@ -1,0 +1,57 @@
+﻿
+@model GetLabourManager.Models.EmployeeCategory
+    @Html.HiddenFor(x => x.Id)
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-edit"></i> EDIT CATEGORY
+        </div>
+        <div class="panel-body">
+            <div class="ui form">
+                <div class="two fields">
+                    <div class="eight wide field">
+                        <label>CATEGORY NAME</label>
+                        @Html.TextBoxFor(x => x.Category, new { @id = "txtEName", @maxlengh = "50", @style = "text-transform:uppercase", @placeholder = "BRANCH NAME" })
+                    </div>
+
+                    <div class="four wide field">
+                        <label>&nbsp;</label>
+                        <button id="btnEdit" class="fluid ui primary button">
+                            <i class="fa fa-save"></i> SAVE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            editCategory();
+        });
+
+        function editCategory() {
+            $('#btnEdit').bind('click', function () {
+                var VM = {
+                    Id: $('#Id').val(),
+                    Category: $('#txtEName').val(),
+                };
+
+                if (VM.Category == '' || VM.Category === undefined || VM.Category == null) {
+                    swal('CATEGORY', 'SPECIFY CATEGORY NAME', 'info');
+                    return;
+                }
+
+                $.post('/EmployeeCategory/EditCategory/', { model: VM }, function (data) {
+                    if (data.message != 'success') {
+                        swal('CATEGORY', data.message, 'error');
+                    }
+                    else {
+                        swal('CATEGORY', 'CATEGORY HAS BEEN EDITED', 'success');
+                        $('.ui.basic.modal').modal('hide');
+                    }
+                })
+
+            });
+
+        }
+    </script>

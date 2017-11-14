@@ -1,0 +1,105 @@
+﻿@model GetLabourManager.Models.ClientDetails
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="ui segment">
+    <div class="ui pointing secondary menu">
+        <a class="active item" data-tab="first">CLIENT DETAILS</a>
+    </div>
+
+    <div class="ui bottom attached tab segment active" data-tab="first">
+        @using (Html.BeginForm("Create", "ClientDetails", FormMethod.Post, new { @class = "ui form", enctype = "multipart/form-data", }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col-md-8">
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="ui error message"></div>
+                </div>
+            </div>
+            <div class="ui celled grid">
+                <div class="ten wide column">
+                    <div class="two fields">
+                        <div class="field">
+                            <label>NAME</label>
+                            @Html.TextBoxFor(x => x.Name, new { @maxlength = "50",@placeholder="BRANCH NAME" })
+                        </div>
+                        <div class="field">
+                            <label>BRANCH</label>
+                            @Html.DropDownList("Branch", (IEnumerable<SelectListItem>)ViewBag.VBranch, "-- BRANCH --",
+                            new { @class = "ui bs search dropdown" })
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>ADDRESS</label>
+                            @Html.TextBoxFor(x => x.Address, new { @maxlength = "50", @placeholder = "BRANCH ADDRESS" })
+                        </div>
+                        <div class="inline field">
+                            <br />
+                            <div class="ui headoffice toggle checkbox">
+                                @Html.CheckBoxFor(x => x.IsHeadOffice)
+                                <label>IS HEADOFFICE</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>PRIMARY EMAIL</label>
+                            @Html.TextBoxFor(x => x.EmailAddress, new { @maxlength = "50", @placeholder = "PRIMARY EMAIL" })
+                        </div>
+                        <div class="field">
+                            <label>SECONDARY EMAIL</label>
+                            @Html.TextBoxFor(x => x.EmailAddress2, new { @maxlength = "50", @placeholder = "SECONDARY EMAIL" })
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>PHONE-1</label>
+                            @Html.TextBoxFor(x => x.Phone1, new { @maxlength = "15", @placeholder = "PRIMARY PHONE NUMBER" })
+                        </div>
+                        <div class="field">
+                            <label>PHONE-2</label>
+                            @Html.TextBoxFor(x => x.Phone2, new { @maxlength = "15", @placeholder = "SECONDARY PHONE NUMBER" })
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <button type="submit" class="fluid ui positive button">
+                                <i class="fa fa-save"></i> SAVE DETAILS
+                            </button>
+                        </div>
+                        <div class="field">
+                            <a href="@Url.Action("Index","ClientDetails")" class="fluid ui default button">
+                                <i class="fa fa-remove"></i> CANCEL
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="six wide column">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                            <img data-src="holder.js/100%x100%" alt="...">
+                        </div>
+                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                        <div>
+                            <span class="btn btn-default btn-file"><span class="fileinput-new">COMPANY LOGO</span><span class="fileinput-exists">Change</span><input type="file" name="ImageData"></span>
+                            <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Scripts{
+    <link href="~/Content/jasny/jasny-bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/jasny/jasny-bootstrap.js"></script>
+    <script>
+        $('.menu .item').tab();
+        $('.ui.bs.dropdown').dropdown();
+        $('.ui.headoffice.checkbox').checkbox();
+    </script>
+
+}

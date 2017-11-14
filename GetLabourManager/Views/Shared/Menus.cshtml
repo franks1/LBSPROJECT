@@ -1,0 +1,192 @@
+﻿<section class="sidebar">
+    @if (User.IsInRole("Role"))
+    {
+
+    }
+    <ul class="sidebar-menu">
+        <li class="header">MAIN MENU</li>
+        <li>
+            <a href="@(Url.Action("Index","Home"))">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-files-o fa-fw"></i>
+                <span>Registration</span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="@(Url.Action("Index","Employee",new{ Area = ""}))"><i class="user plus icon"></i> Casual</a></li>
+                <li><a href="@(Url.Action("Index","Foremen",new{ Area = ""}))"><i class="user plus icon"></i> Foremen</a></li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-forumbee"></i>
+                <span>Operations</span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="@(Url.Action("Index","GangAdviceManager",new{ Area = ""}))"><i class="user plus icon"></i> Gang Request</a></li>
+                <li><a href="@(Url.Action("Index","ForemanOperation",new{ Area = ""}))"><i class="user plus icon"></i> Gang Allocation</a></li>
+                <li><a href="@(Url.Action("CostSheetIndex","Operation",new{ Area = ""}))"><i class="fa fa-table"></i> Cost Sheets</a></li>
+                <li><a href="@(Url.Action("ProcessCostSheet","Operation",new{ Area = ""}))"><i class="fa fa-forumbee"></i> Process Sheets</a></li>
+
+                <li><a href="@(Url.Action("","",new{ Area = ""}))"><i class="fa fa-forumbee"></i> Invoicing</a></li>
+            </ul>
+        </li>
+
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-tasks"></i>
+                <span>Back Office</span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="@(Url.Action("Index","BackOffice",new{ Area = ""}))"><i class="fa fa-check"></i> Request Approval</a></li>
+                <li><a href="@(Url.Action("TimeAudit","BackOffice",new{ Area = ""}))"><i class="fa fa-clock-o"></i> Time Auditing</a></li>
+                <li><a href="@(Url.Action("CreateCostSheet","Operation",new{ Area = ""}))"><i class="fa fa-edit"></i> Request Amendment</a></li>
+                <li><a href="@(Url.Action("ProcessCostSheet","Operation",new{ Area = ""}))"><i class="fa fa-flag"></i> Flag Request</a></li>
+
+                <li><a href="@(Url.Action("","",new{ Area = ""}))"><i class="fa fa-forumbee"></i> Invoicing</a></li>
+            </ul>
+        </li>
+
+        <li class="treeview">
+            <a href="@(Url.Action("Index","ReportManager"))">
+                <i class="fa fa-print"></i>
+                <span>Reporting</span>
+            </a>
+        </li>
+
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-wrench"></i>
+                <span>Master Setup</span>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-user"></i> Manage Users
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="@(Url.Action("Index","Admin",new{ Area = ""}))"><i class="fa fa-folder"></i> Users</a></li>
+                        <li><a href="@(Url.Action("RoleIndex","Admin",new{ Area = ""}))"><i class="fa fa-folder"></i> Roles</a></li>
+                        <li><a href="@(Url.Action("PermissionIndex","Admin",new{ Area = ""}))"><i class="fa fa-folder"></i> Permissions</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-wrench"></i> Setup
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="@(Url.Action("Index","Sequence",new{ Area = ""}))"><i class="fa fa-folder"></i> Manage Sequence</a></li>
+                        <li><a href="@(Url.Action("Index","Branch",new{ Area = ""}))"><i class="fa fa-folder"></i> Branch Setup</a></li>
+                        <li><a href="@(Url.Action("Create","ManageFieldClient",new{ Area = ""}))"><i class="fa fa-folder"></i> Field Client</a></li>
+                        <li><a href="@(Url.Action("Index","ClientDetails",new{ Area = ""}))"><i class="fa fa-folder"></i> Client Setup</a></li>
+                        <li><a href="@(Url.Action("Index","PaymentSetup",new{ Area = ""}))"><i class="fa fa-folder"></i> Payment Setup</a></li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-forumbee"></i> Operation
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="@(Url.Action("Index","EmployeeCategory",new{ Area = ""}))"><i class="fa fa-folder"></i> Manage Category</a></li>
+                        <li><a href="@(Url.Action("IndexGroup","EmployeeCategory",new{ Area = ""}))"><i class="fa fa-folder"></i> Manage Groups</a></li>
+                        <li><a href="@(Url.Action("Index","ManageGang",new{ Area = ""}))"><i class="fa fa-folder"></i> Manage Gangs</a></li>
+                        <li><a href="@(Url.Action("Index","Foremen",new{ Area = ""}))"><i class="fa fa-folder"></i> Foremen</a></li>
+                        <li><a href="@(Url.Action("ContainerIndex","Mastersetup",new{ Area = ""}))"><i class="fa fa-folder"></i> Manage Container</a></li>
+                        <li><a href="@(Url.Action("FieldLocation","Mastersetup",new{ Area = ""}))"><i class="fa fa-map"></i> Manage Field Location</a></li>
+                    </ul>
+                </li>
+              
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-server"></i> Data
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="@(Url.Action("Index","DataManager",new{ Area = ""}))"><i class="fa fa-file-excel-o"></i> Data Migration</a></li>
+                        <li><a href="@(Url.Action("IndexGroup","EmployeeCategory",new{ Area = ""}))"><i class="fa fa-database"></i> Data Backup</a></li>
+                        <li><a href="@(Url.Action("Index","ManageGang",new{ Area = ""}))"><i class="fa fa-exchange"></i> Data Sync</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+@*
+     <li>
+        <a href="@(Url.Action("","",new{ Area = ""}))">
+            <i class="fa fa-th fa-fw"></i> <span>Widgets</span>
+        </a>
+    </li>
+
+    <li>
+        <a href="@(Url.Action("","",new{ Area = ""}))">
+            <i class="fa fa-th fa-fw"></i> <span>Widgets</span>
+            <span class="pull-right-container">
+                <small class="label pull-right bg-green">new</small>
+            </span>
+        </a>
+    </li>
+
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-files-o fa-fw"></i>
+            <span>Layout Options</span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="@(Url.Action("","",new{ Area = ""}))"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
+        </ul>
+    </li>
+
+    <li class="treeview">
+            <a href="#">
+                <i class="fa fa-share"></i> <span>Multilevel</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-circle-o"></i> Level One
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-circle-o"></i> Level Two
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+            </ul>
+        </li>
+*@

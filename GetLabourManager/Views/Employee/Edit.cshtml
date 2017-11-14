@@ -1,0 +1,231 @@
+﻿@model GetLabourManager.ViewModel.EmployeeViewModel
+@{
+    ViewBag.Title = "Edit Employee";
+}
+@using (Html.BeginForm("Edit", "Employee", FormMethod.Post, new { @class = "ui small form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x=>x.Id)
+    <div style="margin-top:-12px;" class="ui blue segment">
+        <div class="row">
+            <div class="col-md-8">
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="ui error message"></div>
+            </div>
+            <div class="col-md-4">
+                <div style="margin-right:20px;" class="pull-right">
+                    <button class="ui positive button" type="submit">
+                        <i class="fa fa-edit"></i> EDIT DETAILS
+                    </button>
+                    &nbsp;
+                    <a href="@Url.Action("Index", "Employee")" class="ui default button">
+                        <i class="fa fa-arrow-left"></i> BACK
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="ui pointing secondary menu">
+            <a class="active item" data-tab="first">EMPLOYEE DETAILS</a>
+            <a class="item" data-tab="second">GUARANTOR/NEXT OF KIN</a>
+            <a class="item" data-tab="third">CONTRIBUTION OPTION</a>
+        </div>
+        <div class="ui small form">
+            <div class="ui bottom attached active tab segment" data-tab="first">
+
+                <div class="ui dividing header">PERSONAL DETAILS</div>
+                <div class="three fields">
+                    <div class="field">
+                        <label>FIRST NAME</label>
+                        @Html.TextBoxFor(x => x.FirstName, new { @autocomplete = "off" })
+                    </div>
+                    <div class="field">
+                        <label>MIDDLE NAME</label>
+                        @Html.TextBoxFor(x => x.MiddleName, new { @autocomplete = "off" })
+                    </div>
+                    <div class="field">
+                        <label>LAST NAME</label>
+                        @Html.TextBoxFor(x => x.LastName, new { @autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="three fields">
+                    <div class="field">
+                        <label>GENDER</label>
+                        @Html.DropDownList("Gender", (IEnumerable<SelectListItem>)ViewBag.VGender, "--GENDER--",
+                   new { @class = "ui g dropdown" })
+                    </div>
+                    <div class="field">
+                        <label>DATE OF BIRTH</label>
+                        @Html.TextBoxFor(x => x.Dob)
+                    </div>
+                    <div class="field">
+                        <label>CATEGORY</label>
+                        @Html.DropDownList("Category", (IEnumerable<SelectListItem>)ViewBag.VCategory, "--CATEGORY--",
+                   new { @class = "ui c search dropdown" })
+                    </div>
+                </div>
+                <div class="ui dividing header">CONTACT DETAILS</div>
+                <div class="ui celled grid">
+                    <div class="eight wide column">
+                        <div class="two fields">
+                            <div class="field">
+                                <label>PHONE-1</label>
+                                @Html.TextBoxFor(x => x.Telephone1, new { @autocomplete = "off" })
+                            </div>
+                            <div class="field">
+                                <label>PHONE-2</label>
+                                @Html.TextBoxFor(x => x.Telephone2, new { @autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>EMAIL ADDRESS</label>
+                                @Html.TextBoxFor(x => x.EmailAddress, new { @autocomplete = "off" })
+                            </div>
+                            <div class="field">
+                                <label>BRANCH</label>
+                                @Html.DropDownList("BranchId", (IEnumerable<SelectListItem>
+                                )ViewBag.VBranch, "--BRANCH--",
+                                new { @class = "ui b search dropdown" })
+                            </div>
+                        </div>
+                        <div class="ui fluid field">
+                            <label>ADDRESS</label>
+                            @Html.TextBoxFor(x => x.Address, new { @autocomplete = "off" })
+                        </div>
+                    </div>
+                    <div class="eight wide column">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                <img src="@Url.Action("GetImage","Employee",new {Id=Model.Id })" alt="...">
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                            <div>
+                                <span class="btn btn-default btn-file"><span class="fileinput-new">IMAGE PICTURE</span><span class="fileinput-exists">Change</span><input type="file" name="ImageData"></span>
+                                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="second">
+                <div class="ui celled grid">
+                    <div class="ui eight wide column">
+                        <div class="ui dividing header">GUARANTOR</div>
+                        <div class="ui fluid field">
+                            <label>NAME</label>
+
+                            @Html.TextBoxFor(x => x.GuarantorName, new { @maxlength = "100", @autocomplete = "off" })
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>PHONE</label>
+                                @Html.TextBoxFor(x => x.GuarantorPhone, new { @maxlength = "20", @autocomplete = "off" })
+                            </div>
+                            <div class="field">
+                                <label>RELATION</label>
+                                @Html.DropDownList("GuarantorRelation", (IEnumerable<SelectListItem>
+                                )ViewBag.VRelation, "--RELATION--",
+                                new { @class = "ui r search dropdown" })
+                            </div>
+                        </div>
+                        <div class="ui fluid field">
+                            <label>ADDRESS</label>
+                            @Html.TextBoxFor(x => x.GuarantorAddress, new { @maxlength = "100", @autocomplete = "off" })
+                        </div>
+                    </div>
+                    <div class="ui eight wide column">
+                        <div class="ui dividing header">NEXT OF KIN</div>
+                        <div class="ui fluid field">
+                            <label>NAME</label>
+                            @Html.TextBoxFor(x => x.NextofKinName, new { @maxlength = "100", @autocomplete = "off" })
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>PHONE</label>
+                                @Html.TextBoxFor(x => x.NextofKinPhone, new { @maxlength = "20", @autocomplete = "off" })
+                            </div>
+                            <div class="field">
+                                <label>RELATION</label>
+                                @Html.DropDownList("NextofKinRelation", (IEnumerable<SelectListItem>
+                                )ViewBag.VRelation, "--RELATION--",
+                                new { @class = "ui r search dropdown" })
+                            </div>
+                        </div>
+                        <div class="ui fluid field">
+                            <label>ADDRESS</label>
+                            @Html.TextBoxFor(x => x.NextofKinAddress, new { @maxlength = "100", @autocomplete = "off" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="third">
+                <h2 class="ui dividing header">CONTRIBUTION</h2>
+                <div class="two fields">
+                    <div class="field">
+                        <label>DATE JOINED</label>
+                        @Html.TextBoxFor(x => x.DateJoined)
+                    </div>
+                    <div class="field">
+                        <label>SOCIAL SECURITY NUMBER</label>
+                        @Html.TextBoxFor(x => x.SSN, new { @maxlength = "50", @autocomplete = "off" })
+                    </div>
+                </div>
+
+                <div class="inline field">
+                    <div class="ui s toggle checkbox">
+                        @Html.CheckBoxFor(x => x.SSF)
+                        <label>APPLY SSF</label>
+                    </div>
+                </div>
+
+                <div class="inline field">
+                    <div class="ui u toggle checkbox">
+                        @Html.CheckBoxFor(x => x.UnionDues)
+                        <label>PAY UNION DUES</label>
+                    </div>
+                </div>
+
+                <div class="inline field">
+                    <div class="ui w toggle checkbox">
+                        @Html.CheckBoxFor(x => x.Welfare)
+                        <label>PAY WELFARE DUES</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script src="~/Scripts/moment.min.js"></script>
+    <link href="~/Content/daterangepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/daterangepicker.js"></script>
+    <link href="~/Content/jasny/jasny-bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/jasny/jasny-bootstrap.js"></script>
+<script src="~/Content/semantic/semantic.min.js"></script>
+    <script>
+        $('.menu .item').tab();
+        $('.ui.c.dropdown').dropdown();
+        $('.ui.g.dropdown').dropdown();
+        $('.ui.r.dropdown').dropdown();
+        $('.ui.b.dropdown').dropdown();
+        $('input[name="DateJoined"]').daterangepicker(
+            {
+                singleDatePicker: true,
+                showDropdowns: true,
+                locale: {
+                    format: 'DD/MM/YYYY'
+                }
+            });
+
+        $('input[name="Dob"]').daterangepicker(
+            {
+                singleDatePicker: true,
+                showDropdowns: true,
+                locale: {
+                    format: 'DD/MM/YYYY'
+                }
+            });
+    </script>
+
+}

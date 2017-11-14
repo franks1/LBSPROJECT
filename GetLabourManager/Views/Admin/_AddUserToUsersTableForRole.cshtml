@@ -1,0 +1,10 @@
+﻿@model GetLabourManager.Models.ApplicationRole
+@Html.HiddenFor(c => c.Id)
+
+<div class="form-group">
+    @Html.Label("USER", "USER", new { @class = "col-md-3 control-label" })
+    <div class="col-md-8">
+       @Html.DropDownList("UserId", null, string.Empty, new {@class="form-control"})
+    </div>
+    
+</div>

@@ -1,0 +1,73 @@
+﻿@model GetLabourManager.Models.Gang
+@Html.HiddenFor(x => x.Id)
+@Html.HiddenFor(x => x.Code)
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <i class="fa fa-edit"></i> <strong>EDIT GANG</strong>
+    </div>
+    <div class="panel-body">
+        <div class="ui form">
+            <div class="three fields">
+                <div class="field">
+                    <label>GANG NAME</label>
+                    @Html.TextBoxFor(c => c.Description, new { @maxlength = "50", @id = "txtEName", @placeholder = "GANG NAME" })
+                </div>
+                <div class="field">
+                    <div class="field">
+                        <label>BRANCH</label>
+                        @Html.DropDownListFor(x => x.Branch, (IEnumerable<SelectListItem>)ViewBag.VBranch, "--BRANCH--",
+                            new { @class = "ui ce search dropdown" })
+                    </div>
+                </div>
+                <div class="field">
+                    <label>&nbsp;</label>
+                    <button id="btnEdit" class="ui primary button">
+                        <i class="fa fa-edit"></i> SAVE
+                    </button>
+                    &nbsp;
+                    <button id="btnCancel" class="ui default button">
+                        <i class="fa fa-remove"></i> CANCEL
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.ui.ce.dropdown').dropdown();
+        editBranch();
+        $('#btnCancel').click(function () {
+            $('.ui.basic.modal').modal('hide');
+        })
+    });
+
+    function editBranch() {
+        $('#btnEdit').bind('click', function () {
+            var VM = {
+                Id: $('#Id').val(),
+                Code: $('#Code').val(),
+                Description: $('#txtEName').val(),
+                Branch: $('.ui.ce.dropdown').dropdown('get value'),
+            };
+            if (VM.Description == '' || VM.Description === undefined || VM.Description == null) {
+                swal('GANG', 'SPECIFY GANG NAME', 'info');
+                return;
+            }
+
+            $.post('/ManageGang/EditGang/', { model: VM }, function (data) {
+                if (data.message != 'success') {
+                    swal('GANG', data.message, 'error');
+                }
+                else {
+                    swal('GANG', 'GANG HAS BEEN EDITED', 'success');
+                    $('.ui.basic.modal').modal('hide');
+                }
+            })
+
+        });
+
+    }
+</script>

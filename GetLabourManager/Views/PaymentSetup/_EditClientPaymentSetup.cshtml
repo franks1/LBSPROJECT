@@ -1,0 +1,148 @@
+﻿@model GetLabourManager.Models.PaymentSetup
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <i class="fa fa-edit"></i> EDIT DETAILS
+    </div>
+    @Html.HiddenFor(x=>x.Id)
+    <div class="panel-body">
+        <div id="frmClient" class="ui small form">
+            <div class="ui small dividing header">WORK SCHEDULE</div>
+            <div class="four fields">
+                <div class="field">
+                    <label>CLIENT</label>
+                    @Html.DropDownListFor(x=>x.Client, (IEnumerable<SelectListItem>)ViewBag.VFields,
+                   "--CLIENTS---",
+                   new { @class = "ui efc search dropdown" })
+                </div>
+                <div class="field">
+                    <label>GROUP</label>
+                    @Html.DropDownListFor(x=>x.Group, (IEnumerable<SelectListItem>)ViewBag.VGroup,
+                      "--GROUP---",
+                   new { @class = "ui ecg search dropdown" })
+                </div>
+                <div class="field">
+                    <label>SHIFT</label>
+                    @Html.DropDownListFor(x => x.WorkShift, (IEnumerable<SelectListItem>)ViewBag.VShift, "--SHIFT--", new { @class = "ui vse search dropdown" })
+                </div>
+
+                <div class="field">
+                    <label>WEEK</label>
+                    @Html.DropDownListFor(x => x.WorkWeek, (IEnumerable<SelectListItem>)ViewBag.VWeekScheme, "--WEEK--", new { @class = "ui vwe search dropdown" })
+                </div>
+            </div>
+            <div class="ui small dividing header">PARAMETERS</div>
+            <div class="three fields">
+                <div class="field">
+                    <label>BASIC AMT</label>
+                    @Html.TextBoxFor(x=>x.Basic, new {@id= "FCEBasic", data_bind = "", @type = "number" })
+                </div>
+                <div class="field">
+                    <label>NIGHT ALLOWANCE</label>
+                    @Html.TextBoxFor(x=>x.NightAllowance, new { @id = "FCENightAllowance", data_bind = "", @type = "number" })
+                </div>
+                <div class="field">
+                    <label>TRANSPORTATION ALLOWANCE</label>
+                    @Html.TextBoxFor(x=>x.TransportationAllowance, new { @id = "FCEtransportationAllowance", data_bind = "", @type = "number" })
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label>OVERTIME</label>
+                    @Html.TextBoxFor(x=>x.Overtime, new { @id = "FCEOverTime", data_bind = "", @type = "number" })
+                </div>
+                <div class="field">
+                    <label>TAX ON BASIC</label>
+                    @Html.TextBoxFor(x=>x.VatRate, new { @id = "FCETax", data_bind = "", @type = "number" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button id="btnEdit" data-bind="" class="btn btn-default  btn-md">
+                    <i class="fa fa-plus"></i> SAVE DETAILS
+                </button>
+                &nbsp;
+                <button id="btnCancel" data-bind="" class="btn btn-default  btn-md">
+                    <i class="fa fa-remove"></i> CANCEL
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function ()
+    {
+        $('.ui.efc.dropdown').dropdown();
+        $('.ui.ecg.dropdown').dropdown();
+        $('#btnCancel').click(function () {
+            $('.ui.basic.modal').modal('hide');
+        });
+
+        $('#btnEdit').click(function () {
+            var VM =
+                {
+                    Id: $('#Id').val(),
+                    PayType: true,
+                    Client: $('.ui.efc.dropdown').dropdown('get value'),
+                    Group: $('.ui.ecg.dropdown').dropdown('get value'),
+                    Basic: $('#FCEBasic').val(),
+                    NightAllowance: $('#FCENightAllowance').val(),
+                    WorkShift: $('.ui.vse.dropdown').dropdown('get text'),
+                    WorkWeek: $('.ui.vwe.dropdown').dropdown('get text'),
+                    TransportationAllowance: $('#FCEtransportationAllowance').val(),
+                    Overtime: $('#FCEOverTime').val(),
+                    VatRate: $('#FCETax').val()
+                };
+
+            if ($('.ui.vse.dropdown').dropdown('get text') == '' || $('.ui.vse.dropdown').dropdown('get text') == undefined
+                || $('.ui.vse.dropdown').dropdown('get text') == null || $('.ui.vse.dropdown').dropdown('get text') == '--SHIFT--') {
+                swal('CLIENT PAYMENT', 'PLEASE SPECIFY WORKING SHIFT', 'info');
+                return;
+            }
+
+            if ($('.ui.vwe.dropdown').dropdown('get text') == '' || $('.ui.vwe.dropdown').dropdown('get text') == undefined
+                || $('.ui.vwe.dropdown').dropdown('get text') == null || $('.ui.vwe.dropdown').dropdown('get text') == '--WEEK--') {
+                swal('CLIENT PAYMENT', 'PLEASE SPECIFY WORKING WEEK', 'info');
+                return;
+            }
+
+
+            swal({
+                title: 'CLIENT PAYMENT SETUP',
+                text: "DO YOU WANT TO SAVE DETAILS",
+                type: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Save',
+                cancelButtonText: 'No, Ignore',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false
+            }).then(function () {
+                $('#frmClient').addClass('loading');
+                $.post('/PaymentSetup/SaveEditClientPaymentSetup/', { model: VM }, function (data) {
+                    $('#frmClient').removeClass('loading');
+                    if (data.message == 'success') {
+                      //  swal('CLIENT PAYMENT SETUP', 'DETAILS EDITED', 'success');
+                        LoadData();
+                        $('.ui.basic.modal').modal('hide');
+                    }
+                    else {
+                        swal('CLIENT PAYMENT SETUP', data.message, 'error');
+                    }
+                })
+            }, function (dismiss) {
+                if (dismiss === 'cancel') {
+                    swal('Cancelled', 'Task Cancelled', 'error');
+                }
+            });
+
+
+        });
+
+
+
+    });
+</script>

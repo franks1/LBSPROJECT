@@ -1,0 +1,120 @@
+﻿<div style="margin-top:0px;" id="ViewModal" class="ui basic modal">
+    <i class="close icon"></i>
+    <div class="header">SEQUENCE TASK</div>
+    <div class="content">
+      
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="edit icon"></i> MANAGE SEQUENCE
+    </div>
+    <div class="panel-body">
+
+        <table id="sequenceManageTable" class="display table-condensed">
+            <thead>
+                <tr>
+                    <th>
+                        SEQUENCE
+                    </th>
+                    <th>
+                        TYPE
+                    </th>
+                    <th>
+                        PREFIX
+                    </th>
+                    <th>
+                        SUFFIX
+                    </th>
+                    <th>
+                        LENGTH
+                    </th>
+                    <th>
+                        ACTION
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<link href="~/assets/datatables/jquery.dataTables.css" rel="stylesheet" />
+<script src="~/assets/datatables/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        LoadSequences();
+        OptionClicked();
+    });
+
+    function OptionClicked() {
+        $('#sequenceManageTable').on('click', 'a[data-action]', function () {
+            var callerId = $(this).data('id');
+            var message = ' CALLER ID: ' + callerId;
+            var action = $(this).data('action');
+            ////debugger;
+            switch (action) {
+                case 'Edit':
+                    $.get('@Url.Action("GetEdit", "Sequence")', { Id: callerId }, function (data) {
+                        $('#ViewModal').empty();
+                        $('#ViewModal').html(data);
+                    })
+                    break;
+                case 'Delete':
+                    $.get('@Url.Action("GetDelete", "Sequence")', { Id: callerId }, function (data) {
+
+                        $('#ViewModal').empty();
+                        $('#ViewModal').html(data);
+                    })
+                    break;
+            }
+            $('.ui.basic.modal')
+                .modal('setting', {
+                    allowMultiple: false,
+                    onHidden: function () {
+                        var table = $('#sequenceManageTable').DataTable();
+                        table.ajax.reload();
+                    },
+                    transition: 'vertical flip'
+                }).modal('show');
+        });
+    }
+
+    function LoadSequences() {
+        $('#sequenceManageTable').DataTable({
+            'bDestroy': true,
+            'ajax': {
+                'url': '@Url.Action("SequenceManageList", "Sequence")',
+                'type': 'GET',
+                'dataSrc': 'data'
+            },
+            'columns':
+                   [
+                       { 'data': 'Name', 'autoWidth': true },
+                       { 'data': 'Type', 'autoWidth': true },
+                       { 'data': 'Prefix', 'autoWidth': true },
+                       { 'data': 'Suffix', 'autoWidth': true },
+                       { 'data': 'Length', 'autoWidth': true },
+                        {// this is Actions Column
+                            mRender: function (data, type, row) {
+                                var input_edit = '<a id="-1" class="btn btn-success btn-xs" data-action="Edit" data-id="edit_value">Edit</a>';
+                                var linkEdit = input_edit;
+
+                                linkEdit = linkEdit.replace("-1", row.ID);
+                                linkEdit = linkEdit.replace("edit_value", row.ID);
+
+                                linkEdit = linkEdit.replace("href", "javascript://");
+
+                                var input_delete = '<a id="-1" class="btn btn-danger btn-xs" data-action="Delete" data-id="edit_value">Delete</a>';
+                                var linkDelete = input_delete;
+                                @*'@Html.ActionLink("Delete", "Delete", new {id= -1 }, new { @class = "btn btn-danger btn-xs", @data_id = "edit_value", @data_action = "Delete" })';*@
+                                linkDelete = linkDelete.replace("-1", row.ID);
+                                linkDelete = linkDelete.replace("edit_value", row.ID);
+                                linkDelete = linkDelete.replace("href", "javascript://");
+
+                                return linkEdit + " | " + linkDelete;
+                            }
+                        }
+                   ]
+        });
+    }
+</script>

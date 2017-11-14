@@ -1,0 +1,129 @@
+﻿<div id="koserver" class="ui pointing secondary menu">
+    <a class="active item" data-tab="first"><i class="fa fa-print"></i> &nbsp; PAYE DEDUCTION</a>
+</div>
+<div class="ui bottom attached tab segment active" data-tab="first">
+    <div class="ui small form">
+        <br />
+        <div class="four fields">
+            <div class="three wide field">
+                <label>&nbsp;</label>
+                <div class="inline field">
+                    <div class="ui date_ toggle checkbox">
+                        @Html.CheckBox("IsDate", false, new { id = "chkDate", @class = "ui d checkbox" })
+                        <label>DATE</label>
+                    </div>
+                </div>
+            </div>
+            <div id="dtFrom" class="three wide field">
+                <label>FROM</label>
+                @Html.TextBox("DateFrom")
+
+            </div>
+            <div id="dtTo" class="three wide field">
+                <label>TO</label>
+
+                @Html.TextBox("DateTo")
+
+            </div>
+            <div class="seven wide field">
+                <label>&nbsp;</label>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="field">
+        <button id="btnPreview" data-bind="click:Preview" class="btn btn-primary">
+            <i class="fa fa-print"></i> PREVIEW REPORT
+        </button>
+        &nbsp;
+        <button id="btnCancel" class="btn btn-default">
+            <i class="fa fa-remove"></i> CANCEL
+        </button>
+    </div>
+
+
+</div>
+
+<script>
+    $(function () {
+
+        // var model = new processedCostSheet();
+    closeDateFilters(false);
+        //  ko.applyBindings(model, document.getElementById('koserver'));
+        $('input[name="DateFrom"]').daterangepicker(
+            {
+                singleDatePicker: true,
+                showDropdowns: true,
+                startDate: new Date().getDate(),
+                locale: {
+                    format: 'DD/MM/YYYY'
+                }
+            });
+
+        $('input[name="DateTo"]').daterangepicker(
+            {
+                singleDatePicker: true,
+                showDropdowns: true,
+                startDate: new Date().getDate(),
+                locale: {
+                    format: 'DD/MM/YYYY'
+                }
+            });
+
+        $('#btnPreview').click(function () {
+            var lookup =   $(".ui.r.dropdown").dropdown('get value');
+            var VM =
+            {
+                ReportOption: lookup,
+                ClientId: 0,
+                ClientName: '',
+                FromDate: $('#DateFrom').val(),
+                ToDate: $('#DateTo').val(),
+                Status: '',
+                Casual: '',
+                RequestCode: '',
+                Invoice: '',
+                IsDateRangeActive: $('.ui.date_.checkbox').checkbox('is checked'),
+            };
+
+            var baseUrl = '/ReportManager/ReportPreview/';
+            var queryString = $.param(VM);
+            window.location = baseUrl + '?' + queryString;
+
+        });
+
+        $('#btnCancel').click(function () {
+            $(".ui.r.dropdown").dropdown('restore default text');
+
+            $('#frmFrame').empty();
+            $('#frmFrame').transition('scale');
+        });
+
+        $('.ui.date_.checkbox').checkbox({
+            onChecked: function () {
+                // model.ApplyFilter(true);
+                closeDateFilters(true);
+            },
+            onUnchecked: function () {
+                // model.ApplyFilter(false);
+                closeDateFilters(false);
+            }
+        });
+    })
+
+
+
+    function closeDateFilters(value) {
+        if (value == false) {
+            $('#dtTo').fadeOut(200);
+            $('#dtFrom').fadeOut(200);
+        }
+        else {
+            $('#dtTo').fadeIn(200);
+            $('#dtFrom').fadeIn(200);
+        }
+    }
+
+</script>
+

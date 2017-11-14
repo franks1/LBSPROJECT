@@ -1,0 +1,90 @@
+﻿@model int
+@if (Model == 0)
+{
+    <h2><font color="red">No Associated Permissions...</font></h2>
+    <br />
+}
+else
+{
+    @Html.Hidden("PId", Model)
+    <div id="Apermissions" class="ui form">
+        <table id="tablep" data-search="true" data-show-refresh="true" data-striped="true"
+               data-pagination="true" data-pagesize="5"
+               data-classes="table table-hover table-condensed table-striped table-responsive"
+               data-pagenumber="1" data-sidePagination="true"></table>
+    </div>
+
+
+}
+<script type="text/javascript">
+    $(function () {
+        var role_id = $('#PId').val();
+        window.operateEvents = {
+            'click .btn-danger': function (e, value, row, index) {
+                try {
+
+                    DeletePermission(role_id, row.PermissionId);
+
+                } catch (e) {
+
+                }
+
+            }
+        };
+        LoadRolePermissions(role_id);
+    })
+
+
+    function operateFormatter(value, row, index) {
+        return [
+            '<a class="btn btn-danger btn-xs" href="javascript:void(0)" title="Remove">',
+            '<i class="fa fa-remove"></i>',
+            '</a>&nbsp;'
+        ].join('');
+    }
+
+    function LoadRolePermissions(Id) {
+        var $table1 = $('#tablep').bootstrapTable({
+            showColumns: true,
+            url: '/Admin/showRolePermissions/?RoleId=' + Id,
+            sortStable: true,
+            silentSort: false,
+            showToggle: true,
+            columns: [
+                {
+                    field: 'PermissionDescription', align: 'left',
+                    title: 'PERMISSION'
+                },
+                {
+                    title: 'ACTION',
+                    align: 'center',
+                    events: operateEvents,
+                    formatter: operateFormatter
+                }]
+        });
+
+        $.getJSON('/Admin/showRolePermissions/', { RoleId: Id }, function (data) {
+            $table1.bootstrapTable('showLoading');
+            $table1.bootstrapTable('load', data.data);
+            $table1.bootstrapTable('hideLoading');
+            var options = $table1.bootstrapTable('getOptions');
+
+            if (options.totalPages > 0) {
+                $table1.bootstrapTable('selectPage', options.totalPages);
+            }
+        });
+    }
+
+    function DeletePermission(RoleId, PermissionId) {
+        $('#Apermissions').addClass('loading');
+        $.post("/Admin/DeletePermissionFromRole", { roleId: RoleId, permissionId: PermissionId }, function (data) {
+            try
+            {
+                LoadRolePermissions(RoleId);
+                $('#Apermissions').removeClass('loading');
+            } catch (e) {
+                $('#Apermissions').removeClass('loading');
+            }
+        });
+    }
+</script>

@@ -1,0 +1,146 @@
+﻿@model GetLabourManager .Models.MasterSequence
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="fa fa-plus"></i> <strong> NEW SEQUENCE</strong>
+    </div>
+    <div class="panel-body">
+        <div class="ui form">
+            <div class="field">
+                <div class="two fields">
+                    <div class="eight wide field">
+                        <label>NAME</label>
+                        @Html.EditorFor(m => m.SequenceName, new { htmlAttributes = new { @autocomplete = "off", @placeholder = "SEQUENCE NAME", @style = "text-transform:uppercase" } })
+                    </div>
+                    <div class="twelve wide field">
+                        <label>TYPE</label>
+                        @Html.DropDownListFor(c=>c.SequenceType, (IEnumerable<SelectListItem>)ViewBag.SequenceType,
+                        "--SEQUENCE TYPE--", new { @class = "s ui dropdown" })
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="four fields">
+                    <div class="four wide field">
+                        <label>START NUMBER</label>
+                        @Html.EditorFor(m => m.SequenceNumber, new { htmlAttributes = new { @autocomplete = "off", @placeholder = "SEQUENCE NUMBER" } })
+                    </div>
+                    <div class="four wide field">
+                        <label>LENGTH</label>
+                        @Html.EditorFor(m => m.SequenceLength, new { htmlAttributes = new { @autocomplete = "off", @placeholder = "SEQUENCE LENGTH" } })
+                    </div>
+                    <div class="four wide field">
+                        <label>PREFIX</label>
+                        @Html.EditorFor(m => m.SequencePrefix, new { htmlAttributes = new { @autocomplete = "off", @placeholder = "SEQUENCE PREFIX", @style = "text-transform:uppercase" } })
+                    </div>
+                    <div class="four wide field">
+                        <label>SUFFIX</label>
+                        @Html.EditorFor(m => m.SequenceSuffix, new { htmlAttributes = new { @autocomplete = "off", @placeholder = "SEQUENCE SUFFIX", @style = "text-transform:uppercase" } })
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <button id="btnSave" class="ui positive button">
+                    <i class="save icon"></i> SAVE
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="tblPane" class="panel panel-default">
+    <div class="panel-heading">
+        <i class="list icon"></i> <strong>SEQUENCE</strong>
+    </div>
+    <div class="panel-body">
+        <table id="sequenceTable" class="display table-condensed">
+            <thead>
+                <tr>
+                    <th>
+                        SEQUENCE
+                    </th>
+                    <th>
+                        TYPE
+                    </th>
+                    <th>
+                        PREFIX
+                    </th>
+                    <th>
+                        SUFFIX
+                    </th>
+                    <th>
+                        LENGTH
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@*<script src="~/Scripts/sequenceHandler.js"></script>*@
+@*<link href="~/assets/datatables/jquery.dataTables.css" rel="stylesheet" />
+<script src="~/assets/datatables/jquery.dataTables.js"></script>*@
+<script type="text/javascript">
+    $(function () {
+        $('.ui.dropdown').dropdown({ transition: 'horizontal flip' });
+      //  SaveSequence();
+      //  getSequenceList();
+    });
+    function getSequenceList() {
+        $('#sequenceTable').DataTable({
+            'ajax': {
+                'url': '@Url.Action("SequenceList","Sequence")',
+                'type': 'GET',
+                'dataSrc': 'data'
+            },
+            'columns':
+                    [
+                        { 'data': 'Name', 'autoWidth': true },
+                        { 'data': 'Type', 'autoWidth': true },
+                        { 'data': 'Prefix', 'autoWidth': true },
+                        { 'data': 'Suffix', 'autoWidth': true },
+                        { 'data': 'Length', 'autoWidth': true }
+
+                    ]
+        });
+    }
+    function UpdateList() {
+        var table = $('#sequenceTable').DataTable();
+        table.ajax.reload();
+    }
+
+    function SaveSequence() {
+        $('#btnSave').bind('click', function () {
+            var seq_name = $('#SequenceName').val();
+            var seq_type = $('.s.ui.dropdown').dropdown('get value');
+            var seq_length = $('#SequenceLength').val();
+            var seq_number = $('#SequenceNumber').val();
+            var seq_prefix = $('#SequencePrefix').val();
+            var seq_suffix = $('#SequenceSuffix').val();
+
+            var VM =
+            {
+                Id: 0,
+                SequenceName: seq_name,
+                SequenceNumber: seq_number,
+                SequenceLength: seq_length,
+                SequencePrefix: seq_prefix,
+                SequenceSuffix: seq_suffix,
+                SequenceType: seq_type
+            };
+            $.post('@Url.Action("SaveSequence", "Sequence")', { model: VM }, function (data) {
+                if (data.message != 'success')
+                    alert(data.message);
+                else {
+                    UpdateList();
+                    $('#SequenceName').val('');
+                    $('.s.ui.dropdown').dropdown('restore default value');
+                    $('#SequenceLength').val(0);
+                    $('#SequenceNumber').val(0);
+                    $('#SequencePrefix').val('');
+                    $('#SequenceSuffix').val('');
+                }
+            });
+        });
+    }
+
+</script>

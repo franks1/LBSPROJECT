@@ -1,0 +1,82 @@
+﻿@model GetLabourManager.ViewModel.ApplicationUserViewModel
+
+
+<div class="ui segment">
+
+    <div class="ui pointing secondary menu">
+        <a class="active item" data-tab="first">NEW USER</a>
+    </div>
+    <div class="ui bottom attached active tab segment" data-tab="first">
+        @using (Html.BeginForm("CreateUser", "Admin", FormMethod.Post, new { @class = "ui form" }))
+        {
+            <div style="float:right">
+                @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary btn-sm" })
+            </div>
+            <br />
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="fluid field">
+                <label>USER NAME</label>
+                @Html.TextBoxFor(m => m.UserName, new { @style = "text-transform:uppercase;", @autocomplete = "off", @class = "", @maxlength = "50" })
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label>FIRST NAME</label>
+                    @Html.TextBoxFor(m => m.Firstname, new { @style = "text-transform:uppercase;", @class = "", @autocomplete = "off" })
+                </div>
+                <div class="field">
+                    <label>LAST NAME</label>
+                    @Html.TextBoxFor(m => m.Lastname, new { @style = "text-transform:uppercase;", @class = "", @autocomplete = "off" })
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label>PASSWORD</label>
+                    @Html.PasswordFor(m => m.Password, new { @class = "", @autocomplete = "off" })
+                </div>
+                <div class="field">
+                    <label>CONFIRM PASSWORD</label>
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "", @autocomplete = "off" })
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label>EMAIL</label>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "", @autocomplete = "off" })
+                </div>
+                <div class="field">
+                    <label>ROLE</label>
+                    @Html.DropDownList("Role", (IEnumerable<SelectListItem>)ViewBag.Name,"--USER ROLE--", new { @class = "ui s search dropdown" })
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label>&nbsp;</label>
+                    <button class="ui primary button" type="submit">
+                        <i class="fa fa-user"></i>  CREATE USER
+                    </button>
+                </div>
+                <div class="field">
+                    <label>&nbsp;</label>
+                </div>
+            </div>
+        }
+    </div>
+
+
+
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/semantic.min.js"></script>
+    <script>
+        window.onload = function () {
+            $('.ui.dropdown').dropdown({ transition: 'horizontal flip' });
+        };
+    </script>
+}

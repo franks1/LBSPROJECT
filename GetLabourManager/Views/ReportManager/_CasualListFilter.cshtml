@@ -1,0 +1,130 @@
+﻿<div id="koserver" class="ui pointing secondary menu">
+    <a class="active item" data-tab="first"><i class="fa fa-print"></i> &nbsp; CASUAL LIST REPORT FILTER</a>
+</div>
+<div class="ui bottom attached tab segment active" data-tab="first">
+    <div class="ui small form">
+        <br />
+        <div class="four fields">
+            <div class="three wide field">
+                <label>&nbsp;</label>
+                <div class="inline field">
+                    <div class="ui act toggle checkbox">
+                        @Html.CheckBox("IsActive", false, new { id = "chkActive", @class = "ui c checkbox" })
+                        <label>OPTIONS</label>
+                    </div>
+                </div>
+            </div>
+            <div id="lookSearchClient" class="ten wide field">
+                <label>TYPE</label>
+                @Html.DropDownList("VCategories", (IEnumerable<SelectListItem>)ViewBag.VCategories,
+                "--CATEGORY--", new
+                {
+                    @class = "ui cv search dropdown",
+                    @multiple=""
+                })
+            </div>
+            <div class="three wide field">
+
+            </div>
+        </div>
+    </div>
+    <div class="field">
+        <button id="btnPreview" data-bind="click:Preview" class="btn btn-primary">
+            <i class="fa fa-print"></i> PREVIEW REPORT
+        </button>
+        &nbsp;
+        <button id="btnCancel" class="btn btn-default">
+            <i class="fa fa-remove"></i> CANCEL
+        </button>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.ui.cv.dropdown').dropdown({
+            transition: 'horizontal flip',
+            direction: 'upward',
+            fullTextSearch:false,
+            onChange: function (value, text, $element)
+            {
+
+
+
+            }
+        })
+    
+        closeCategoryFilters(false);
+        $('#btnPreview').click(function () {
+            var lookup = $(".ui.r.dropdown").dropdown('get value');
+           
+            var category = $('.ui.cv.dropdown').dropdown('get values');
+            var result = [category];
+            var string_build=""
+            for (var i = 0; i < result.length; i++)
+            {
+                string_build += result[i] + ",";
+            }
+            var VM = 
+            {
+                ReportOption: lookup,
+                ClientId: 0,
+                ClientName: '',
+                FromDate: new Date().getDate(),
+                ToDate: new Date().getDate(),
+                Status: '',
+                Casual: '',
+                RequestCode: '',
+                Invoice: string_build,
+                Categories: '',
+                IsDateRangeActive: false,
+            };
+           
+            var baseUrl = '/ReportManager/ReportPreview/';
+            var queryString = $.param(VM);
+            window.location = baseUrl + '?' + queryString;
+
+        });
+        $('#btnCancel').click(function () {
+            $(".ui.r.dropdown").dropdown('restore default text');
+
+            $('#frmFrame').empty();
+            $('#frmFrame').transition('scale');
+        });
+        $('.ui.act.checkbox').checkbox({
+            onChecked: function () {
+              
+                closeCategoryFilters(true);
+            },
+            onUnchecked: function () {
+              
+                closeCategoryFilters(false);
+            }
+        });
+    })
+
+    function closeCategoryFilters(value)
+    {
+        if (value == false)
+        {
+            $('#lookSearchClient').fadeOut(200);
+            $('#lookSearchInvoice').fadeOut(200);
+        }
+        else
+        {
+            $('#lookSearchClient').fadeIn(200);
+            $('#lookSearchInvoice').fadeIn(200);
+        }
+    }
+    
+    var processedCostSheet = function ()
+    {
+        var self = this;
+        self.IsFilterSet = ko.observable(false);
+        self.Preview = function ()
+        {
+
+        }
+    }
+    
+</script>
+

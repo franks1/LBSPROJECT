@@ -1,0 +1,46 @@
+﻿@using GetLabourManager.Models
+@model LoginViewModel
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<div style="margin-top:120px;" class="ui text container ">
+    <h1 class="ui header centered inverted">
+        GETLABOUR
+    </h1>
+    <div class="container fluid">
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "ui form findbg" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.ReturnUrl)
+            @Html.ValidationMessage("", new { @style = "margin-top:15px;color:red;margin-left:130px;" })
+
+            <div style="padding-top:30px;" class="ten wide field">
+
+                <div style="margin-left:130px;" class="ui left icon input">
+                    <i class="inverted circular blue user icon"></i>
+                    <input class="prompt" type="text" autocomplete="off" placeholder="User Name" name="UserName" />
+                </div>
+            </div>
+
+            <div class="ten wide field ">
+                <div style="margin-left:130px;" class="ui left icon input">
+                    <i class="inverted circular blue lock icon"></i>
+                    <input type="Password" autocomplete="off" placeholder="Password" name="Password" />
+                </div>
+            </div>
+
+            <div style="padding-bottom:30px;margin-left:130px;" class="ten centered wide field">
+                <button class="fluid animated ui primary button" type="submit">
+                    <div class="visible content">
+                        <i class="sign out icon"></i>
+                    </div>
+                    <div class="hidden content">
+                        <i class="sign in icon"></i>  Sign In
+                    </div>
+                </button>
+            </div>
+        }
+    </div>
+</div>

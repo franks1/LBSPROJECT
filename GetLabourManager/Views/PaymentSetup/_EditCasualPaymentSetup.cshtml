@@ -1,0 +1,189 @@
+﻿@model GetLabourManager.Models.CasualPaymentSetup
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <i class="fa fa-edit"></i> EDIT DETAILS
+    </div>
+    @Html.HiddenFor(x=>x.Id)
+    <div class="panel-body">
+        <div id="frmCasualEdit" class="ui very small form">
+            <div class="ui small dividing header">WORK SCHEDULE</div>
+            <div class="three fields">
+                <div class="field">
+                    <label>GROUP</label>
+                    @Html.DropDownListFor(x=>x.Group, (IEnumerable<SelectListItem>)ViewBag.VGroup,
+                      "--GROUP---",
+                   new { @class = "ui cgpe search dropdown" })
+                </div>
+
+                <div class="field">
+                    <label>SHIFT</label>
+                    @Html.DropDownListFor(x=>x.WorkShift, (IEnumerable<SelectListItem>)ViewBag.VShift, "--SHIFT--", new { @class = "ui vspe search dropdown" })
+                </div>
+                <div class="field">
+                    <label>WEEK</label>
+                    @Html.DropDownListFor(x=>x.WorkWeek, (IEnumerable<SelectListItem>)ViewBag.VWeekScheme, "--WEEK--", new { @class = "ui vwpe search dropdown" })
+                </div>
+            </div>
+            <div class="ui dividing header">PARAMETERS</div>
+            <div class="four fields">
+                <div class="field">
+                    <label>BASIC</label>
+                    @Html.TextBoxFor(x=>x.Basic, new {@id= "CEBasic", @type = "number" })
+                </div>
+                <div class="field">
+                    <label>NIGHT ALLOWANCE</label>
+                    @Html.TextBoxFor(x=>x.NightAllowance,new { @id = "CENT", @type = "number" })
+                </div>
+                <div class="field">
+                    <label>TRANSPORTATION ALLOWANCE</label>
+                    @Html.TextBoxFor(x=>x.TransportationAllowance, new { @id = "CETT", @type = "number" })
+                </div>
+                <div class="field">
+                    <label>OVERTIME</label>
+                    @Html.TextBoxFor(x => x.Overtime, new { @id = "CEOvertime", @type = "number" })
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label>UNION DUES</label>
+                    @Html.TextBoxFor(x=>x.UnionDues, new { @id = "CEUnionDues", @type = "number" })
+                </div>
+                <div class="field">
+                    <label>WELFARE</label>
+                    @Html.TextBoxFor(x=>x.Welfare, new { @id = "CEWelfare", @type = "number" })
+                </div>
+            </div>
+
+            <div class="three fields">
+                <div class="field">
+                    <label>SSF(%) </label>
+                    @Html.TextBoxFor(x=>x.SSF, new { @id = "CESSF", @type = "number" })
+                </div>
+                <div class="field">
+                    <label>PROFIDENT FUND(%)</label>
+                    @Html.TextBoxFor(x=>x.PF, new { @id = "CEPF", @type = "number" })
+                </div>
+                <div class="field">
+                    <label class="">TAX ON BASIC(%)</label>
+                    @Html.TextBoxFor(x=>x.TaxOnBasic, new { @id = "CETax", @type = "number" })
+                </div>
+            </div>
+
+            <div class="three fields">
+                <div class="field">
+                    <label class="">TAX ON ALLOWANCE(%)</label>
+                    @Html.TextBoxFor(x=>x.TaxOnAllowance,  new { @id = "CEAllowanceTax", @type = "number" })
+                </div>
+                <div class="field">
+                    <label class="">TAX ON OVERTIME(%)</label>
+                    @Html.TextBoxFor(x=>x.TaxOnOvertime,  new { @id = "CEOvertimeTaxRate", @type = "number" })
+                </div>
+                <div class="field">
+                    <label class="">TAX ON TRANSPORTATION(%)</label>
+                    @Html.TextBoxFor(x=>x.TaxOnTransport,  new { @id = "CETransportationTaxRate", @type = "number" })
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-8">
+                    <button id="btnEdit" class="btn btn-primary">
+                        <i class="fa fa-plus"></i> SAVE DETAILS
+                    </button>
+                    &nbsp;
+                    <button id="btnCancel" class="btn btn-primary">
+                        <i class="fa fa-remove"></i> CANCEL
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#btnCancel').on('click', function () {
+            $('.ui.basic.modal').modal('hide');
+        })
+
+        $('#btnEdit').on('click', function () {
+
+            if ($('.ui.vspe.dropdown').dropdown('get text') == '' || $('.ui.vspe.dropdown').dropdown('get text') == undefined
+                || $('.ui.vspe.dropdown').dropdown('get text') == null || $('.ui.vspe.dropdown').dropdown('get text') == '--SHIFT--') {
+                swal('CASUAL PAYMENT SETUP', 'PLEASE SPECIFY WORKING SHIFT', 'info');
+                return;
+            }
+
+            if ($('.ui.vwpe.dropdown').dropdown('get text') == '' || $('.ui.vwpe.dropdown').dropdown('get text') == undefined
+                || $('.ui.vwpe.dropdown').dropdown('get text') == null || $('.ui.vwpe.dropdown').dropdown('get text') == '--WEEK--') {
+                swal('CASUAL PAYMENT SETUP', 'PLEASE SPECIFY WORKING WEEK', 'info');
+                return;
+            }
+
+            if ($('.ui.cgpe.dropdown').dropdown('get text') == '' || $('.ui.cgpe.dropdown').dropdown('get text') == undefined
+                || $('.ui.cgpe.dropdown').dropdown('get text') == null || $('.ui.cgpe.dropdown').dropdown('get text') == '--GROUP--') {
+                swal('CASUAL PAYMENT SETUP', 'PLEASE SPECIFY WORKING GROUP', 'info');
+                return;
+            }
+
+            var VM =
+                {
+                    Id:$('#Id').val(),
+                    Basic: $('#CEBasic').val(),
+                    Group: $('.ui.cgpe.dropdown').dropdown('get value'),
+                    WorkShift: $('.ui.vspe.dropdown').dropdown('get value'),
+                    WorkWeek: $('.ui.vwpe.dropdown').dropdown('get value'),
+                    NightAllowance: $('#CENT').val(),
+                    TransportationAllowance: $('#CETT').val(),
+                    Overtime: $('#CEOvertime').val(),
+                    SSF: $('#CESSF').val(),
+                    UnionDues: $('#CEUnionDues').val(),
+                    PF: $('#CEPF').val(),
+                    Welfare: $('#CEWelfare').val(),
+                    TaxOnBasic: $('#CETax').val(),
+                    TaxOnAllowance: $('#CEAllowanceTax').val(),
+                    TaxOnOvertime: $('#CEOvertimeTaxRate').val(),
+                    TaxOnTransport: $('#CETransportationTaxRate').val()
+                };
+            swal({
+                title: 'CASUAL PAYMENT SETUP',
+                text: "DO YOU WANT TO EDIT DETAILS",
+                type: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Save',
+                cancelButtonText: 'No, Ignore',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false
+            }).then(function () {
+                try {
+                    $('#frmCasualEdit').addClass('loading');
+                    $.post('/PaymentSetup/EditCasualPaymentSetup/', { model: VM }, function (data) {
+                        $('#frmCasualEdit').removeClass('loading');
+                        if (data.message == 'success')
+                        {
+                            LoadCasualSetup();
+                            $('.ui.basic.modal').modal('hide');
+                        }
+                        else
+                        {
+                            swal('CLIENT PAYMENT SETUP', data.message, 'error');
+                        }
+                    });
+                }
+                catch (e) {
+
+                    $('#frmCasualEdit').removeClass('loading');
+                }
+                }, function (dismiss){
+                if (dismiss === 'cancel')
+                {
+                    swal('Cancelled', 'Task Cancelled', 'error');
+                }
+            });
+        });
+    })
+
+</script>

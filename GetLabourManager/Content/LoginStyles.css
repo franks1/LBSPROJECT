@@ -1,0 +1,206 @@
+﻿/*importing Sniglet*/
+/*@import url("http://fonts.googleapis.com/css?family=Sniglet");*/
+
+/*basic reset*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: 100px;
+    margin:10px;
+    /*background-image: url('colour_pencils2.jpg');*/
+    /*background:   hsla(201, 60%, 26%, 1);*/
+    /*hsla(272, 100%, 50%, 1) hsl(120, 40%, 40%); hsla(219, 100%, 50%, 1) hsla(201, 60%, 26%, 1)*/
+    font-family: Sniglet;
+     /*background: url('image_board.jpg') no-repeat center center fixed;*/
+    /*-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;*/
+}
+
+main {
+    width: 500px;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    background: white;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: normal;
+    background: hsl(120, 40%, 95%);
+    color: hsl(120, 40%, 40%);
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 40px;
+}
+
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+    .btn:focus {
+        outline: thin dotted #333;
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+    }
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+    .row:before,
+    .row:after {
+        display: table;
+        content: " ";
+    }
+
+    .row:after {
+        clear: both;
+    }
+
+    .row:before,
+    .row:after {
+        display: table;
+        content: " ";
+    }
+
+    .row:after {
+        clear: both;
+    }
+
+.btn:hover,
+.btn:focus {
+    color: #333333;
+    text-decoration: none;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #428bca;
+    border-color: #357ebd;
+}
+
+.btn-danger {
+    color: #ffffff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+.btn-warning {
+    color: #ffffff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+
+.btn:active,
+.btn.active {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn-default {
+    color: #333333;
+    background-color: #ffffff;
+    border-color: #cccccc;
+}
+
+.flp {
+    padding: 0 50px;
+}
+    /*Let's place the label over the input*/
+    .flp div {
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+    .flp input, .flp label {
+        width: 400px;
+        display: block;
+        font: inherit;
+        font-size: 16px;
+        line-height: 24px;
+        /*fixed height for FF line height issue. 
+	height = 24(lineheight) + 10*2(padding) + 2(border)*/
+        height: 46px;
+        border: 1px solid #999;
+    }
+
+    .flp input {
+        padding: 10px;
+        outline: none;
+        border-radius: 3px;
+    }
+
+    .flp label {
+        position: absolute;
+        left: 0;
+        top: 0;
+        /*left/right padding will be 2px less, adjusted by padding on .ch*/
+        padding: 10px 8px;
+        border-color: transparent;
+        color: #666;
+        cursor: text;
+    }
+
+/*label styles*/
+.ch {
+    display: block;
+    float: left;
+    position: relative; /*for upward animation*/
+    background: white;
+}
+
+    .ch:first-child {
+        padding-left: 2px;
+    }
+
+    .ch:last-child {
+        padding-right: 2px;
+    }
+
+/*active input label*/
+.focussed {
+    /*when any input is already focussed clicking on it(label) again won't do anything*/
+    pointer-events: none;
+}
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: "";
+  }

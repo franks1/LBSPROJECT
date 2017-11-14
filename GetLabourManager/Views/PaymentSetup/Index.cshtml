@@ -1,0 +1,900 @@
+﻿<div style="margin-top:0px;" id="ViewModal" class="ui basic modal">
+    <i class="close icon"></i>
+    <div class="header">PAYMENT PARAMETER TASK</div>
+    <div class="content">
+
+    </div>
+</div>
+
+
+<div style="margin-top:-12px;" id="koserver" class="ui segment">
+    <div class="ui pointing secondary menu">
+        <a class="active item" data-tab="first">CLIENT PAYMENT SETUP</a>
+        <a class="item" data-tab="second">CASUAL PAYMENT SETUP</a>
+        <a class="item" data-tab="third">WORKING HOURS SETUP</a>
+    </div>
+
+
+    <div class="ui bottom attached tab segment active" data-tab="first">
+        <div id="frmClient" class="ui  small compact form">
+            <div class="ui small dividing header">WORK SCHEDULE</div>
+
+            <div class="four fields">
+                <div class="field">
+                    <label>CLIENT</label>
+                    @Html.DropDownList("FieldClients", (IEnumerable<SelectListItem>)ViewBag.VFields,
+                   "--CLIENTS---",
+                   new { @class = "ui fc search dropdown" })
+                </div>
+                <div class="field">
+                    <label>GROUP</label>
+                    @Html.DropDownList("ClientGroup", (IEnumerable<SelectListItem>)ViewBag.VGroup,
+                      "--GROUP---",
+                   new { @class = "ui cg search dropdown" })
+                </div>
+                <div class="field">
+                    <label>SHIFT</label>
+                    @Html.DropDownList("VShift", (IEnumerable<SelectListItem>)ViewBag.VShift, "--SHIFT--", new { @class = "ui vs search dropdown" })
+                </div>
+                <div class="field">
+                    <label>WEEK</label>
+                    @Html.DropDownList("VWeek", (IEnumerable<SelectListItem>)ViewBag.VWeekScheme, "--WEEK--", new { @class = "ui vw search dropdown" })
+                </div>
+            </div>
+
+            <div class="ui small dividing header">PARAMETERS</div>
+            <div class="four fields">
+                <div class="field">
+                    <label>BASIC AMT</label>
+                    @Html.TextBox("FCBasic", "0.00", new { data_bind = "value:ClientBasic", @type = "number" })
+                </div>
+                <div class="field">
+                    <label>NIGHT ALLOWANCE</label>
+                    @Html.TextBox("FCNightAllowance", "0.00", new { data_bind = "value:ClientNightAll", @type = "number" })
+                </div>
+                <div class="field">
+                    <label>TRANSPORTATION </label>
+                    @Html.TextBox("FCtransportationAllowance", "0.00", new { data_bind = "value:ClientTransportationAll", @type = "number" })
+                </div>
+                <div class="field">
+                    <label>OVERTIME</label>
+                    @Html.TextBox("FCOverTime", "0.00", new { data_bind = "value:ClientOverTime", @type = "number" })
+                </div>
+                <div class="field">
+                    <label>TAX ON BASIC(%)</label>
+                    @Html.TextBox("FCTax", "0.00", new { data_bind = "value:ClientTax", @type = "number" })
+                </div>
+            </div>
+            @*<div class="five fields">
+
+                <div class="field">
+                    <label>PREMIUM (%)</label>
+                    @Html.TextBox("FCPremium", "0.00", new { data_bind = "value:ClientPremium", @type = "number" })
+                </div>
+
+               
+                <div class="field">
+                    <label>TAX ON OVERTIME(%)</label>
+                    @Html.TextBox("FCOvertimeTaxRate", "0.00", new { @type = "number" })
+                </div>
+                <div class="field">
+                    <label>TAX ON TRANSPORTATION(%)</label>
+                    @Html.TextBox("FCTransportationTaxRate", "0.00", new { @type = "number" })
+                </div>
+                <div class="field">
+                    <label>TAX ON ALLOWANCE(%)</label>
+                    @Html.TextBox("FCAllowanceTaxRate", "0.00", new { @type = "number" })
+                </div>
+
+
+            </div>*@
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button data-bind="click:saveClientPaymentSetup" class="btn btn-default  btn-md">
+                    <i class="fa fa-plus"></i> SAVE DETAILS
+                </button>
+                &nbsp;
+                <button data-bind="click:Reset" class="btn btn-default  btn-md">
+                    <i class="fa fa-remove"></i> RESET PARAMETERS
+                </button>
+            </div>
+        </div>
+        <table id="tablex" data-search="true" data-show-refresh="true" data-striped="true"
+               data-pagination="true" data-pagesize="5"
+               data-classes="table table-hover table-condensed table-striped table-responsive"
+               data-pagenumber="1" data-sidePagination="true"></table>
+
+    </div>
+
+    <div class="ui bottom attached tab segment" data-tab="second">
+        <div id="frmCasual" class="ui very small form">
+            <div class="ui small dividing header">WORK SCHEDULE</div>
+            <div class="three fields">
+
+                <div class="field">
+                    <label>GROUP</label>
+                    @Html.DropDownList("ClientGroup", (IEnumerable<SelectListItem>)ViewBag.VGroup,
+                      "--GROUP---",
+                   new { @class = "ui cgp search dropdown" })
+                </div>
+
+                <div class="field">
+                    <label>SHIFT</label>
+                    @Html.DropDownList("VShift", (IEnumerable<SelectListItem>)ViewBag.VShift, "--SHIFT--", new { @class = "ui vsp search dropdown" })
+                </div>
+                <div class="field">
+                    <label>WEEK</label>
+                    @Html.DropDownList("VWeek", (IEnumerable<SelectListItem>)ViewBag.VWeekScheme, "--WEEK--", new { @class = "ui vwp search dropdown" })
+                </div>
+            </div>
+            <div class="ui small dividing header">PARAMETERS</div>
+            <div class="four fields">
+                <div class="field">
+                    <label class="">BASIC</label>
+                    @Html.TextBox("CBasic", "0.00", new {@type="number" })
+                </div>
+                <div class="field">
+                    <label class="">NIGHT ALLOWANCE</label>
+                    @Html.TextBox("CNT", "0.00", new { @type = "number" })
+                </div>
+                <div class="field">
+                    <label class="">TRANSPORTATION ALLOWANCE</label>
+                    @Html.TextBox("CTT", "0.00", new { @type = "number" })
+                </div>
+                <div class="field">
+                    <label class="t">OVERTIME</label>
+                    @Html.TextBox("COvertime", "0.00", new { @type = "number" })
+                </div>
+                @*<div class="field">
+                    <label>ALLOWANCE</label>
+                    @Html.TextBox("CAllowance", "0.00", new { @id = "CAllowance", @type = "number" })
+                </div>*@
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label class="">UNION DUES</label>
+                    @Html.TextBox("CUnionDues", "0.00", new { @type = "number" })
+                </div>
+                <div class="field">
+                    <label>WELFARE</label>
+                    @Html.TextBox("CWelfare", "0.00", new { @type = "number" })
+                </div>
+            </div>
+
+            <div class="three fields">
+                <div class="field">
+                    <label class="">SSF(%) </label>
+                    @Html.TextBox("CSSF", "0.00", new { @type = "number" })
+                </div>
+                <div class="field">
+                    <label class="">PROVIDENT FUND(%) </label>
+                    @Html.TextBox("CPF", "0.00", new { @type = "number" })
+                </div>
+                <div class="field">
+                    <label class="">TAX ON BASIC(%)</label>
+                    @Html.TextBox("CTax", "0.00", new { data_bind = "value:ClientTax", @type = "number" })
+                </div>
+            </div>
+            <div class="three fields">
+
+                <div class="field">
+                    <label class="">TAX ON ALLOWANCE(%)</label>
+                    @Html.TextBox("CAllowanceTax", "0.00", new {  @type = "number" })
+                </div>
+                <div class="field">
+                    <label class="">TAX ON OVERTIME(%)</label>
+                    @Html.TextBox("COvertimeTaxRate", "0.00", new { @type = "number" })
+                </div>
+                <div class="field">
+                    <label class="">TAX ON TRANSPORTATION(%)</label>
+                    @Html.TextBox("CTransportationTaxRate", "0.00", new { @type = "number" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <button data-bind="click:saveCasualPaymentSetup" class="btn btn-primary">
+                        <i class="fa fa-plus"></i> SAVE DETAILS
+                    </button>
+                    &nbsp;
+                    <button data-bind="click:ResetCasual" class="btn btn-primary">
+                        <i class="fa fa-remove"></i> RESET PARAMETERS
+                    </button>
+                </div>
+            </div>
+            <table id="tablex_casual" data-search="true" data-show-refresh="true" data-striped="true"
+                   data-pagination="true" data-pagesize="5"
+                   data-classes="table table-hover table-condensed table-striped table-responsive"
+                   data-pagenumber="1" data-sidePagination="true"></table>
+        </div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="third">
+        <div class="ui dividing header">PARAMETER</div>
+        <div id="frmTaxSetup" class="ui small form">
+            <div class="two fields">
+                <div class="field">
+                    <label>WORKING HOURS</label>
+                    @Html.TextBox("WorkHours", "0.00",new {@type="number" })
+                </div>
+                <div class="field">
+                    <label>&nbsp;</label>
+                    <button data-bind="click:saveHoursSetup" class="btn btn-warning">
+                        <i class="fa fa-save"></i> SAVE
+                    </button>
+                    &nbsp;
+                    <button class="btn btn-warning">
+                        <i class="fa fa-remove"></i> RESET PARAMETERS
+                    </button>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                   
+                </div>
+            </div>
+            <table id="table_tax" data-search="true" data-show-refresh="true" data-striped="true"
+                   data-pagination="true" data-pagesize="5"
+                   data-classes="table table-hover table-condensed table-striped table-responsive"
+                   data-pagenumber="1" data-sidePagination="true"></table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Content/semantic/semantic.min.js"></script>
+    <link href="~/Content/bootstrapTable/bootstrap-table.css" rel="stylesheet" />
+    <script src="~/Content/bootstrapTable/bootstrap-table.js"></script>
+    <link href="~/Content/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert2.min.js"></script>
+    <script src="~/Scripts/knockout-3.4.2.js"></script>
+    <script>
+        $(function () {
+            $('.menu .item').tab();
+            $('.ui.fc.dropdown').dropdown();
+            $('.ui.cg.dropdown').dropdown();
+            $('.ui.vs.dropdown').dropdown();
+            $('.ui.vw.dropdown').dropdown();
+
+            $('.ui.cgp.dropdown').dropdown();
+            $('.ui.vsp.dropdown').dropdown();
+            $('.ui.vwp.dropdown').dropdown();
+
+
+            var model = new clientPayment();
+            ko.applyBindings(model, document.getElementById('koserver'));
+            LoadData();
+            LoadCasualSetup();
+            LoadHoursSetup();
+        });
+
+        window.operateEvents = {
+            'click .btn-primary': function (e, value, row, index) {
+                $.get('@Url.Action("GetClientEdit", "PaymentSetup")', { Id: row.Id }, function (data) {
+                    $('#ViewModal').empty();
+                    $('#ViewModal').html(data);
+                });
+                $('.ui.basic.modal')
+                    .modal('setting', {
+                        allowMultiple: false,
+                        onHidden: function () {
+                            LoadData();
+                        },
+                        transition: 'scale'
+                    }).modal('show');
+            },
+            'click .btn-danger': function (e, value, row, index) {
+                swal({
+                    title: 'CLIENT PAYMENT SETUP',
+                    text: "DO YOU WANT TO DELETE DETAILS",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Delete',
+                    cancelButtonText: 'No, Ignore',
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false
+                }).then(function () {
+                    $('#frmClient').addClass('loading');
+                    $.post('/PaymentSetup/DeleteClientPaySetup/', { Id: row.Id}, function (data) {
+                        $('#frmClient').removeClass('loading');
+                        if (data.message == 'success') {
+                            swal('CLIENT PAYMENT SETUP', 'DETAILS HAVE BEEN REMOVED', 'success');
+                            LoadData();
+                        }
+                        else {
+                            swal('CLIENT PAYMENT SETUP', data.message, 'error');
+                        }
+                    })
+                }, function (dismiss) {
+                    if (dismiss === 'cancel') {
+                        swal('Cancelled', 'Task Cancelled', 'error');
+                    }
+                });
+            }
+        };
+        window.casualoperateEvents = {
+            'click .btn-primary': function (e, value, row, index)
+            {
+                     $.get('@Url.Action("getEditCasualPay", "PaymentSetup")', { Id: row.Id }, function (data) {
+                    $('#ViewModal').empty();
+                    $('#ViewModal').html(data);
+                });
+                $('.ui.basic.modal')
+                    .modal('setting', {
+                        allowMultiple: false,
+                        onHidden: function () {
+                            LoadData();
+                        },
+                        transition: 'scale'
+                    }).modal('show');
+            },
+            'click .btn-danger': function (e, value, row, index) {
+                swal({
+                    title: 'CLIENT PAYMENT SETUP',
+                    text: "DO YOU WANT TO DELETE DETAILS",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Delete',
+                    cancelButtonText: 'No, Ignore',
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false
+                }).then(function () {
+                    $('#frmCasual').addClass('loading');
+                    $.post('/PaymentSetup/DeleteClientPaySetup/', { Id: row.Id}, function (data) {
+                        $('#frmCasual').removeClass('loading');
+                        if (data.message == 'success') {
+                            swal('CLIENT PAYMENT SETUP', 'DETAILS HAVE BEEN REMOVED', 'success');
+                            LoadData();
+                        }
+                        else {
+                            swal('CLIENT PAYMENT SETUP', data.message, 'error');
+                        }
+                    })
+                }, function (dismiss) {
+                    if (dismiss === 'cancel') {
+                        swal('Cancelled', 'Task Cancelled', 'error');
+                    }
+                });
+            }
+        };
+
+
+        function operateFormatter(value, row, index) {
+            return [
+                '<a class="btn btn-primary btn-xs" href="javascript:void(0)" title="Edit">',
+                'Edit',
+                '</a>&nbsp;',
+                '<a class="btn btn-danger btn-xs" href="javascript:void(0)" title="View">',
+                'Delete',
+                '</a>'
+            ].join('');
+        }
+
+        function casualoperateFormatter(value, row, index) {
+            return [
+                '<a class="btn btn-primary btn-xs" href="javascript:void(0)" title="Edit">',
+                'Edit',
+                '</a>'
+            ].join('');
+        }
+
+        function LoadData() {
+            var $table = $('#tablex').bootstrapTable({
+                showColumns: true,
+                url: '/PaymentSetup/getData/',
+                sortStable: true,
+                silentSort: false,
+                showToggle: true,
+                columns: [
+                    {
+                        field: 'Name', align: 'left',
+                        title: 'CLIENT'
+                    },
+                    {
+                        field: 'Shift', align: 'left',
+                        title: 'SHIFT'
+                    },
+                    {
+                        field: 'Week', align: 'left',
+                        title: 'WEEK'
+                    },
+                    {
+                        field: 'GroupName', align: 'left',
+                        title: 'GROUP'
+                    },
+                    {
+                        field: 'Basic', align: 'right',
+                        title: 'BASIC'
+                    },
+                    {
+                        field: 'NightAllowance', align: 'right',
+                        title: 'NIGHT ALL.'
+                    },
+                    {
+                        field: 'TransportationAllowance', align: 'right',
+                        title: 'T & T'
+                    },
+                    {
+                        field: 'OverTime', align: 'right',
+                        title: 'OVERTIME'
+                    },
+                    {
+                        field: 'Tax', align: 'right',
+                        title: 'TAX'
+                    },
+                    {
+                        title: 'ACTION',
+                        align: 'center',
+                        events: operateEvents,
+                        formatter: operateFormatter
+                    }]
+            });
+
+            $.getJSON('/PaymentSetup/getData/', {}, function (data) {
+                $table.bootstrapTable('showLoading');
+                $table.bootstrapTable('load', data.data);
+                $table.bootstrapTable('hideLoading');
+                var options = $table.bootstrapTable('getOptions');
+
+                if (options.totalPages > 0) {
+                    $table.bootstrapTable('selectPage', options.totalPages);
+                }
+            });
+        }
+
+        function LoadCasualSetup() {
+            var $table = $('#tablex_casual').bootstrapTable({
+                showColumns: true,
+                url: '/PaymentSetup/getCasualSetup/',
+                sortStable: true,
+                silentSort: false,
+                showToggle: true,
+                columns: [
+                    {
+                        field: 'Basic', align: 'left',
+                        title: 'BASIC'
+                    },
+                    {
+                        field: 'Group', align: 'left',
+                        title: 'GROUP'
+                    },
+                    {
+                        field: 'Shift', align: 'left',
+                        title: 'SHIFT'
+                    },
+                    {
+                        field: 'Week', align: 'left',
+                        title: 'WEEK'
+                    },
+                    {
+                        field: 'NightAllowance', align: 'left',
+                        title: 'NIGHT ALL.'
+                    },
+                    {
+                        field: 'TransportationAllowance', align: 'right',
+                        title: 'T & T ALL.'
+                    },
+                    {
+                        field: 'OverTime', align: 'right',
+                        title: 'OVERTIME ALL.'
+                    },
+                    {
+                        field: 'SSF', align: 'right',
+                        title: 'SSF %'
+                    },
+                    {
+                        field: 'Union', align: 'right',
+                        title: 'UNION DUES'
+                    },
+                    {
+                        field: 'Welfare', align: 'right',
+                        title: 'WELFARE DUES'
+                    },
+                    {
+                        field: 'PF', align: 'right',
+                        title: 'PF %'
+                    },
+                    {
+                        title: 'ACTION',
+                        align: 'center',
+                        events: casualoperateEvents,
+                        formatter: casualoperateFormatter
+                    }]
+            });
+
+            $.getJSON('/PaymentSetup/getCasualSetup/', {}, function (data) {
+                $table.bootstrapTable('showLoading');
+                $table.bootstrapTable('load', data.data);
+                $table.bootstrapTable('hideLoading');
+                var options = $table.bootstrapTable('getOptions');
+
+                if (options.totalPages > 0) {
+                    $table.bootstrapTable('selectPage', options.totalPages);
+                }
+            });
+        }
+
+        function LoadHoursSetup() {
+            var $table = $('#table_tax').bootstrapTable({
+                showColumns: true,
+                url: '/PaymentSetup/getWorkingHours/',
+                sortStable: true,
+                silentSort: false,
+                showToggle: true,
+                columns: [
+                    {
+                        field: 'Hours', align: 'left',
+                        title: 'WORKING HOURS'
+                    },
+                    {
+                        title: 'ACTION',
+                        align: 'center',
+                        events: taxoperateEvents,
+                        formatter: operateFormatter
+                    }]
+            });
+
+            $.getJSON('/PaymentSetup/getWorkingHours/', {}, function (data) {
+                $table.bootstrapTable('showLoading');
+                $table.bootstrapTable('load', data.data);
+                $table.bootstrapTable('hideLoading');
+                var options = $table.bootstrapTable('getOptions');
+
+                if (options.totalPages > 0) {
+                    $table.bootstrapTable('selectPage', options.totalPages);
+                }
+            });
+        }
+
+        window.operateEvents = {
+            'click .btn-primary': function (e, value, row, index) {
+                $.get('@Url.Action("GetClientEdit", "PaymentSetup")', { Id: row.Id }, function (data) {
+                    $('#ViewModal').empty();
+                    $('#ViewModal').html(data);
+                });
+                $('.ui.basic.modal')
+                    .modal('setting', {
+                        allowMultiple: false,
+                        onHidden: function () {
+                            LoadData();
+                        },
+                        transition: 'scale'
+                    }).modal('show');
+            },
+            'click .btn-danger': function (e, value, row, index) {
+                swal({
+                    title: 'CLIENT PAYMENT SETUP',
+                    text: "DO YOU WANT TO DELETE DETAILS",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Delete',
+                    cancelButtonText: 'No, Ignore',
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false
+                }).then(function () {
+                    $('#frmClient').addClass('loading');
+                    $.post('/PaymentSetup/DeleteClientPaySetup/', { Id: row.Id}, function (data) {
+                        $('#frmClient').removeClass('loading');
+                        if (data.message == 'success') {
+                            swal('CLIENT PAYMENT SETUP', 'DETAILS HAVE BEEN REMOVED', 'success');
+                            LoadData();
+                        }
+                        else {
+                            swal('CLIENT PAYMENT SETUP', data.message, 'error');
+                        }
+                    })
+                }, function (dismiss) {
+                    if (dismiss === 'cancel') {
+                        swal('Cancelled', 'Task Cancelled', 'error');
+                    }
+                });
+            }
+        };
+
+        window.taxoperateEvents = {
+            'click .btn-primary': function (e, value, row, index)
+            {
+                     $.get('@Url.Action("getEditWorkingHours", "PaymentSetup")', { Id: row.Id }, function (data) {
+                    $('#ViewModal').empty();
+                    $('#ViewModal').html(data);
+                });
+                $('.ui.basic.modal')
+                    .modal('setting', {
+                        allowMultiple: false,
+                        onHidden: function(){
+                            LoadHoursSetup();
+                        },
+                        transition: 'scale'
+                    }).modal('show');
+            },
+            'click .btn-danger': function (e, value, row, index) {
+                swal({
+                    title: 'TAX SETUP',
+                    text: "DO YOU WANT TO DELETE DETAILS",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Delete',
+                    cancelButtonText: 'No, Ignore',
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false
+                }).then(function () {
+                    $('#frmTaxSetup').addClass('loading');
+                    $.post('/PaymentSetup/DeleteTaxSetup/', { Id: row.Id}, function (data) {
+                        $('#frmTaxSetup').removeClass('loading');
+                        if (data.message == 'success')
+                        {
+                           swal('TAX SETUP', 'DETAILS HAVE BEEN REMOVED', 'success');
+                           LoadTaxSetup();
+                        }
+                        else
+                        {
+                            swal('TAX SETUP', data.message, 'error');
+                        }
+                    })
+                }, function (dismiss) {
+                    if (dismiss === 'cancel') {
+                        swal('Cancelled', 'Task Cancelled', 'error');
+                    }
+                });
+            }
+        };
+        var clientPayment = function () {
+            var self = this;
+            self.ClientBasic = ko.observable(0);
+            self.ClientTransportationAll = ko.observable(0);
+            self.ClientNightAll = ko.observable(0);
+            self.ClientOverTime = ko.observable(0);
+            self.ClientTax = ko.observable(0);
+            self.ClientPremium = ko.observable(0);
+
+            self.Reset = function () {
+                self.ClientBasic(0);
+                self.ClientTransportationAll(0);
+                self.ClientNightAll(0);
+                self.ClientOverTime(0);
+                self.ClientTax(0);
+                self.ClientPremium(0);
+                $('.ui.fc.dropdown').dropdown('restore default text');
+                $('.ui.cg.dropdown').dropdown('restore default text');
+                $('.ui.vs.dropdown').dropdown('restore default text');
+                $('#FCAllowance').val(0);
+                $('.ui.vw.dropdown').dropdown('restore default text');
+
+            };
+
+            self.LoadClientPaymentSetup = function () {
+
+
+            }
+
+            self.saveClientPaymentSetup = function () {
+
+                var VM =
+                    {
+                        Id: 0,
+                        PayType: true,
+                        Client: $('.ui.fc.dropdown').dropdown('get value'),
+                        Group: $('.ui.cg.dropdown').dropdown('get value'),
+                        Basic: $('#FCBasic').val(),
+                        NightAllowance: $('#FCNightAllowance').val(),
+                        WorkShift: $('.ui.vs.dropdown').dropdown('get text'),
+                        WorkWeek: $('.ui.vw.dropdown').dropdown('get text'),
+                        TransportationAllowance: $('#FCtransportationAllowance').val(),
+                        Overtime: $('#FCOverTime').val(),
+                        VatRate: $('#FCTax').val()
+                    };
+
+                if ($('.ui.vs.dropdown').dropdown('get text') == '' || $('.ui.vs.dropdown').dropdown('get text') == undefined
+                    || $('.ui.vs.dropdown').dropdown('get text') == null || $('.ui.vs.dropdown').dropdown('get text') == '--SHIFT--') {
+                    swal('CLIENT PAYMENT', 'PLEASE SPECIFY WORKING SHIFT', 'info');
+                    return;
+                }
+
+                if ($('.ui.vw.dropdown').dropdown('get text') == '' || $('.ui.vw.dropdown').dropdown('get text') == undefined
+                    || $('.ui.vw.dropdown').dropdown('get text') == null || $('.ui.vw.dropdown').dropdown('get text') == '--WEEK--') {
+                    swal('CLIENT PAYMENT', 'PLEASE SPECIFY WORKING WEEK', 'info');
+                    return;
+                }
+                
+                swal({
+                    title: 'CLIENT PAYMENT SETUP',
+                    text: "DO YOU WANT TO SAVE DETAILS",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Save',
+                    cancelButtonText: 'No, Ignore',
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false
+                }).then(function () {
+                    $('#frmClient').addClass('loading');
+                    $.post('/PaymentSetup/SaveClientPaymentSetup/', { model: VM }, function (data) {
+                        $('#frmClient').removeClass('loading');
+                        if (data.message == 'success') {
+                            self.Reset();
+                            swal('CLIENT PAYMENT SETUP', 'DETAILS CAPTURED', 'success');
+                            LoadData();
+                        }
+                        else {
+                            swal('CLIENT PAYMENT SETUP', data.message, 'error');
+                        }
+                    })
+                }, function (dismiss) {
+                    if (dismiss === 'cancel') {
+                        swal('Cancelled', 'Task Cancelled', 'error');
+                    }
+                });
+
+
+            }
+
+            self.ResetCasual = function ()
+            {
+            $('#CBasic').val('0.00');
+            $('#CNT').val('0.00');
+            $('#CTT').val('0.00');
+            $('#COvertime').val('0.00');
+            $('#CSSF').val('0.00');
+            $('#CUnionDues').val('0.00');
+            $('#CPF').val('0.00');
+            $('#CWelfare').val('0.00');
+           // $('#CAllowance').val('0.00');
+            $('.ui.cgp.dropdown').dropdown('restore default text');
+            $('.ui.vsp.dropdown').dropdown('restore default text');
+            $('.ui.vwp.dropdown').dropdown('restore default text');
+            $('#CTax').val(0);
+                $('#CAllowanceTax').val(0);
+                $('#COvertimeTaxRate').val(0);
+                $('#CTransportationTaxRate').val(0);
+            }
+
+            self.saveCasualPaymentSetup = function ()
+            {
+
+                if ($('.ui.vsp.dropdown').dropdown('get text') == '' || $('.ui.vsp.dropdown').dropdown('get text') == undefined
+                    || $('.ui.vsp.dropdown').dropdown('get text') == null || $('.ui.vsp.dropdown').dropdown('get text') == '--SHIFT--') {
+                    swal('CASUAL PAYMENT SETUP', 'PLEASE SPECIFY WORKING SHIFT', 'info');
+                    return;
+                }
+
+                if ($('.ui.vwp.dropdown').dropdown('get text') == '' || $('.ui.vwp.dropdown').dropdown('get text') == undefined
+                    || $('.ui.vwp.dropdown').dropdown('get text') == null || $('.ui.vwp.dropdown').dropdown('get text') == '--WEEK--') {
+                    swal('CASUAL PAYMENT SETUP', 'PLEASE SPECIFY WORKING WEEK', 'info');
+                    return;
+                }
+
+                if ($('.ui.cgp.dropdown').dropdown('get text') == '' || $('.ui.cgp.dropdown').dropdown('get text') == undefined
+                    || $('.ui.cgp.dropdown').dropdown('get text') == null || $('.ui.cgp.dropdown').dropdown('get text') == '--GROUP--') {
+                    swal('CASUAL PAYMENT SETUP', 'PLEASE SPECIFY WORKING GROUP', 'info');
+                    return;
+                }
+
+
+
+                var VM =
+                    {
+                        Id: 0,
+                        Basic: $('#CBasic').val(),
+                        Group: $('.ui.cgp.dropdown').dropdown('get value'),
+                        WorkShift: $('.ui.vsp.dropdown').dropdown('get value'),
+                        WorkWeek: $('.ui.vwp.dropdown').dropdown('get value'),
+                        NightAllowance: $('#CNT').val(),
+                        TransportationAllowance: $('#CTT').val(),
+                        Overtime: $('#COvertime').val(),
+                        SSF: $('#CSSF').val(),
+                        UnionDues: $('#CUnionDues').val(),
+                        PF: $('#CPF').val(),
+                        Welfare: $('#CWelfare').val(),
+                        TaxOnBasic: $('#CTax').val(),
+                        TaxOnAllowance: $('#CAllowanceTax').val(),
+                        TaxOnOvertime: $('#COvertimeTaxRate').val(),
+                        TaxOnTransport: $('#CTransportationTaxRate').val()
+                    };
+
+                swal({
+                    title: 'CASUAL PAYMENT SETUP',
+                    text: "DO YOU WANT TO SAVE DETAILS",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Save',
+                    cancelButtonText: 'No, Ignore',
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false
+                }).then(function () {
+                    try
+                    {
+                        $('#frmCasual').addClass('loading');
+                        $.post('/PaymentSetup/SaveCasualPaymentSetup/', { model: VM }, function (data) {
+                            $('#frmCasual').removeClass('loading');
+                            if (data.message == 'success') {
+                                self.ResetCasual();
+                                swal('CLIENT PAYMENT SETUP', 'DETAILS CAPTURED', 'success');
+                                LoadCasualSetup();
+                            }
+                            else {
+                                swal('CLIENT PAYMENT SETUP', data.message, 'error');
+                            }
+                        });
+                    }
+                    catch (e)
+                    {
+
+                        $('#frmCasual').removeClass('loading');
+                    }
+                }, function (dismiss) {
+                    if (dismiss === 'cancel') {
+                        swal('Cancelled', 'Task Cancelled', 'error');
+                    }
+                });
+            }
+
+            self.saveHoursSetup = function () {
+
+                var VM =
+                {
+                    Id:0,
+                    WorkingHours: $('#WorkHours').val()
+                };
+                //
+                swal({
+                    title: 'WORKING HOURS',
+                    text: "DO YOU WANT TO SAVE DETAILS",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Save',
+                    cancelButtonText: 'No, Ignore',
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false
+                }).then(function () {
+                    try {
+                        $('#frmTaxSetup').addClass('loading');
+                        $.post('/PaymentSetup/saveHoursSetup/', { model: VM }, function (data)
+                        {
+                            $('#frmTaxSetup').removeClass('loading');
+                            if (data.message != 'success')
+                            {
+                                swal('WORKING HOURS SETUP', data.message, 'error');
+                            }
+                            else
+                            {
+                                swal('WORKING HOURS SETUP', 'DETAILS HAVE BEEN SAVED', 'success');
+                                LoadHoursSetup();
+                                $('#WorkHours').val(0);
+                             
+                            }
+                        });
+                    }
+                    catch (e)
+                    {
+                        $('#frmTaxSetup').removeClass('loading');
+                    }
+                }, function (dismiss) {
+                    if(dismiss === 'cancel') {
+                        swal('Cancelled', 'Task Cancelled', 'error');
+                    }
+                });
+            }
+        }
+    </script>
+}

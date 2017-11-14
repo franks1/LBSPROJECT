@@ -1,0 +1,58 @@
+﻿@model GetLabourManager.Models.OperationalWorkingHours
+
+<div class="panel panel-primary">
+    @Html.HiddenFor(x => x.Id)
+    <div class="panel-heading">
+        <i class="fa fa-edit"></i>
+    </div>
+    <div class="panel-body">
+        <div id="frmTaxSetup" class="ui small form">
+          
+                <div class="ui fluid field">
+                    <label>BASIC RATE (%)</label>
+                    @Html.TextBoxFor(x => x.WorkingHours, new { @id = "EWorkinHours", @type = "number" })
+                </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <button id="btnEdit" class="btn btn-warning">
+                        <i class="fa fa-edit"></i> SAVE
+                    </button>
+                    &nbsp;
+                    <button id="btnCancel" class="btn btn-warning">
+                        <i class="fa fa-remove"></i> CANCEL
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        //   _EditTax
+        $('#btnCancel').click(function () {
+            $('.ui.basic.modal').modal('hide');
+        });
+
+        $('#btnEdit').click(function () {
+            var VM =
+            {
+                Id: $('#Id').val(),
+                WorkingHours: $('#EWorkinHours').val()
+            };
+
+            $.post('/PaymentSetup/editHoursSetup/', { model: VM }, function (data)
+            {
+                if (data.message != 'success')
+                {
+                    swal('WORKING HOURS', data.message, 'error');
+                }
+                else
+                {
+                    LoadHoursSetup();
+                    $('.ui.basic.modal').modal('hide');
+                }
+            });
+        })
+
+    });
+</script>

@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "EMPLOYEE LIST";
+}
+<div style="margin-top:-10px" class="ui blue segment">
+    <div class="row">
+        <div class="col-md-12">
+            <div style="margin-right:20px;" class="pull-right">
+                <a href="@Url.Action("Create", "Employee")" class="btn btn-primary">
+                    <i class="fa fa-user-plus"></i> NEW CASUAL
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <table id="tablex" data-search="true" data-show-refresh="true" data-striped="true"
+           data-pagination="true" data-pagesize="5"
+           data-classes="table table-hover table-condensed table-striped table-responsive"
+           data-pagenumber="1" data-sidePagination="true"></table>
+
+
+
+</div>
+
+@section Scripts{
+    
+<link href="~/Content/bootstrapTable/bootstrap-table.css" rel="stylesheet" />
+<script src="~/Content/bootstrapTable/bootstrap-table.js"></script>
+    
+<script src="~/Content/semantic/semantic.min.js"></script>
+    <script>
+        window.onload = function () {
+            LoadData();
+        }
+        window.operateEvents = {
+            'click .btn-primary': function (e, value, row, index) {
+
+                window.location = '/Employee/Edit/' + row.Id;
+            },
+            'click .btn-warning': function (e, value, row, index) {
+            //    window.location = '/cus/DetailsCustomer/' + row.Id;
+            }
+        };
+        function operateFormatter(value, row, index) {
+            return [
+                '<a class="btn btn-primary btn-xs" href="javascript:void(0)" title="Edit">',
+                'Edit',
+                '</a>&nbsp;',
+                '<a class="btn btn-warning btn-xs" href="javascript:void(0)" title="View">',
+                'Disable',
+                '</a>'
+            ].join('');
+        }
+
+        function LoadData() {
+            var $table = $('#tablex').bootstrapTable({
+                showColumns: true,
+                url: '/Employee/getData/',
+                sortStable: true,
+                silentSort: false,
+                showToggle: true,
+                columns: [
+                    {
+                        field: 'Code', align: 'left',
+                        title: 'STAFF ID'
+                    },
+                    {
+                        field: 'Name', align: 'left',
+                        title: 'NAME'
+                    },
+                    {
+                        field: 'Category', align: 'left',
+                        title: 'CATEGORY'
+                    },
+                    {
+                        field: 'Branch', align: 'left',
+                        title: 'BRANCH'
+                    },
+                    {
+                        field: 'DateJoined', align: 'left',
+                        title: 'DATE JOINED'
+                    },
+                    {
+                        field: 'Status', align: 'center',
+                        title: 'STATUS'
+                    },
+                    {
+                        title: 'ACTION',
+                        align: 'center',
+                        events: operateEvents,
+                        formatter: operateFormatter
+                    }]
+            });
+
+            $.getJSON('/Employee/getData/', {}, function (data) {
+                $table.bootstrapTable('showLoading');
+                $table.bootstrapTable('load', data.data);
+                $table.bootstrapTable('hideLoading');
+                var options = $table.bootstrapTable('getOptions');
+
+                if (options.totalPages > 0) {
+                    $table.bootstrapTable('selectPage', options.totalPages);
+                }
+            });
+        }
+    </script>
+    }

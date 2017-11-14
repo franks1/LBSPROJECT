@@ -1,0 +1,112 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<GetLabourManager.Models.PERMISSION>
+
+@{
+    ViewBag.Title = "PermissionIndex";
+}
+
+<div style="margin-top:-15px;" class="ui segment">
+    <div class="ui pointing secondary menu">
+        <a class="active item" data-tab="first">PERMISSIONS</a>
+    </div>
+
+    <div class="ui bottom attached active tab segment" data-tab="first">
+        <div style="float:right">
+            <button class="btn btn-warning btn-sm"
+                    onclick="location.href='@Url.Action("PermissionsImport","Admin")'">
+                <i class="fa fa-check"></i> Import Permission
+            </button>
+
+            &nbsp;
+            @*@Html.ActionLink("Create Permission", "PermissionCreate", "Admin", null,
+       new { @class = "btn btn-primary btn-sm" })*@
+        </div>
+  
+        @*<div class="row">
+            <div class="col-md-8">
+                @using (Html.BeginForm("PermissionIndex", "Admin", FormMethod.Get, new { @class = "form-inline" }))
+            {
+
+                    @Html.Label("searchs", "PERMISSION: ", new { @class = "control-label" })
+                    @Html.TextBox("searchValue", ViewBag.SearchValue as string, new { @class = "form-control", @style = "width:300px;" })
+                    <input type="submit" value="Search" class="btn btn-default" />
+                }
+            </div>
+        </div>*@
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <table id="tablex" data-search="true" data-show-refresh="true" data-striped="true"
+                       data-pagination="true" data-pagesize="5"
+                       data-classes="table table-hover table-condensed table-striped table-responsive"
+                       data-pagenumber="1" data-sidePagination="true"></table>
+            </div>
+
+        </div>
+    </div>
+  
+</div>
+
+
+@section scripts{
+<link href="~/Content/bootstrapTable/bootstrap-table.css" rel="stylesheet" />
+<script src="~/Content/bootstrapTable/bootstrap-table.js"></script>
+    <script>
+    
+
+        $(function () {
+            window.operateEvents = {
+               
+                'click .btn-danger': function (e, value, row, index) {
+                    window.location = '/Admin/PermissionDelete/?Id=' + row.Id;
+                }
+
+            };
+            LoadPermissions()
+        });
+        function operateFormatters(value, row, index) {
+            return [
+               
+                '<a class="btn btn-danger btn-xs" href="javascript:void(0)" title="Delete">',
+                '<i class="fa fa-remove"></i> Remove',
+                '</a>&nbsp;'
+            ].join('');
+        }
+
+
+        function LoadPermissions() {
+            var $table = $('#tablex').bootstrapTable({
+                showColumns: true,
+                url: '/Admin/getPermissionsList/',
+                sortStable: true,
+                silentSort: false,
+                showToggle: true,
+                columns: [
+                    {
+                        field: 'Permission', align: 'left',
+                        title: 'PERMISSION'
+                    },
+                    {
+                        title: 'ACTION',
+                        align: 'center',
+                        events: operateEvents,
+                        formatter: operateFormatters
+                    }]
+            });
+
+            $.getJSON('/Admin/getPermissionsList/', {  }, function (data) {
+                $table.bootstrapTable('showLoading');
+                $table.bootstrapTable('load', data.data);
+                $table.bootstrapTable('hideLoading');
+                var options = $table.bootstrapTable('getOptions');
+
+                if (options.totalPages > 0) {
+                    $table.bootstrapTable('selectPage', options.totalPages);
+                }
+            });
+        }
+    </script>
+    
+    
+    }

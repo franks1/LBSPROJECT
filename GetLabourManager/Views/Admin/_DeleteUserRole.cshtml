@@ -1,0 +1,74 @@
+﻿@model  GetLabourManager.ViewModels.UserRoleDeleteModel
+<div class="modal-header">
+    <div class="modal-title">User Role</div>
+    <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <i class="fa fa-thumb-tack"></i>
+            <strong> Delete Role </strong>
+        </div>
+        <div class="panel-body">
+            <h2>DO YOU WANT TO DELETE USER ROLE ?</h2>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button id="btnDelete" type="button" class="btn btn-danger">Delete</button>
+    <a class="btn btn-primary" data-dismiss="modal">Close</a>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('a[data-url]').attr('href', 'javascript://');
+        DoDelete(@Model.RoleId,@Model.UserId);
+    });
+
+    function DoDelete(RoleId,UID)
+    {
+        $('#btnDelete').bind('click',function()
+        {
+            var Role=RoleId;
+            var UserID=UID;
+            $.get("/Admin/DeleteUserRole",{id:Role,userId:UserID},function(datas)
+            {
+                $('#RolesTable').html(datas);
+                $('a[data-url]').attr('href', 'javascript://');
+                setReference();
+            });
+            $('#mstudent').modal('hide');
+        });
+    }
+
+    function setReference() {
+        $('#idTable').on('click', 'a.deleteRole', function() 
+        {
+            var anchor = $(this);
+            var id = this.id;
+            var userid = anchor.data('uid');
+            var roleID = id;
+            showModal(userid, roleID);
+        });
+    }
+
+    function showModal(RoleId, UserID) {
+        var UserRoleDeleteModel =
+            {
+                UserId: UserID,
+                RoleId: RoleId,
+            };
+
+        $("#mstudents").load("/Admin/GetDetailsRole", { data: UserRoleDeleteModel }, function () {
+            $("#mstudent").modal({ keyboard: true }, "show");
+            $(document).on('hide.bs.modal', '#mstudent', function () {
+                $('a[data-url]').attr('href', 'javascript://');
+                setReference();
+            });
+        });
+        return false;
+    }
+
+</script>
