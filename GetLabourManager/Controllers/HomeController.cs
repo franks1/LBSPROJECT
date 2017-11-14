@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace GetLabourManager.Controllers
 {
     [Authorize]
-    [RBAC]
+    [RBAC]    
     public class HomeController : Controller
     {
         RBACDbContext db;
